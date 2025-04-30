@@ -45,6 +45,12 @@
 
 (:goal (and
     ;todo: put the goal condition here
+    (unit-has-content u1 scalpel)
+    (unit-has-content u1 bandage)
+    (unit-has-content u2 thermometer)
+
+    (patient-at p1 l1)
+    (patient-at p2 l2)
 ))
 
 ;un-comment the following line if metric is needed

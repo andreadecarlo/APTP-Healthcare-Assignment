@@ -1,4 +1,4 @@
-(define (domain healthcare_1)
+(define (domain healthcare)
 
 (:requirements :strips :typing)
 
@@ -101,8 +101,9 @@
 			(not (robot-at ?r ?from))
 			(forall (?b - box) 
 				(when (loaded ?r ?b) 
-					(box-at ?b ?to)
-					(not (box-at ?b ?from))
+					(and (box-at ?b ?to)
+						(not (box-at ?b ?from))
+					)
 				)
 			)
 		)
