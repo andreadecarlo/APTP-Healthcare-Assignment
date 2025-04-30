@@ -23,6 +23,7 @@
 	(box-at ?b - box ?l - location)         ; box is at location
 	(robot-at ?r - robot ?l - location) ; robot is at location
 	(content-at ?c - content ?l - location) ; content is at location
+	(patient-at ?p - patient ?l - location) ; patient is at location
 
 	(filled-with ?b - box ?c - content) 		; box is filled with content 
 	(empty-box ?b - box)               			; box is empty
@@ -32,6 +33,10 @@
 	
 	(loaded ?r - robot-box ?b - box)          ; robot is carrying a box
 	(unloaded ?r - robot-box)               	; robot is empty
+
+	(with-patient ?r - robot-escort)     ; robot is with a patient
+
+	(connected ?l1 - location ?l2 - location) ; locations are connected
 )
 
 
@@ -89,6 +94,7 @@
 		:parameters (?r - robot-box ?from - location ?to - location)
 		:precondition (and 
 			(robot-at ?r ?from)
+			(or (connected ?from ?to) (connected ?to ?from))
 		)
 		:effect (and 
 			(robot-at ?r ?to)
@@ -118,8 +124,34 @@
 		)
 )
 
+(:action accompany
+  :parameters (?r - robot-escort ?p - patient ?from - location ?to - location ?u - unit)
+  :precondition (and 
+    (robot-at ?r ?from)             ; Robot is at source location
+    (patient-at ?p ?from)           ; Patient is at same source location
+    (unit-at ?u ?to)                ; Target unit is at destination
+    (or (connected ?from ?to) (connected ?to ?from))  ; Locations are connected
+    (not (with-patient ?r))         ; Robot isn't already escorting someone
+  )
+  :effect (and 
+    (not (robot-at ?r ?from))       ; Robot leaves source location
+    (not (patient-at ?p ?from))     ; Patient leaves source location
+    (robot-at ?r ?to)               ; Robot arrives at destination
+    (patient-at ?p ?to)             ; Patient arrives at destination
+    (with-patient ?r)               ; Robot is now escorting this patient
+  )
+)
 
-
-
+(:action free-robot
+  :parameters (?r - robot-escort ?p - patient ?l - location)
+  :precondition (and 
+    (robot-at ?r ?l)
+    (patient-at ?p ?l)
+    (with-patient ?r)
+  )
+  :effect (and
+    (not (with-patient ?r))
+  )
+)
 
 )
