@@ -18,6 +18,10 @@
     (box-at b2 central_warehouse)
     (box-at b3 central_warehouse)
 
+    (empty-box b1)
+    (empty-box b2)
+    (empty-box b3)
+
     (content-at scalpel central_warehouse)
     (content-at tongue_depressor central_warehouse)
     (content-at aspirin central_warehouse)
@@ -30,6 +34,8 @@
 
     (robot-at r1 central_warehouse)
     (robot-at r2 entrance)
+
+    (unloaded r1)
 
     (patient-at p1 entrance)
     (patient-at p2 entrance)
@@ -56,3 +62,4 @@
 ;un-comment the following line if metric is needed
 ;(:metric minimize (???))
 )
+

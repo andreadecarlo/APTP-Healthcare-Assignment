@@ -113,7 +113,7 @@
   :parameters (?r - robot ?from - location ?to - location)
   :precondition (and 
     (robot-at ?r ?from)
-    (or (unloaded ?r) (not (with-patient ?r))
+    (or (unloaded ?r) (not (with-patient ?r)))
     (or (connected ?from ?to) (connected ?to ?from))
   )
   :effect (and 
@@ -154,34 +154,74 @@
 		)
 )
 
-(:action accompany
-  :parameters (?r - robot-escort ?p - patient ?from - location ?to - location)
-  :precondition (and 
-    (robot-at ?r ?from)             ; Robot is at source location
-    (patient-at ?p ?from)           ; Patient is at same source location
-    (unit-at ?u ?to)                ; Target unit is at destination
-    (or (connected ?from ?to) (connected ?to ?from))  ; Locations are connected
-    (not (with-patient ?r))         ; Robot isn't already escorting someone
-  )
-  :effect (and 
-    (not (robot-at ?r ?from))       ; Robot leaves source location
-    (not (patient-at ?p ?from))     ; Patient leaves source location
-    (robot-at ?r ?to)               ; Robot arrives at destination
-    (patient-at ?p ?to)             ; Patient arrives at destination
-    (with-patient ?r)               ; Robot is now escorting this patient
-  )
+; (:action accompany
+;   :parameters (?r - robot-escort ?p - patient ?from - location ?to - location)
+;   :precondition (and 
+;     (robot-at ?r ?from)             ; Robot is at source location
+;     (patient-at ?p ?from)           ; Patient is at same source location
+;     (unit-at ?u ?to)                ; Target unit is at destination
+;     (or (connected ?from ?to) (connected ?to ?from))  ; Locations are connected
+;     (not (with-patient ?r))         ; Robot isn't already escorting someone
+;   )
+;   :effect (and 
+;     (not (robot-at ?r ?from))       ; Robot leaves source location
+;     (not (patient-at ?p ?from))     ; Patient leaves source location
+;     (robot-at ?r ?to)               ; Robot arrives at destination
+;     (patient-at ?p ?to)             ; Patient arrives at destination
+;     (with-patient ?r)               ; Robot is now escorting this patient
+;   )
+; )
+
+; (:action free-robot
+;   :parameters (?r - robot-escort ?p - patient ?l - location)
+;   :precondition (and 
+;     (robot-at ?r ?l)
+;     (patient-at ?p ?l)
+;     (with-patient ?r)
+;   )
+;   :effect (and
+;     (not (with-patient ?r))
+;   )
+; )
+
+(:action take-patient
+	:parameters (?r - robot-escort ?p - patient ?l - location)
+	:precondition (and 
+		(robot-at ?r ?l)
+		(patient-at ?p ?l)
+		(not (with-patient ?r))
+	)
+	:effect (and 
+		(with-patient ?r)
+	)
 )
 
-(:action free-robot
-  :parameters (?r - robot-escort ?p - patient ?l - location)
-  :precondition (and 
-    (robot-at ?r ?l)
-    (patient-at ?p ?l)
-    (with-patient ?r)
-  )
-  :effect (and
-    (not (with-patient ?r))
-  )
+(:action move-with-patient
+	:parameters (?r - robot-escort ?p - patient ?from - location ?to - location)
+	:precondition (and 
+		(robot-at ?r ?from)
+		(patient-at ?p ?from)
+		(with-patient ?r)
+		(or (connected ?from ?to) (connected ?to ?from))
+	)
+	:effect (and 
+		(robot-at ?r ?to)
+		(patient-at ?p ?to)
+		(not (robot-at ?r ?from))
+		(not (patient-at ?p ?from))
+	)
 )
 
+(:action release-patient
+	:parameters (?r - robot-escort ?p - patient ?l - location)
+	:precondition (and 
+		(robot-at ?r ?l)
+		(patient-at ?p ?l)
+		(with-patient ?r)
+	)
+	:effect (and 
+		(not (with-patient ?r))
+		(patient-at ?p ?l)
+	)
+)
 )
