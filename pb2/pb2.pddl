@@ -1,16 +1,18 @@
 (define (problem problem1) (:domain healthcare)
 (:objects 
     r1 - robot-box
-    r2 - robot-patient
+    r2 - robot-escort
     
     b1 b2 b3 - box
 
     u1 u2 u3 - unit
-    l1 l2 l3 u4 - location
+    l1 l2 l3 - location
 
     p1 p2 - patient
-    ;central_warehouse entrance - location
-    ;scalpel tongue_depressor aspirin bandage thermometer - content
+
+    c1 - carrier
+
+
 )
 
 (:init
@@ -31,12 +33,11 @@
     (unit-at u1 l1)
     (unit-at u2 l2)
     (unit-at u3 l3)
-    (unit-at u4 l3)
 
     (robot-at r1 central_warehouse)
     (robot-at r2 entrance)
 
-    (unloaded r1)
+    ; (unloaded r1)
 
     (patient-at p1 entrance)
     (patient-at p2 entrance)
@@ -48,6 +49,13 @@
     (connected central_warehouse l1)
     (connected central_warehouse l2)
     (connected central_warehouse l3)
+
+    ; ---- carrier ----
+
+    (carrier-at c1 central_warehouse)
+    (rob-carrier r1 c1)
+    (= (max_load_capacity c1) 2)
+    (= (num_box_carried c1) 0)
 )
 
 (:goal (and
