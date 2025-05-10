@@ -12,32 +12,32 @@
 )
 
 (:init
-    (box-at b1 central_warehouse)
-    (box-at b2 central_warehouse)
-    (box-at b3 central_warehouse)
+    (at b1 central_warehouse)
+    (at b2 central_warehouse)
+    (at b3 central_warehouse)
 
     (empty-box b1)
     (empty-box b2)
     (empty-box b3)
 
-    (content-at scalpel central_warehouse)
-    (content-at tongue_depressor central_warehouse)
-    (content-at aspirin central_warehouse)
-    (content-at bandage central_warehouse)
-    (content-at thermometer central_warehouse)
+    (at scalpel central_warehouse)
+    (at tongue_depressor central_warehouse)
+    (at aspirin central_warehouse)
+    (at bandage central_warehouse)
+    (at thermometer central_warehouse)
 
-    (unit-at u1 l1)
-    (unit-at u2 l2)
-    (unit-at u3 l3)
-    (unit-at u4 l3)
+    (at u1 l1)
+    (at u2 l2)
+    (at u3 l3)
+    (at u4 l3)
 
-    (robot-at r1 central_warehouse)
-    (robot-at r2 entrance)
+    (at r1 central_warehouse)
+    (at r2 entrance)
 
     (unloaded r1)
 
-    (patient-at p1 entrance)
-    (patient-at p2 entrance)
+    (at p1 entrance)
+    (at p2 entrance)
     
     (connected central_warehouse entrance)
     (connected entrance l1)
@@ -54,8 +54,8 @@
     (unit-has-content u1 bandage)
     (unit-has-content u2 thermometer)
 
-    (patient-at-unit p1 u1)
-    (patient-at-unit p2 u2)
+    (at-unit p1 u1)
+    (at-unit p2 u2)
 ))
 
 )
