@@ -1,4 +1,4 @@
-(define (domain healthcare)
+(define (domain healthcare_fluents)
 
 (:requirements :strips :typing :negative-preconditions :quantified-preconditions :fluents :disjunctive-preconditions :conditional-effects)
 
