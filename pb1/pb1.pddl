@@ -9,8 +9,6 @@
     l1 l2 l3 u4 - location
 
     p1 p2 - patient
-    ;central_warehouse entrance - location
-    ;scalpel tongue_depressor aspirin bandage thermometer - content
 )
 
 (:init
@@ -51,19 +49,14 @@
 )
 
 (:goal (and
-    ;todo: put the goal condition here
+
     (unit-has-content u1 scalpel)
     (unit-has-content u1 bandage)
     (unit-has-content u2 thermometer)
-
-    ; (patient-at p1 l1)
-    ; (patient-at p2 l2)
 
     (patient-at-unit p1 u1)
     (patient-at-unit p2 u2)
 ))
 
-;un-comment the following line if metric is needed
-;(:metric minimize (???))
 )
 
