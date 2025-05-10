@@ -1,6 +1,6 @@
 (define (domain healthcare)
 
-(:requirements :strips :typing :negative-preconditions :quantified-preconditions)
+(:requirements :strips :typing :negative-preconditions :universal-preconditions)
 
 (:types
 	location
@@ -29,10 +29,10 @@
 	(unit-has-content ?u - unit ?c - content) ; unit has specific content
 	(unit-has-box ?u - unit ?b - box)              ; unit has a box
 	
-	(loaded ?r - robot-box ?b - box)          ; robot is carrying a box
+	(loaded ?r - robot ?b - box)          ; robot is carrying a box
 	(unloaded ?r - robot-box)               	; robot is empty
 
-	(with-patient ?r - robot-patient ?p - patient)     ; robot is with a patient
+	(with-patient ?r - robot ?p - patient)     ; robot is with a patient
 	(busy ?r - robot-patient)               					; robot is busy with a patient
 
 	(connected ?l1 - location ?l2 - location) ; locations are connected
@@ -89,53 +89,33 @@
 	)
 )
 
-; (:action move
-; 	:parameters (?r - robot-box ?from - location ?to - location)
-; 	:precondition (and 
-; 		(at ?r ?from)
-; 		(or (connected ?from ?to) (connected ?to ?from))
-; 	)
-; 	:effect (and 
-; 		(at ?r ?to)
-; 		(not (at ?r ?from))
-; 		(forall (?b - box) 
-; 			(when (loaded ?r ?b) 
-; 				(and (at ?b ?to)
-; 					(not (at ?b ?from))
-; 				)
-; 			)
-; 		)
-; 	)
-; )
+(:action move
+	:parameters (?r - robot ?from - location ?to - location)
+	:precondition (and 
+		(at ?r ?from)
+		(or (connected ?from ?to) (connected ?to ?from))
+	)
+	:effect (and 
+		(at ?r ?to)
+		(not (at ?r ?from))
 
-(:action move-unloaded
-  :parameters (?r - robot ?from - location ?to - location)
-  :precondition (and 
-    (at ?r ?from)
-    (or (unloaded ?r) (not (busy ?r)))
-    (or (connected ?from ?to) (connected ?to ?from))
-  )
-  :effect (and 
-    (at ?r ?to)
-    (not (at ?r ?from))
-  )
+		(forall (?b - box) 
+			(when (loaded ?r ?b) 
+				(and (at ?b ?to)
+					(not (at ?b ?from))
+				)
+			)
+		)
+
+		(forall (?p - patient) 
+			(when (with-patient ?r ?p) 
+				(and (at ?p ?to)
+					(not (at ?p ?from))
+				)
+			)
+		)
+	)
 )
-
-(:action move-loaded
-  :parameters (?r - robot-box ?b - box ?from - location ?to - location)
-  :precondition (and 
-    (at ?r ?from)
-    (loaded ?r ?b)
-    (or (connected ?from ?to) (connected ?to ?from))
-  )
-  :effect (and 
-    (at ?r ?to)
-    (not (at ?r ?from))
-    (at ?b ?to)
-    (not (at ?b ?from))
-  )
-)
-
 
 (:action deliver
 		:parameters (?r - robot-box ?b - box ?l - location ?u - unit)
@@ -166,21 +146,6 @@
 	)
 )
 
-(:action move-with-patient
-	:parameters (?r - robot-patient ?p - patient ?from - location ?to - location)
-	:precondition (and 
-		(at ?r ?from)
-		(at ?p ?from)
-		(with-patient ?r ?p)
-		(or (connected ?from ?to) (connected ?to ?from))
-	)
-	:effect (and 
-		(at ?r ?to)
-		(at ?p ?to)
-		(not (at ?r ?from))
-		(not (at ?p ?from))
-	)
-)
 
 (:action release-patient
 	:parameters (?r - robot-patient ?p - patient ?l - location ?u - unit)
