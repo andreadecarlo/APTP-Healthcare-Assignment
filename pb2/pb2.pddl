@@ -1,7 +1,7 @@
 (define (problem problem1) (:domain healthcare)
 (:objects 
     r1 - robot-box
-    r2 - robot-escort
+    r2 - robot_patient
     
     b1 b2 b3 - box
 
@@ -12,7 +12,10 @@
 
     c1 - carrier
 
-
+    capacity_0 - capacity_number
+	capacity_1 - capacity_number
+    capacity_2 - capacity_number
+    capacity_3 - capacity_number
 )
 
 (:init
@@ -49,13 +52,20 @@
     (connected central_warehouse l1)
     (connected central_warehouse l2)
     (connected central_warehouse l3)
+    (connected l1 l2)
+    (connected l1 l3)
+    (connected l2 l3)
 
     ; ---- carrier ----
 
     (carrier-at c1 central_warehouse)
     (rob-carrier r1 c1)
-    (= (max_load_capacity c1) 2)
-    (= (num_box_carried c1) 0)
+    ; (= (max_load_capacity c1) 2)
+    ; (= (num_box_carried c1) 0)
+    (capacity_predecessor capacity_0 capacity_1)
+    (capacity_predecessor capacity_1 capacity_2)
+    (capacity_predecessor capacity_2 capacity_3)
+    (capacity c1 capacity_2)
 )
 
 (:goal (and
@@ -72,6 +82,6 @@
 ))
 
 ;un-comment the following line if metric is needed
-;(:metric minimize (???))
+(:metric minimize (total-cost))
 )
 

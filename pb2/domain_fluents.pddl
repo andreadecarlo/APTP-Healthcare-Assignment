@@ -1,6 +1,6 @@
 (define (domain healthcare)
 
-(:requirements :strips :typing :negative-preconditions :existential-preconditions :disjunctive-preconditions :conditional-effects)
+(:requirements :strips :typing :negative-preconditions :quantified-preconditions :fluents :disjunctive-preconditions :conditional-effects)
 
 (:types
 	location
@@ -11,7 +11,6 @@
 	box
 	patient
 	carrier
-	capacity_number - object
 )
 
 (:constants 
@@ -38,9 +37,6 @@
 	(loaded ?c - carrier ?b - box)          ; carrier is carrying a box
 	; (unloaded ?r - robot-box)               	; robot is empty
 
-	(capacity ?c - carrier ?n - capacity_number)
-	(capacity_predecessor ?arg0 - capacity_number ?arg1 - capacity_number)
-
 	(rob-carrier ?r - robot-box ?c - carrier)          ; robot has a carrier
 
 	(with-patient ?r - robot_patient ?p - patient)     ; robot is with a patient
@@ -50,10 +46,10 @@
 )
 
 
-; (:functions
-; 	(max_load_capacity ?c - carrier) - number ; max load capacity of a carrier
-; 	(num_box_carried ?c - carrier) - number ; box carried by a carrier
-; )
+(:functions
+	(max_load_capacity ?c - carrier) - number ; max load capacity of a carrier
+	(num_box_carried ?c - carrier) - number ; box carried by a carrier
+)
 
 ;define actions here
 (:action fill
@@ -90,20 +86,21 @@
 )
 
 (:action pick-up
-	:parameters (?r - robot-box ?b - box ?l - location ?c - carrier ?s1 - capacity_number ?s2 - capacity_number)
+	:parameters (?r - robot-box ?b - box ?l - location ?c - carrier)
 	:precondition (and 
 		(box-at ?b ?l)
 		(robot-at ?r ?l)
 		(rob-carrier ?r ?c)
 		(carrier-at ?c ?l)
-		(capacity_predecessor ?s1 ?s2)
-		(capacity ?c ?s2)
+		; (unloaded ?r)
+		(> (max_load_capacity ?c) 0)		; can load boxes in the carrier up to carrier maximum capacity
 	)
 	:effect (and 
 		(loaded ?c ?b)
+		; (not (unloaded ?r))
 		(not (box-at ?b ?l))
-		(capacity ?c ?s1)
-		(not (capacity ?c ?s2))
+		(decrease (max_load_capacity ?c) 1)
+		(increase (num_box_carried ?c) 1)
 	)
 )
 
@@ -153,23 +150,22 @@
 ; )
 
 
-(:action drop
-		:parameters (?r - robot-box ?b - box ?l - location ?u - unit ?c - carrier ?s1 - capacity_number ?s2 - capacity_number)
+(:action deliver
+		:parameters (?r - robot-box ?b - box ?l - location ?u - unit ?c - carrier)
 		:precondition (and
 			(robot-at ?r ?l)
 			(unit-at ?u ?l)
 			(rob-carrier ?r ?c)
 			(carrier-at ?c ?l)
 			(loaded ?c ?b)
-			(capacity_predecessor ?s1 ?s2)
-			(capacity ?c ?s1)
 		)
 		:effect (and 
 			(unit-has-box ?u ?b)
 			(box-at ?b ?l)
 			(not (loaded ?c ?b))
-			(capacity ?c ?s2)
-			(not (capacity ?c ?s1))
+			;  (unloaded ?r)
+			(increase (max_load_capacity ?c) 1)
+			(decrease (num_box_carried ?c) 1)
 		)
 )
 
@@ -220,14 +216,14 @@
 )
 
 (:action return-to-warehouse
-	:parameters (?r - robot-box ?from - location ?c - carrier ?s - capacity_number)
+	:parameters (?r - robot-box ?from - location ?c - carrier)
 	:precondition (and 
 		(robot-at ?r ?from)
 		(carrier-at ?c ?from)
 		(rob-carrier ?r ?c)
-		(not (exists (?s0 - capacity_number) (capacity_predecessor ?s0 ?s)))
+		(= (num_box_carried ?c) 0)
 		(or (connected ?from central_warehouse) (connected central_warehouse ?from))
-		(not (robot-at ?r central_warehouse))
+		(not (= ?from central_warehouse))
 	)
 	:effect (and 
 		(robot-at ?r central_warehouse)
