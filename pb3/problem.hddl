@@ -9,7 +9,7 @@
     (:htn
         :parameters ()
         :subtasks (and
-            (task0 (get_to r1 l1))
+            (task0 (get_to r1 l3))
         )
     )
     (:init

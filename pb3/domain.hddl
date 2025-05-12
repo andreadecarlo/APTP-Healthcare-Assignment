@@ -74,6 +74,22 @@
     )
 )
 
+(:method m_get_to_via
+	:parameters (?r - robot ?origin - location ?middle - location ?dest - location)
+	:task (get_to ?r ?dest)
+	:subtasks (and
+		(task0 (get_to ?r ?middle))
+		(task1 (move ?r ?middle ?dest))
+	)
+)
+
+(:method m_i_am_there
+	:parameters (?r - robot ?dest - location)
+	:task (get_to ?r ?dest)
+	:precondition (at ?r ?dest)
+	:subtasks ()
+)
+
 (:action move
 	:parameters (?r - robot ?from - location ?to - location)
 	:precondition (and 
