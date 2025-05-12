@@ -1,6 +1,6 @@
 (define (domain healthcare)
 
-(:requirements :strips :typing :hierarchy)
+(:requirements :strips :typing : :hierarchy)
 
 (:types
     location
@@ -55,6 +55,12 @@
     :effect ()
 )
 
+(:task load
+	:parameters (?r - robot-box ?c - content)
+	:precondition ()
+	:effect ()
+)
+
 ; (:method m_deliver
 ;     :parameters (?r - robot-box ?dest - location ?c - content ?u - unit)
 ;     :task (deliver ?c ?u)
@@ -90,6 +96,15 @@
 	:subtasks ()
 )
 
+(:method m_load
+	:parameters (?r - robot-box ?c - content ?b - box ?l - location ?cr - carrier ?s1 - capacity_number ?s2 - capacity_number)
+	:task (load ?r ?c)
+	:subtasks (and
+		(task0 (fill ?r ?b ?c ?l))
+		(task1 (pick-up ?r ?b ?l ?cr ?s1 ?s2))
+	)
+)
+
 (:action move
 	:parameters (?r - robot ?from - location ?to - location)
 	:precondition (and 
@@ -103,17 +118,18 @@
 
 		(forall (?c - carrier) 
 			(when (rob-carrier ?r ?c) 
-				(and (at ?c ?to)
+				(and 
+					(at ?c ?to)
 					(not (at ?c ?from))
-				)
-			)
-		)
 
-		(forall (?b - box) 
-			(when (loaded ?r ?b) 
-				(and (at ?b ?to)
-					(not (at ?b ?from))
-  				)
+					(forall (?b - box) 
+						(when (loaded ?c ?b) 
+							(and (at ?b ?to)
+								(not (at ?b ?from))
+							)
+						)
+					)
+				)
 			)
 		)
 
@@ -126,4 +142,38 @@
 		)
 	)
 )
+
+
+(:action fill
+	:parameters (?r - robot-box ?b - box ?c - content ?l - location)
+	:precondition (and 
+		(at ?b ?l)
+		(at ?r ?l)
+		(at ?c ?l)
+		(empty-box ?b)
+	)
+	:effect (and 
+		(filled-with ?b ?c)
+		(not (empty-box ?b))
+	)
+)
+
+(:action pick-up
+	:parameters (?r - robot-box ?b - box ?l - location ?c - carrier ?s1 - capacity_number ?s2 - capacity_number)
+	:precondition (and 
+		(at ?b ?l)
+		(at ?r ?l)
+		(at ?c ?l)
+		(rob-carrier ?r ?c)
+		(capacity_predecessor ?s1 ?s2)
+		(capacity ?c ?s2)
+	)
+	:effect (and 
+		(loaded ?c ?b)
+		(not (at ?b ?l))
+		(capacity ?c ?s1)
+		(not (capacity ?c ?s2))
+	)
+)
+
 )
