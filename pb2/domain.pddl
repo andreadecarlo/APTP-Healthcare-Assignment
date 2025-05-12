@@ -115,20 +115,24 @@
 		(not (at ?r ?from))
 
 		(forall (?c - carrier) 
-			(when (rob-carrier ?r ?c) 
-				(and (at ?c ?to)
-					(not (at ?c ?from))
+			(and 
+				(when (rob-carrier ?r ?c) 
+					(and 
+						(at ?c ?to)
+						(not (at ?c ?from))
+					)
+				)
+				(forall (?b - box) 
+					(when (and (rob-carrier ?r ?c) (loaded ?c ?b))
+						(and (at ?b ?to)
+							(not (at ?b ?from))
+						)
+					)
 				)
 			)
 		)
 
-		(forall (?b - box) 
-			(when (loaded ?r ?b) 
-				(and (at ?b ?to)
-					(not (at ?b ?from))
-				)
-			)
-		)
+		
 
 		(forall (?p - patient) 
 			(when (with-patient ?r ?p) 
