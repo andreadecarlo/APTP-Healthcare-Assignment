@@ -1,6 +1,6 @@
 (define (domain healthcare)
 
-(:requirements :strips :typing : :hierarchy)
+(:requirements :strips :typing :hierarchy)
 
 (:types
     location
@@ -61,6 +61,12 @@
 	:effect ()
 )
 
+(:task supply
+	:parameters (?r - robot-box ?c - content ?u - unit)
+	:precondition ()
+	:effect ()
+)
+
 ; (:method m_deliver
 ;     :parameters (?r - robot-box ?dest - location ?c - content ?u - unit)
 ;     :task (deliver ?c ?u)
@@ -105,6 +111,15 @@
 	)
 )
 
+(:method m_supply
+	:parameters (?r - robot-box ?b - box ?c -content ?l - location ?u - unit ?cr - carrier ?s1 - capacity_number ?s2 - capacity_number)
+	:task (supply ?r ?c ?u)
+	:subtasks (and
+		(task0(drop ?r ?b ?l ?u ?cr ?s1 ?s2))
+		(task1(empty ?r ?b ?c ?u ?l))
+	)
+)
+
 (:action move
 	:parameters (?r - robot ?from - location ?to - location)
 	:precondition (and 
@@ -143,7 +158,6 @@
 	)
 )
 
-
 (:action fill
 	:parameters (?r - robot-box ?b - box ?c - content ?l - location)
 	:precondition (and 
@@ -176,4 +190,44 @@
 	)
 )
 
+(:action drop
+		:parameters (?r - robot-box ?b - box ?l - location ?u - unit ?c - carrier ?s1 - capacity_number ?s2 - capacity_number)
+		:precondition (and
+			(at ?r ?l)
+			(at ?u ?l)
+			(at ?c ?l)
+			(rob-carrier ?r ?c)
+			(loaded ?c ?b)
+			(capacity_predecessor ?s1 ?s2)
+			(capacity ?c ?s1)
+		)
+		:effect (and 
+			(unit-has-box ?u ?b)
+			(at ?b ?l)
+			(not (loaded ?c ?b))
+			(capacity ?c ?s2)
+			(not (capacity ?c ?s1))
+		)
 )
+
+(:action empty
+	:parameters (?r - robot-box ?b - box ?c - content ?u - unit ?l - location)
+	:precondition (and 
+		(at ?u ?l)
+		(at ?b ?l)
+		(at ?r ?l)
+		(unit-has-box ?u ?b)
+		(filled-with ?b ?c)
+		(not (empty-box ?b))
+		(not (unit-has-content ?u ?c))
+	)
+	:effect (and 
+		(unit-has-content ?u ?c)
+		(not (filled-with ?b ?c))
+		(empty-box ?b)
+		(at ?c ?l)
+	)
+)
+
+)
+

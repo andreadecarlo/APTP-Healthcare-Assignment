@@ -23,6 +23,8 @@
             (task1 (load r1 aspirin))
             (task2 (load r1 bandage))
             (task3 (get_to r1 l3))
+            (task4 (supply r1 aspirin u1))
+            (task4 (supply r1 scalpel u1))
         )
     )
     (:init
@@ -37,6 +39,8 @@
         (at b1 central_warehouse)
         (at b2 central_warehouse)
         (at b3 central_warehouse)
+
+        (at u1 l3)
 
         (empty-box b1)
         (empty-box b2)
