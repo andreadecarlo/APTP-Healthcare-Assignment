@@ -26,7 +26,14 @@
             ; (task4 (supply r1 aspirin u1))
             ; (task4 (supply r1 scalpel u1))
             (task0 (deliver scalpel u1))
-            ; (task1 (deliver aspirin u1))
+            (task1 (deliver aspirin u1))
+            (task2 (deliver bandage u2))
+            ; (task1 (get_to r1 central_warehouse))
+        )
+        :ordering (and
+            (task0 < task1)
+            (task1 < task2)
+
         )
     )
     (:init
@@ -43,6 +50,7 @@
         (at b3 central_warehouse)
 
         (at u1 l3)
+        (at u2 l2)
 
         (empty-box b1)
         (empty-box b2)
