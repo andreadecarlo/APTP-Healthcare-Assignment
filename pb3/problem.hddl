@@ -19,12 +19,14 @@
     (:htn
         :parameters ()
         :subtasks (and
-            (task0 (load r1 scalpel))
-            (task1 (load r1 aspirin))
-            (task2 (load r1 bandage))
-            (task3 (get_to r1 l3))
-            (task4 (supply r1 aspirin u1))
-            (task4 (supply r1 scalpel u1))
+            ; (task0 (load r1 scalpel))
+            ; (task1 (load r1 aspirin))
+            ; (task2 (load r1 bandage))
+            ; (task3 (get_to r1 l3))
+            ; (task4 (supply r1 aspirin u1))
+            ; (task4 (supply r1 scalpel u1))
+            (task0 (deliver scalpel u1))
+            ; (task1 (deliver aspirin u1))
         )
     )
     (:init

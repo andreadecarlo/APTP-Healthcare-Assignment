@@ -67,16 +67,20 @@
 	:effect ()
 )
 
-; (:method m_deliver
-;     :parameters (?r - robot-box ?dest - location ?c - content ?u - unit)
-;     :task (deliver ?c ?u)
-;     :subtasks (and
-;         (task0 (get_to ?r central_warehouse))
-;         (task1 (load ?r ?c))
-;         (task2 (get_to ?r ?dest))
-;         (task3 (supply ?r ?c ?u))
-;     )
-; )
+(:method m_deliver
+    :parameters (?r - robot-box ?dest - location ?c - content ?u - unit)
+    :task (deliver ?c ?u)
+    :precondition (and
+        (at ?u ?dest)
+        (not (unit-has-content ?u ?c))
+    )
+    :subtasks (and
+        (task0 (get_to ?r central_warehouse))
+        (task1 (load ?r ?c))
+        (task2 (get_to ?r ?dest))
+        (task3 (supply ?r ?c ?u))
+    )
+)
 
 (:method m_get_to
     :parameters (?r - robot ?origin - location ?dest - location)
