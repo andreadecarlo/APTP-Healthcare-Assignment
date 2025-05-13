@@ -67,6 +67,12 @@
 	:effect ()
 )
 
+(:task accompany
+	:parameters (?p - patient ?u - unit)
+	:precondition ()
+	:effect ()
+)
+
 (:method m_deliver
     :parameters (?r - robot-box ?dest - location ?c - content ?u - unit)
     :task (deliver ?c ?u)
@@ -82,20 +88,37 @@
     )
 )
 
-(:method m_get_to
-    :parameters (?r - robot ?cr - carrier ?origin - location ?dest - location)
+(:method m_get_to_carrier
+    :parameters (?r - robot-box ?cr - carrier ?origin - location ?dest - location)
     :task (get_to ?r ?dest)
     :subtasks (and
-        (task0 (move ?r ?cr ?origin ?dest))
+        (task0 (move-carrier ?r ?cr ?origin ?dest))
+    )
+)
+
+(:method m_get_to_patient
+    :parameters (?r - robot-patient ?origin - location ?dest - location)
+    :task (get_to ?r ?dest)
+    :subtasks (and
+        (task0 (move-robot ?r ?origin ?dest))
     )
 )
 
 (:method m_get_to_via
-	:parameters (?r - robot ?cr - carrier ?origin - location ?middle - location ?dest - location)
+	:parameters (?r - robot-box ?cr - carrier ?origin - location ?middle - location ?dest - location)
 	:task (get_to ?r ?dest)
 	:subtasks (and
 		(task0 (get_to ?r ?middle))
-		(task1 (move ?r ?cr ?middle ?dest))
+		(task1 (move-carrier ?r ?cr ?middle ?dest))
+	)
+)
+
+(:method m_get_to_via_patient
+	:parameters (?r - robot-patient ?origin - location ?middle - location ?dest - location)
+	:task (get_to ?r ?dest)
+	:subtasks (and
+		(task0 (get_to ?r ?middle))
+		(task1 (move-robot ?r ?middle ?dest))
 	)
 )
 
@@ -124,44 +147,57 @@
 	)
 )
 
-(:action move
+(:method m_accompany
+	:parameters (?r - robot-patient ?p - patient ?origin - location ?dest - location ?u - unit)
+	:task (accompany ?p ?u)
+	:subtasks (and
+		(task0 (get_to ?r ?origin))
+		(task1 (take-patient ?r ?p ?origin))
+		(task2 (get_to ?r ?dest))
+		(task3 (release-patient ?r ?p ?dest ?u))
+	)
+)
+
+(:action move-carrier
 	:parameters (?r - robot ?c - carrier ?from - location ?to - location)
 	:precondition (and 
 		(at ?r ?from)
 		(rob-carrier ?r ?c)
 		(or (connected ?from ?to) (connected ?to ?from))
-		; (not (= ?to central_warehouse))
 	)
 	:effect (and 
 		(at ?r ?to)
 		(at ?c ?to)
 		(not (at ?r ?from))
+		(not (at ?c ?from))
 
-		; (forall (?c - carrier) 
-		; 	(when (rob-carrier ?r ?c) 
-		; 		(and 
-		; 			(at ?c ?to)
-		; 			(not (at ?c ?from))
-
-		; 			(forall (?b - box) 
-		; 				(when (loaded ?c ?b) 
-		; 					(and (at ?b ?to)
-		; 						(not (at ?b ?from))
-		; 					)
-		; 				)
-		; 			)
-		; 		)
-		; 	)
-		; )
-
-		; (forall (?p - patient) 
-		; 	(when (with-patient ?r ?p) 
-		; 		(and (at ?p ?to)
-		; 			(not (at ?p ?from))
-		; 		)
-		; 	)
-		; )
+		(forall (?b - box) 
+			(when (loaded ?c ?b) 
+				(and (at ?b ?to)
+					(not (at ?b ?from))
+				)
+			)
+		)
 	)
+)
+
+(:action move-robot
+    :parameters (?r - robot-patient ?from - location ?to - location)
+    :precondition (and
+        (at ?r ?from)
+        (or (connected ?from ?to) (connected ?to ?from))
+    )
+    :effect (and
+        (at ?r ?to)
+        (not (at ?r ?from))
+        ; Move patient if robot is with one
+        (forall (?p - patient)
+            (when (with-patient ?r ?p)
+                (and (at ?p ?to)
+                     (not (at ?p ?from)))
+            )
+        )
+    )
 )
 
 (:action fill
@@ -232,6 +268,36 @@
 		(not (filled-with ?b ?c))
 		(empty-box ?b)
 		(at ?c ?l)
+	)
+)
+
+(:action take-patient
+	:parameters (?r - robot-patient ?p - patient ?l - location)
+	:precondition (and 
+		(at ?r ?l)
+		(at ?p ?l)
+		(not (busy ?r))
+	)
+	:effect (and 
+		(with-patient ?r ?p)
+		(busy ?r)
+	)
+)
+
+(:action release-patient
+	:parameters (?r - robot-patient ?p - patient ?l - location ?u - unit)
+	:precondition (and 
+		(at ?r ?l)
+		(at ?p ?l)
+		(at ?u ?l)
+		(with-patient ?r ?p)
+		(busy ?r)
+	)
+
+	:effect (and 
+		(not (with-patient ?r ?p))
+		(not (busy ?r))
+		(at-unit ?p ?u)
 	)
 )
 
