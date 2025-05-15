@@ -115,25 +115,14 @@
 		(not (at ?r ?from))
 
 		(forall (?c - carrier) 
-			(and 
-				(when (rob-carrier ?r ?c) 
-					(and 
-						(at ?c ?to)
-						(not (at ?c ?from))
-					)
-				)
-				(forall (?b - box) 
-					(when (and (rob-carrier ?r ?c) (loaded ?c ?b))
-						(and (at ?b ?to)
-							(not (at ?b ?from))
-						)
-					)
+			(when (rob-carrier ?r ?c) 
+				(and 
+					(at ?c ?to)
+					(not (at ?c ?from))
 				)
 			)
 		)
-
 		
-
 		(forall (?p - patient) 
 			(when (with-patient ?r ?p) 
 				(and (at ?p ?to)
@@ -191,6 +180,7 @@
 	:effect (and 
 		(not (with-patient ?r ?p))
 		(not (busy ?r))
+		(at ?p ?l)
 		(at-unit ?p ?u)
 	)
 )
