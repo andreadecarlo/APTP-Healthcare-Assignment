@@ -170,14 +170,6 @@
 		(at ?c ?to)
 		(not (at ?r ?from))
 		(not (at ?c ?from))
-
-		(forall (?b - box) 
-			(when (loaded ?c ?b) 
-				(and (at ?b ?to)
-					(not (at ?b ?from))
-				)
-			)
-		)
 	)
 )
 
@@ -190,13 +182,6 @@
     :effect (and
         (at ?r ?to)
         (not (at ?r ?from))
-        ; Move patient if robot is with one
-        (forall (?p - patient)
-            (when (with-patient ?r ?p)
-                (and (at ?p ?to)
-                     (not (at ?p ?from)))
-            )
-        )
     )
 )
 
@@ -288,7 +273,6 @@
 	:parameters (?r - robot-patient ?p - patient ?l - location ?u - unit)
 	:precondition (and 
 		(at ?r ?l)
-		(at ?p ?l)
 		(at ?u ?l)
 		(with-patient ?r ?p)
 		(busy ?r)
