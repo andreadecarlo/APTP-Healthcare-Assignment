@@ -1,6 +1,6 @@
 (define (domain healthcare)
 
-(:requirements :strips :typing :durative-actions)
+(:requirements :strips :typing :durative-actions :adl)
 
 (:types
     location

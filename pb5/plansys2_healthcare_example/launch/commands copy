@@ -1,0 +1,77 @@
+set instance r1 robot_box
+set instance r2 robot_patient
+
+set instance u1 unit
+set instance u2 unit
+set instance u3 unit
+
+set instance l1 location
+set instance l2 location
+set instance l3 location
+
+set instance central_warehouse location
+set instance entrance location
+
+set instance b1 box
+set instance b2 box
+set instance b3 box
+
+set instance p1 patient
+set instance p2 patient
+
+set instance c1 carrier
+
+set instance capacity_0 capacity_number
+set instance capacity_1 capacity_number
+set instance capacity_2 capacity_number
+set instance capacity_3 capacity_number
+
+set instance scalpel content
+set instance aspirin content
+set instance bandage content
+
+set predicate (at_robot r1 central_warehouse)
+set predicate (at c1 central_warehouse)
+set predicate (rob_carrier r1 c1)
+
+set predicate (at_robot r2 entrance)
+
+set predicate (available r1)
+set predicate (available r2)
+
+set predicate (free r2)
+
+set predicate (at p1 entrance)
+set predicate (at p2 entrance)
+
+set predicate (connected central_warehouse l1)
+set predicate (connected l1 l2)
+set predicate (connected l2 l3)
+set predicate (connected entrance l1)
+
+set predicate (connected_reverse l1 central_warehouse)
+set predicate (connected_reverse l2 l1)
+set predicate (connected_reverse l3 l2)
+set predicate (connected_reverse l1 entrance)
+
+set predicate (at b1 central_warehouse)
+set predicate (at b2 central_warehouse)
+set predicate (at b3 central_warehouse)
+
+set predicate (at u1 l1)
+set predicate (at u2 l2)
+
+set predicate (empty_box b1)
+set predicate (empty_box b2)
+set predicate (empty_box b3)
+
+set predicate (at scalpel central_warehouse)
+set predicate (at aspirin central_warehouse)
+set predicate (at bandage central_warehouse)
+
+set predicate (capacity_predecessor capacity_0 capacity_1)
+set predicate (capacity_predecessor capacity_1 capacity_2)
+set predicate (capacity_predecessor capacity_2 capacity_3)
+set predicate (capacity c1 capacity_3)
+
+set goal (and (unit_has_content u1 scalpel) (unit_has_content u1 aspirin) (unit_has_content u2 bandage) (at_unit p1 u1))
