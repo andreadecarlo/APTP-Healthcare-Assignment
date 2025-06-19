@@ -6,22 +6,11 @@ run docker from cli:
 
     docker exec -it bb2b1815f6cfe86f830124e15fe84db267db604fec183cad7ee0e155db076fcb /bin/sh
 
-CHECK: if myplanutils is slow, try build with --platform linux/arm64
-
-TODO: reduce CLI prompt prefix
-
 running:
 
     $> downward --alias lama-first domain.pddl pb1.pddl  
-produces `sas_plan`
-
----
 
     downward domain.pddl problem.pddl--search "astar(lmcut())"
-
-better than -alias lama-first
-
----
 
     tfd domain.pddl problem.pddl
 

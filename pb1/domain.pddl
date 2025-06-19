@@ -20,28 +20,57 @@
 )
 
 (:predicates
-	(at ?x - locatable ?l - location)		; x is at location
-	(at-unit ?p - patient ?u - unit) 		; patient is at unit
-
-	(filled-with ?b - box ?c - content) 		; box is filled with content 
-	(empty-box ?b - box)               			; box is empty
+	(at ?x - locatable ?l - location)			; x is at location
+	(connected ?l1 - location ?l2 - location)	; locations are connected
 	
-	(unit-has-content ?u - unit ?c - content) ; unit has specific content
-	(unit-has-box ?u - unit ?b - box)              ; unit has a box
-	
-	(loaded ?r - robot ?b - box)          ; robot is carrying a box
+	(loaded ?r - robot ?b - box)          		; robot is carrying a box
 	(unloaded ?r - robot-box)               	; robot is empty
-
-	(with-patient ?r - robot ?p - patient)     ; robot is with a patient
-	(busy ?r - robot-patient)               					; robot is busy with a patient
-
-	(connected ?l1 - location ?l2 - location) ; locations are connected
+	(empty-box ?b - box)               			; box is empty
+	(filled-with ?b - box ?c - content) 		; box is filled with content 
+	(unit-has-box ?u - unit ?b - box)           ; unit has a box
+	(unit-has-content ?u - unit ?c - content) 	; unit has specific content
+	
+	(with-patient ?r - robot ?p - patient)     	; robot is with a patient
+	(busy ?r - robot-patient)           		; robot is busy with a patient
+	(at-unit ?p - patient ?u - unit) 			; patient is at unit
 )
 
 
 ; (:functions)
 
-;define actions here
+
+; Both robot-box and robot-patient can move between connected locations
+(:action move
+	:parameters (?r - robot ?from - location ?to - location)
+	:precondition (and 
+		(at ?r ?from)
+		(or (connected ?from ?to) (connected ?to ?from))
+	)
+	:effect (and 
+		(at ?r ?to)
+		(not (at ?r ?from))
+
+		; we don't need to update the location of the carried box or patient
+		; it is updated once it is delivered or released
+		; (forall (?b - box) 
+		; 	(when (loaded ?r ?b) 
+		; 		(and (at ?b ?to)
+		; 			(not (at ?b ?from))
+		; 		)
+		; 	)
+		; )
+
+		; (forall (?p - patient) 
+		; 	(when (with-patient ?r ?p) 
+		; 		(and (at ?p ?to)
+		; 			(not (at ?p ?from))
+		; 		)
+		; 	)
+		; )
+	)
+)
+
+; Robot-box can fill a box with content
 (:action fill
 	:parameters (?r - robot-box ?b - box ?c - content ?l - location)
 	:precondition (and 
@@ -49,6 +78,7 @@
 		(at ?r ?l)
 		(at ?c ?l)
 		(empty-box ?b)
+		(= ?l central_warehouse) ; content can only be filled in the central warehouse
 	)
 	:effect (and 
 		(filled-with ?b ?c)
@@ -56,6 +86,7 @@
 	)
 )
 
+; Robot-box can empty a box filled with content causing the unit to have that content
 (:action empty
 	:parameters (?r - robot-box ?b - box ?c - content ?u - unit ?l - location)
 	:precondition (and 
@@ -64,8 +95,8 @@
 		(at ?r ?l)
 		(unit-has-box ?u ?b)
 		(filled-with ?b ?c)
-		(not (empty-box ?b))
-		(not (unit-has-content ?u ?c))			; necessary?
+		; (not (empty-box ?b))					; redundant
+		; (not (unit-has-content ?u ?c))			; necessary?
 	)
 	:effect (and 
 		(unit-has-content ?u ?c)
@@ -75,6 +106,7 @@
 	)
 )
 
+; Robot-box can pick up a box from a location
 (:action pick-up
 	:parameters (?r - robot-box ?b - box ?l - location)
 	:precondition (and 
@@ -89,50 +121,26 @@
 	)
 )
 
-(:action move
-	:parameters (?r - robot ?from - location ?to - location)
-	:precondition (and 
-		(at ?r ?from)
-		(or (connected ?from ?to) (connected ?to ?from))
-	)
-	:effect (and 
-		(at ?r ?to)
-		(not (at ?r ?from))
 
-		(forall (?b - box) 
-			(when (loaded ?r ?b) 
-				(and (at ?b ?to)
-					(not (at ?b ?from))
-				)
-			)
-		)
-
-		(forall (?p - patient) 
-			(when (with-patient ?r ?p) 
-				(and (at ?p ?to)
-					(not (at ?p ?from))
-				)
-			)
-		)
-	)
-)
-
+; Robot-box can deliver a box to a unit at a location
 (:action deliver
 		:parameters (?r - robot-box ?b - box ?l - location ?u - unit)
 		:precondition (and
 			(at ?r ?l)
 			(at ?u ?l)
-			(at ?b ?l)
 
 			(loaded ?r ?b)
 		)
 		:effect (and 
+			(at ?b ?l)
 			(unit-has-box ?u ?b)
+			
 			(not (loaded ?r ?b))
 			(unloaded ?r)
 		)
 )
 
+; Robot-patient can take a patient from a location, causing the robot to be busy
 (:action take-patient
 	:parameters (?r - robot-patient ?p - patient ?l - location)
 	:precondition (and 
@@ -146,21 +154,23 @@
 	)
 )
 
-
+; Robot-patient can release a patient at a location, causing the robot to be no longer busy
 (:action release-patient
 	:parameters (?r - robot-patient ?p - patient ?l - location ?u - unit)
 	:precondition (and 
 		(at ?r ?l)
-		(at ?p ?l)
 		(at ?u ?l)
+
 		(with-patient ?r ?p)
 		(busy ?r)
 	)
 
 	:effect (and 
+		(at ?p ?l)
+		(at-unit ?p ?u)
+		
 		(not (with-patient ?r ?p))
 		(not (busy ?r))
-		(at-unit ?p ?u)
 	)
 )
 )
