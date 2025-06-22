@@ -1,0 +1,1413 @@
+;; #state features
+59
++at[r1,central_warehouse]
++at[c1,central_warehouse]
++at[r2,entrance]
++at[b1,central_warehouse]
++at[b2,central_warehouse]
++at[b3,central_warehouse]
++empty-box[b1]
++empty-box[b2]
++empty-box[b3]
++capacity[c1,capacity_3]
+-busy[r2]
+-unit-has-content[u1,aspirin]
+-unit-has-content[u1,scalpel]
+-unit-has-content[u2,bandage]
++at[r1,l1]
++at[c1,l1]
++at[r2,l1]
++filled-with[b1,scalpel]
+-empty-box[b1]
++filled-with[b2,scalpel]
+-empty-box[b2]
++filled-with[b3,scalpel]
+-empty-box[b3]
++filled-with[b1,aspirin]
++filled-with[b2,aspirin]
++filled-with[b3,aspirin]
++filled-with[b1,bandage]
++filled-with[b2,bandage]
++filled-with[b3,bandage]
++loaded[c1,b1]
++capacity[c1,capacity_2]
++loaded[c1,b2]
++loaded[c1,b3]
++with-patient[r2,p1]
++busy[r2]
++at[r1,l2]
++at[c1,l2]
++at[r1,entrance]
++at[r2,l2]
++at[r2,central_warehouse]
++capacity[c1,capacity_1]
++unit-has-box[u1,b1]
++at[b1,l1]
++unit-has-box[u1,b2]
++at[b2,l1]
++unit-has-box[u1,b3]
++at[b3,l1]
++at[r1,l3]
++unit-has-box[u2,b1]
++at[b1,l2]
++unit-has-box[u2,b2]
++at[b2,l2]
++unit-has-box[u2,b3]
++at[b3,l2]
++at[r2,l3]
++capacity[c1,capacity_0]
++at[scalpel,l1]
++at[aspirin,l1]
++at[bandage,l2]
+
+;; Mutex Groups
+59
+0 0 +at[r1,central_warehouse]
+1 1 +at[c1,central_warehouse]
+2 2 +at[r2,entrance]
+3 3 +at[b1,central_warehouse]
+4 4 +at[b2,central_warehouse]
+5 5 +at[b3,central_warehouse]
+6 6 +empty-box[b1]
+7 7 +empty-box[b2]
+8 8 +empty-box[b3]
+9 9 +capacity[c1,capacity_3]
+10 10 -busy[r2]
+11 11 -unit-has-content[u1,aspirin]
+12 12 -unit-has-content[u1,scalpel]
+13 13 -unit-has-content[u2,bandage]
+14 14 +at[r1,l1]
+15 15 +at[c1,l1]
+16 16 +at[r2,l1]
+17 17 +filled-with[b1,scalpel]
+18 18 -empty-box[b1]
+19 19 +filled-with[b2,scalpel]
+20 20 -empty-box[b2]
+21 21 +filled-with[b3,scalpel]
+22 22 -empty-box[b3]
+23 23 +filled-with[b1,aspirin]
+24 24 +filled-with[b2,aspirin]
+25 25 +filled-with[b3,aspirin]
+26 26 +filled-with[b1,bandage]
+27 27 +filled-with[b2,bandage]
+28 28 +filled-with[b3,bandage]
+29 29 +loaded[c1,b1]
+30 30 +capacity[c1,capacity_2]
+31 31 +loaded[c1,b2]
+32 32 +loaded[c1,b3]
+33 33 +with-patient[r2,p1]
+34 34 +busy[r2]
+35 35 +at[r1,l2]
+36 36 +at[c1,l2]
+37 37 +at[r1,entrance]
+38 38 +at[r2,l2]
+39 39 +at[r2,central_warehouse]
+40 40 +capacity[c1,capacity_1]
+41 41 +unit-has-box[u1,b1]
+42 42 +at[b1,l1]
+43 43 +unit-has-box[u1,b2]
+44 44 +at[b2,l1]
+45 45 +unit-has-box[u1,b3]
+46 46 +at[b3,l1]
+47 47 +at[r1,l3]
+48 48 +unit-has-box[u2,b1]
+49 49 +at[b1,l2]
+50 50 +unit-has-box[u2,b2]
+51 51 +at[b2,l2]
+52 52 +unit-has-box[u2,b3]
+53 53 +at[b3,l2]
+54 54 +at[r2,l3]
+55 55 +capacity[c1,capacity_0]
+56 56 +at[scalpel,l1]
+57 57 +at[aspirin,l1]
+58 58 +at[bandage,l2]
+
+;; further strict Mutex Groups
+0
+
+;; further non strict Mutex Groups
+0
+
+;; known invariants
+0
+
+;; Actions
+103
+1
+16 34 33 -1
+0 10  -1
+0 34  0 33  -1
+0
+16 -1
+-1
+-1
+1
+39 -1
+0 16  -1
+0 39  -1
+1
+2 -1
+0 16  -1
+0 2  -1
+1
+38 -1
+0 16  -1
+0 38  -1
+0
+2 -1
+-1
+-1
+1
+16 -1
+0 2  -1
+0 16  -1
+0
+38 -1
+-1
+-1
+1
+16 -1
+0 38  -1
+0 16  -1
+1
+54 -1
+0 38  -1
+0 54  -1
+0
+54 -1
+-1
+-1
+1
+38 -1
+0 54  -1
+0 38  -1
+0
+39 -1
+-1
+-1
+1
+16 -1
+0 39  -1
+0 16  -1
+1
+2 10 -1
+0 34  0 33  -1
+0 10  -1
+0
+13 -1
+-1
+-1
+1
+36 35 55 32 -1
+0 40  0 53  0 52  -1
+0 55  0 32  -1
+1
+36 35 30 32 -1
+0 9  0 53  0 52  -1
+0 30  0 32  -1
+1
+36 35 40 32 -1
+0 30  0 53  0 52  -1
+0 40  0 32  -1
+1
+53 35 22 28 13 52 -1
+0 58  0 8  -1
+0 22  0 28  0 13  -1
+1
+36 35 55 31 -1
+0 40  0 51  0 50  -1
+0 55  0 31  -1
+1
+36 35 30 31 -1
+0 9  0 51  0 50  -1
+0 30  0 31  -1
+1
+36 35 40 31 -1
+0 30  0 51  0 50  -1
+0 40  0 31  -1
+1
+13 35 51 20 27 50 -1
+0 58  0 7  -1
+0 20  0 27  0 13  -1
+1
+36 35 55 29 -1
+0 40  0 49  0 48  -1
+0 55  0 29  -1
+1
+36 35 30 29 -1
+0 49  0 9  0 48  -1
+0 30  0 29  -1
+1
+36 35 40 29 -1
+0 30  0 49  0 48  -1
+0 40  0 29  -1
+1
+49 18 13 26 35 48 -1
+0 58  0 6  -1
+0 18  0 26  0 13  -1
+0
+35 -1
+-1
+-1
+1
+14 -1
+0 36  0 35  -1
+0 15  0 14  -1
+1
+47 -1
+0 36  0 35  -1
+0 47  -1
+0
+14 -1
+-1
+-1
+1
+0 -1
+0 15  0 14  -1
+0 1  0 0  -1
+1
+37 -1
+0 15  0 14  -1
+0 37  -1
+1
+35 -1
+0 15  0 14  -1
+0 36  0 35  -1
+0
+37 -1
+-1
+-1
+1
+14 -1
+0 37  -1
+0 15  0 14  -1
+0
+0 -1
+-1
+-1
+1
+14 -1
+0 1  0 0  -1
+0 15  0 14  -1
+0
+47 -1
+-1
+-1
+1
+35 -1
+0 47  -1
+0 36  0 35  -1
+1
+35 36 49 40 -1
+0 55  0 29  -1
+0 40  0 49  -1
+1
+35 36 49 30 -1
+0 40  0 29  -1
+0 30  0 49  -1
+1
+36 49 35 9 -1
+0 30  0 29  -1
+0 9  0 49  -1
+1
+35 49 58 6 -1
+0 18  0 26  -1
+0 6  -1
+1
+36 53 35 9 -1
+0 30  0 32  -1
+0 9  0 53  -1
+1
+36 35 53 30 -1
+0 40  0 32  -1
+0 30  0 53  -1
+1
+36 35 53 40 -1
+0 55  0 32  -1
+0 40  0 53  -1
+1
+58 35 53 8 -1
+0 22  0 28  -1
+0 8  -1
+1
+36 35 51 40 -1
+0 55  0 31  -1
+0 40  0 51  -1
+1
+36 35 51 30 -1
+0 40  0 31  -1
+0 30  0 51  -1
+1
+36 51 35 9 -1
+0 30  0 31  -1
+0 9  0 51  -1
+1
+58 35 51 7 -1
+0 20  0 27  -1
+0 7  -1
+1
+0 4 1 40 -1
+0 55  0 31  -1
+0 40  0 4  -1
+1
+1 0 4 9 -1
+0 30  0 31  -1
+0 9  0 4  -1
+1
+1 0 4 30 -1
+0 40  0 31  -1
+0 30  0 4  -1
+1
+0 4 7 -1
+0 20  0 27  -1
+0 7  -1
+1
+0 3 1 40 -1
+0 55  0 29  -1
+0 40  0 3  -1
+1
+1 0 3 9 -1
+0 30  0 29  -1
+0 9  0 3  -1
+1
+1 0 3 30 -1
+0 40  0 29  -1
+0 30  0 3  -1
+1
+0 3 6 -1
+0 18  0 26  -1
+0 6  -1
+1
+0 5 1 40 -1
+0 55  0 32  -1
+0 40  0 5  -1
+1
+1 0 5 9 -1
+0 30  0 32  -1
+0 9  0 5  -1
+1
+1 0 5 30 -1
+0 40  0 32  -1
+0 30  0 5  -1
+1
+0 5 8 -1
+0 22  0 28  -1
+0 8  -1
+0
+11 -1
+-1
+-1
+1
+15 14 40 29 -1
+0 30  0 42  0 41  -1
+0 40  0 29  -1
+1
+15 14 55 29 -1
+0 40  0 42  0 41  -1
+0 55  0 29  -1
+1
+15 14 30 29 -1
+0 9  0 42  0 41  -1
+0 30  0 29  -1
+1
+11 14 42 18 23 41 -1
+0 57  0 6  -1
+0 18  0 23  0 11  -1
+1
+15 14 55 32 -1
+0 40  0 46  0 45  -1
+0 55  0 32  -1
+1
+15 14 30 32 -1
+0 9  0 46  0 45  -1
+0 30  0 32  -1
+1
+15 14 40 32 -1
+0 30  0 46  0 45  -1
+0 40  0 32  -1
+1
+11 14 46 22 25 45 -1
+0 57  0 8  -1
+0 22  0 25  0 11  -1
+1
+15 14 55 31 -1
+0 40  0 44  0 43  -1
+0 55  0 31  -1
+1
+15 14 30 31 -1
+0 9  0 44  0 43  -1
+0 30  0 31  -1
+1
+15 14 40 31 -1
+0 44  0 30  0 43  -1
+0 40  0 31  -1
+1
+14 44 20 11 24 43 -1
+0 57  0 7  -1
+0 20  0 24  0 11  -1
+1
+15 14 46 9 -1
+0 30  0 32  -1
+0 9  0 46  -1
+1
+15 46 14 40 -1
+0 55  0 32  -1
+0 40  0 46  -1
+1
+15 14 46 30 -1
+0 40  0 32  -1
+0 30  0 46  -1
+1
+57 14 46 8 -1
+0 22  0 25  -1
+0 8  -1
+1
+15 44 14 40 -1
+0 55  0 31  -1
+0 40  0 44  -1
+1
+15 14 44 30 -1
+0 40  0 31  -1
+0 30  0 44  -1
+1
+15 14 44 9 -1
+0 30  0 31  -1
+0 9  0 44  -1
+1
+14 57 44 7 -1
+0 20  0 24  -1
+0 7  -1
+1
+15 14 42 9 -1
+0 30  0 29  -1
+0 9  0 42  -1
+1
+15 14 42 30 -1
+0 40  0 29  -1
+0 30  0 42  -1
+1
+15 42 14 40 -1
+0 55  0 29  -1
+0 40  0 42  -1
+1
+57 14 42 6 -1
+0 18  0 23  -1
+0 6  -1
+1
+0 4 7 -1
+0 20  0 24  -1
+0 7  -1
+1
+0 3 6 -1
+0 18  0 23  -1
+0 6  -1
+1
+0 5 8 -1
+0 22  0 25  -1
+0 8  -1
+0
+12 -1
+-1
+-1
+1
+12 14 42 18 17 41 -1
+0 56  0 6  -1
+0 18  0 17  0 12  -1
+1
+12 14 46 22 21 45 -1
+0 56  0 8  -1
+0 22  0 21  0 12  -1
+1
+12 14 44 20 19 43 -1
+0 56  0 7  -1
+0 20  0 19  0 12  -1
+1
+56 14 46 8 -1
+0 22  0 21  -1
+0 8  -1
+1
+56 14 44 7 -1
+0 20  0 19  -1
+0 7  -1
+1
+56 14 42 6 -1
+0 18  0 17  -1
+0 6  -1
+1
+0 4 7 -1
+0 20  0 19  -1
+0 7  -1
+1
+0 3 6 -1
+0 18  0 17  -1
+0 6  -1
+1
+0 5 8 -1
+0 22  0 21  -1
+0 8  -1
+
+;; initial state
+0 11 1 13 2 7 3 4 9 5 10 6 12 8 -1
+
+;; goal
+-1
+
+;; tasks (primitive and abstract)
+135
+0 release-patient[r2,p1,l1,u1]
+0 __method_precondition_m_i_am_there[r2,l1]
+0 move-robot|instance_1[r2,central_warehouse,l1]
+0 move-robot|instance_1[r2,entrance,l1]
+0 move-robot|instance_2[r2,l2,l1]
+0 __method_precondition_m_i_am_there[r2,entrance]
+0 move-robot|instance_2[r2,l1,entrance]
+0 __method_precondition_m_i_am_there[r2,l2]
+0 move-robot|instance_1[r2,l1,l2]
+0 move-robot|instance_2[r2,l3,l2]
+0 __method_precondition_m_i_am_there[r2,l3]
+0 move-robot|instance_1[r2,l2,l3]
+0 __method_precondition_m_i_am_there[r2,central_warehouse]
+0 move-robot|instance_2[r2,l1,central_warehouse]
+0 take-patient[r2,p1,entrance]
+0 __method_precondition_m_deliver[l2,bandage,u2]
+0 drop[r1,b3,l2,u2,c1,capacity_0,capacity_1]
+0 drop[r1,b3,l2,u2,c1,capacity_2,capacity_3]
+0 drop[r1,b3,l2,u2,c1,capacity_1,capacity_2]
+0 empty[r1,b3,bandage,u2,l2]
+0 drop[r1,b2,l2,u2,c1,capacity_0,capacity_1]
+0 drop[r1,b2,l2,u2,c1,capacity_2,capacity_3]
+0 drop[r1,b2,l2,u2,c1,capacity_1,capacity_2]
+0 empty[r1,b2,bandage,u2,l2]
+0 drop[r1,b1,l2,u2,c1,capacity_0,capacity_1]
+0 drop[r1,b1,l2,u2,c1,capacity_2,capacity_3]
+0 drop[r1,b1,l2,u2,c1,capacity_1,capacity_2]
+0 empty[r1,b1,bandage,u2,l2]
+0 __method_precondition_m_i_am_there[r1,l2]
+0 move-carrier|instance_1[r1,c1,l1,l2]
+0 move-carrier|instance_2[r1,c1,l3,l2]
+0 __method_precondition_m_i_am_there[r1,l1]
+0 move-carrier|instance_1[r1,c1,central_warehouse,l1]
+0 move-carrier|instance_1[r1,c1,entrance,l1]
+0 move-carrier|instance_2[r1,c1,l2,l1]
+0 __method_precondition_m_i_am_there[r1,entrance]
+0 move-carrier|instance_2[r1,c1,l1,entrance]
+0 __method_precondition_m_i_am_there[r1,central_warehouse]
+0 move-carrier|instance_2[r1,c1,l1,central_warehouse]
+0 __method_precondition_m_i_am_there[r1,l3]
+0 move-carrier|instance_1[r1,c1,l2,l3]
+0 pick-up[r1,b1,l2,c1,capacity_0,capacity_1]
+0 pick-up[r1,b1,l2,c1,capacity_1,capacity_2]
+0 pick-up[r1,b1,l2,c1,capacity_2,capacity_3]
+0 fill[r1,b1,bandage,l2]
+0 pick-up[r1,b3,l2,c1,capacity_2,capacity_3]
+0 pick-up[r1,b3,l2,c1,capacity_1,capacity_2]
+0 pick-up[r1,b3,l2,c1,capacity_0,capacity_1]
+0 fill[r1,b3,bandage,l2]
+0 pick-up[r1,b2,l2,c1,capacity_0,capacity_1]
+0 pick-up[r1,b2,l2,c1,capacity_1,capacity_2]
+0 pick-up[r1,b2,l2,c1,capacity_2,capacity_3]
+0 fill[r1,b2,bandage,l2]
+0 pick-up[r1,b2,central_warehouse,c1,capacity_0,capacity_1]
+0 pick-up[r1,b2,central_warehouse,c1,capacity_2,capacity_3]
+0 pick-up[r1,b2,central_warehouse,c1,capacity_1,capacity_2]
+0 fill[r1,b2,bandage,central_warehouse]
+0 pick-up[r1,b1,central_warehouse,c1,capacity_0,capacity_1]
+0 pick-up[r1,b1,central_warehouse,c1,capacity_2,capacity_3]
+0 pick-up[r1,b1,central_warehouse,c1,capacity_1,capacity_2]
+0 fill[r1,b1,bandage,central_warehouse]
+0 pick-up[r1,b3,central_warehouse,c1,capacity_0,capacity_1]
+0 pick-up[r1,b3,central_warehouse,c1,capacity_2,capacity_3]
+0 pick-up[r1,b3,central_warehouse,c1,capacity_1,capacity_2]
+0 fill[r1,b3,bandage,central_warehouse]
+0 __method_precondition_m_deliver[l1,aspirin,u1]
+0 drop[r1,b1,l1,u1,c1,capacity_1,capacity_2]
+0 drop[r1,b1,l1,u1,c1,capacity_0,capacity_1]
+0 drop[r1,b1,l1,u1,c1,capacity_2,capacity_3]
+0 empty[r1,b1,aspirin,u1,l1]
+0 drop[r1,b3,l1,u1,c1,capacity_0,capacity_1]
+0 drop[r1,b3,l1,u1,c1,capacity_2,capacity_3]
+0 drop[r1,b3,l1,u1,c1,capacity_1,capacity_2]
+0 empty[r1,b3,aspirin,u1,l1]
+0 drop[r1,b2,l1,u1,c1,capacity_0,capacity_1]
+0 drop[r1,b2,l1,u1,c1,capacity_2,capacity_3]
+0 drop[r1,b2,l1,u1,c1,capacity_1,capacity_2]
+0 empty[r1,b2,aspirin,u1,l1]
+0 pick-up[r1,b3,l1,c1,capacity_2,capacity_3]
+0 pick-up[r1,b3,l1,c1,capacity_0,capacity_1]
+0 pick-up[r1,b3,l1,c1,capacity_1,capacity_2]
+0 fill[r1,b3,aspirin,l1]
+0 pick-up[r1,b2,l1,c1,capacity_0,capacity_1]
+0 pick-up[r1,b2,l1,c1,capacity_1,capacity_2]
+0 pick-up[r1,b2,l1,c1,capacity_2,capacity_3]
+0 fill[r1,b2,aspirin,l1]
+0 pick-up[r1,b1,l1,c1,capacity_2,capacity_3]
+0 pick-up[r1,b1,l1,c1,capacity_1,capacity_2]
+0 pick-up[r1,b1,l1,c1,capacity_0,capacity_1]
+0 fill[r1,b1,aspirin,l1]
+0 fill[r1,b2,aspirin,central_warehouse]
+0 fill[r1,b1,aspirin,central_warehouse]
+0 fill[r1,b3,aspirin,central_warehouse]
+0 __method_precondition_m_deliver[l1,scalpel,u1]
+0 empty[r1,b1,scalpel,u1,l1]
+0 empty[r1,b3,scalpel,u1,l1]
+0 empty[r1,b2,scalpel,u1,l1]
+0 fill[r1,b3,scalpel,l1]
+0 fill[r1,b2,scalpel,l1]
+0 fill[r1,b1,scalpel,l1]
+0 fill[r1,b2,scalpel,central_warehouse]
+0 fill[r1,b1,scalpel,central_warehouse]
+0 fill[r1,b3,scalpel,central_warehouse]
+1 __top[]
+1 get_to[r2,l1]
+1 get_to[r2,entrance]
+1 get_to[r2,l2]
+1 get_to[r2,l3]
+1 get_to[r2,central_warehouse]
+1 supply[r1,bandage,u2]
+1 m_supply_splitted_3[r1,b3,l2,u2,c1]
+1 m_supply_splitted_3[r1,b2,l2,u2,c1]
+1 m_supply_splitted_3[r1,b1,l2,u2,c1]
+1 get_to[r1,l2]
+1 get_to[r1,l1]
+1 get_to[r1,entrance]
+1 get_to[r1,central_warehouse]
+1 get_to[r1,l3]
+1 load[r1,bandage]
+1 m_load_splitted_2[r1,b1,l2,c1]
+1 m_load_splitted_2[r1,b3,l2,c1]
+1 m_load_splitted_2[r1,b2,l2,c1]
+1 m_load_splitted_2[r1,b2,central_warehouse,c1]
+1 m_load_splitted_2[r1,b1,central_warehouse,c1]
+1 m_load_splitted_2[r1,b3,central_warehouse,c1]
+1 supply[r1,aspirin,u1]
+1 m_supply_splitted_3[r1,b1,l1,u1,c1]
+1 m_supply_splitted_3[r1,b3,l1,u1,c1]
+1 m_supply_splitted_3[r1,b2,l1,u1,c1]
+1 load[r1,aspirin]
+1 m_load_splitted_2[r1,b3,l1,c1]
+1 m_load_splitted_2[r1,b2,l1,c1]
+1 m_load_splitted_2[r1,b1,l1,c1]
+1 supply[r1,scalpel,u1]
+1 load[r1,scalpel]
+
+;; initial abstract task
+103
+
+;; methods
+179
+<<<<<<__top_method;accompany[p1,u1];m_accompany;3;0,1,2,-1,-2>;m_accompany_splitted_1[r2,p1,u1];_splitting_method_m_accompany_splitted_1;4;0,1,2,3,-1,-2>;m_accompany_splitted_4[r2,p1];_splitting_method_m_accompany_splitted_4;3;0,1,2,-1,-2,4,5>;deliver[bandage,u2];m_deliver;2;0,1,-1,-2,-3,-4,-5,3,4,5,6>;deliver[aspirin,u1];m_deliver;1;0,-1,-2,-3,-4,-5,2,3,4,5,6,7,8,9,10>;deliver[scalpel,u1];m_deliver;0;-1,-2,-3,-4,-5,1,2,3,4,5,6,7,8,9,10,11,12,13,14>
+103
+93 133 114 134 116 65 125 114 129 116 15 109 113 118 116 105 14 104 0 -1
+10 18 10 16 10 17 10 15 10 11 10 12 10 13 10 14 5 10 5 11 5 12 5 13 5 14 5 6 5 7 5 8 5 9 0 5 0 6 0 7 0 8 0 9 0 1 0 2 0 3 0 4 11 18 11 16 11 17 11 15 12 18 12 16 12 17 12 15 13 18 13 16 13 17 13 15 14 18 14 16 14 17 14 15 6 10 6 11 6 12 6 13 6 14 7 10 7 11 7 12 7 13 7 14 8 10 8 11 8 12 8 13 8 14 9 10 9 11 9 12 9 13 9 14 1 5 1 6 1 7 1 8 1 9 2 5 2 6 2 7 2 8 2 9 3 5 3 6 3 7 3 8 3 9 4 5 4 6 4 7 4 8 4 9 -1
+m_i_am_there
+104
+1 -1
+-1
+<m_get_to_patient;move-robot[r2,central_warehouse,l1];_method_for_multiple_expansions_of_move-robot|instance_1;0;-1>
+104
+2 -1
+-1
+<m_get_to_patient;move-robot[r2,entrance,l1];_method_for_multiple_expansions_of_move-robot|instance_1;0;-1>
+104
+3 -1
+-1
+<m_get_to_patient;move-robot[r2,l2,l1];_method_for_multiple_expansions_of_move-robot|instance_2;0;-1>
+104
+4 -1
+-1
+<m_get_to_via_patient;move-robot[r2,entrance,l1];_method_for_multiple_expansions_of_move-robot|instance_1;1;0,-1>
+104
+105 3 -1
+-1
+m_i_am_there
+105
+5 -1
+-1
+<m_get_to_patient;move-robot[r2,l1,entrance];_method_for_multiple_expansions_of_move-robot|instance_2;0;-1>
+105
+6 -1
+-1
+<m_get_to_via_patient;move-robot[r2,l1,entrance];_method_for_multiple_expansions_of_move-robot|instance_2;1;0,-1>
+105
+104 6 -1
+-1
+<m_get_to_via_patient;move-robot[r2,l1,entrance];_method_for_multiple_expansions_of_move-robot|instance_2;1;0,-1>
+105
+104 6 -1
+-1
+<m_get_to_via_patient;move-robot[r2,l1,entrance];_method_for_multiple_expansions_of_move-robot|instance_2;1;0,-1>
+105
+104 6 -1
+-1
+<m_get_to_via_patient;move-robot[r2,l1,entrance];_method_for_multiple_expansions_of_move-robot|instance_2;1;0,-1>
+105
+104 6 -1
+-1
+<m_get_to_via_patient;move-robot[r2,l1,entrance];_method_for_multiple_expansions_of_move-robot|instance_2;1;0,-1>
+105
+104 6 -1
+-1
+<m_get_to_via_patient;move-robot[r2,entrance,l1];_method_for_multiple_expansions_of_move-robot|instance_1;1;0,-1>
+104
+105 3 -1
+-1
+<m_get_to_via_patient;move-robot[r2,entrance,l1];_method_for_multiple_expansions_of_move-robot|instance_1;1;0,-1>
+104
+105 3 -1
+-1
+<m_get_to_via_patient;move-robot[r2,entrance,l1];_method_for_multiple_expansions_of_move-robot|instance_1;1;0,-1>
+104
+105 3 -1
+-1
+<m_get_to_via_patient;move-robot[r2,entrance,l1];_method_for_multiple_expansions_of_move-robot|instance_1;1;0,-1>
+104
+105 3 -1
+-1
+<m_get_to_via_patient;move-robot[r2,l2,l1];_method_for_multiple_expansions_of_move-robot|instance_2;1;0,-1>
+104
+106 4 -1
+-1
+m_i_am_there
+106
+7 -1
+-1
+<m_get_to_patient;move-robot[r2,l1,l2];_method_for_multiple_expansions_of_move-robot|instance_1;0;-1>
+106
+8 -1
+-1
+<m_get_to_patient;move-robot[r2,l3,l2];_method_for_multiple_expansions_of_move-robot|instance_2;0;-1>
+106
+9 -1
+-1
+<m_get_to_via_patient;move-robot[r2,l1,l2];_method_for_multiple_expansions_of_move-robot|instance_1;1;0,-1>
+106
+104 8 -1
+-1
+<m_get_to_via_patient;move-robot[r2,l1,l2];_method_for_multiple_expansions_of_move-robot|instance_1;1;0,-1>
+106
+104 8 -1
+-1
+<m_get_to_via_patient;move-robot[r2,l1,l2];_method_for_multiple_expansions_of_move-robot|instance_1;1;0,-1>
+106
+104 8 -1
+-1
+<m_get_to_via_patient;move-robot[r2,l1,l2];_method_for_multiple_expansions_of_move-robot|instance_1;1;0,-1>
+106
+104 8 -1
+-1
+<m_get_to_via_patient;move-robot[r2,l1,l2];_method_for_multiple_expansions_of_move-robot|instance_1;1;0,-1>
+106
+104 8 -1
+-1
+<m_get_to_via_patient;move-robot[r2,l3,l2];_method_for_multiple_expansions_of_move-robot|instance_2;1;0,-1>
+106
+107 9 -1
+-1
+m_i_am_there
+107
+10 -1
+-1
+<m_get_to_patient;move-robot[r2,l2,l3];_method_for_multiple_expansions_of_move-robot|instance_1;0;-1>
+107
+11 -1
+-1
+<m_get_to_via_patient;move-robot[r2,l2,l3];_method_for_multiple_expansions_of_move-robot|instance_1;1;0,-1>
+107
+106 11 -1
+-1
+<m_get_to_via_patient;move-robot[r2,l2,l3];_method_for_multiple_expansions_of_move-robot|instance_1;1;0,-1>
+107
+106 11 -1
+-1
+<m_get_to_via_patient;move-robot[r2,l2,l3];_method_for_multiple_expansions_of_move-robot|instance_1;1;0,-1>
+107
+106 11 -1
+-1
+<m_get_to_via_patient;move-robot[r2,l2,l3];_method_for_multiple_expansions_of_move-robot|instance_1;1;0,-1>
+107
+106 11 -1
+-1
+<m_get_to_via_patient;move-robot[r2,l2,l3];_method_for_multiple_expansions_of_move-robot|instance_1;1;0,-1>
+107
+106 11 -1
+-1
+<m_get_to_via_patient;move-robot[r2,l3,l2];_method_for_multiple_expansions_of_move-robot|instance_2;1;0,-1>
+106
+107 9 -1
+-1
+<m_get_to_via_patient;move-robot[r2,l3,l2];_method_for_multiple_expansions_of_move-robot|instance_2;1;0,-1>
+106
+107 9 -1
+-1
+<m_get_to_via_patient;move-robot[r2,l3,l2];_method_for_multiple_expansions_of_move-robot|instance_2;1;0,-1>
+106
+107 9 -1
+-1
+<m_get_to_via_patient;move-robot[r2,l3,l2];_method_for_multiple_expansions_of_move-robot|instance_2;1;0,-1>
+106
+107 9 -1
+-1
+<m_get_to_via_patient;move-robot[r2,l2,l1];_method_for_multiple_expansions_of_move-robot|instance_2;1;0,-1>
+104
+106 4 -1
+-1
+<m_get_to_via_patient;move-robot[r2,l2,l1];_method_for_multiple_expansions_of_move-robot|instance_2;1;0,-1>
+104
+106 4 -1
+-1
+<m_get_to_via_patient;move-robot[r2,l2,l1];_method_for_multiple_expansions_of_move-robot|instance_2;1;0,-1>
+104
+106 4 -1
+-1
+<m_get_to_via_patient;move-robot[r2,l2,l1];_method_for_multiple_expansions_of_move-robot|instance_2;1;0,-1>
+104
+106 4 -1
+-1
+<m_get_to_via_patient;move-robot[r2,central_warehouse,l1];_method_for_multiple_expansions_of_move-robot|instance_1;1;0,-1>
+104
+108 2 -1
+-1
+m_i_am_there
+108
+12 -1
+-1
+<m_get_to_patient;move-robot[r2,l1,central_warehouse];_method_for_multiple_expansions_of_move-robot|instance_2;0;-1>
+108
+13 -1
+-1
+<m_get_to_via_patient;move-robot[r2,l1,central_warehouse];_method_for_multiple_expansions_of_move-robot|instance_2;1;0,-1>
+108
+104 13 -1
+-1
+<m_get_to_via_patient;move-robot[r2,l1,central_warehouse];_method_for_multiple_expansions_of_move-robot|instance_2;1;0,-1>
+108
+104 13 -1
+-1
+<m_get_to_via_patient;move-robot[r2,l1,central_warehouse];_method_for_multiple_expansions_of_move-robot|instance_2;1;0,-1>
+108
+104 13 -1
+-1
+<m_get_to_via_patient;move-robot[r2,l1,central_warehouse];_method_for_multiple_expansions_of_move-robot|instance_2;1;0,-1>
+108
+104 13 -1
+-1
+<m_get_to_via_patient;move-robot[r2,l1,central_warehouse];_method_for_multiple_expansions_of_move-robot|instance_2;1;0,-1>
+108
+104 13 -1
+-1
+<m_get_to_via_patient;move-robot[r2,central_warehouse,l1];_method_for_multiple_expansions_of_move-robot|instance_1;1;0,-1>
+104
+108 2 -1
+-1
+<m_get_to_via_patient;move-robot[r2,central_warehouse,l1];_method_for_multiple_expansions_of_move-robot|instance_1;1;0,-1>
+104
+108 2 -1
+-1
+<m_get_to_via_patient;move-robot[r2,central_warehouse,l1];_method_for_multiple_expansions_of_move-robot|instance_1;1;0,-1>
+104
+108 2 -1
+-1
+<m_get_to_via_patient;move-robot[r2,central_warehouse,l1];_method_for_multiple_expansions_of_move-robot|instance_1;1;0,-1>
+104
+108 2 -1
+-1
+m_supply
+109
+19 110 -1
+-1
+_splitting_method_m_supply_splitted_3
+110
+16 -1
+-1
+_splitting_method_m_supply_splitted_3
+110
+17 -1
+-1
+_splitting_method_m_supply_splitted_3
+110
+18 -1
+-1
+m_supply
+109
+23 111 -1
+-1
+_splitting_method_m_supply_splitted_3
+111
+20 -1
+-1
+_splitting_method_m_supply_splitted_3
+111
+21 -1
+-1
+_splitting_method_m_supply_splitted_3
+111
+22 -1
+-1
+m_supply
+109
+27 112 -1
+-1
+_splitting_method_m_supply_splitted_3
+112
+24 -1
+-1
+_splitting_method_m_supply_splitted_3
+112
+25 -1
+-1
+_splitting_method_m_supply_splitted_3
+112
+26 -1
+-1
+m_i_am_there
+113
+28 -1
+-1
+<m_get_to_carrier;move-carrier[r1,c1,l1,l2];_method_for_multiple_expansions_of_move-carrier|instance_1;0;-1>
+113
+29 -1
+-1
+<m_get_to_carrier;move-carrier[r1,c1,l3,l2];_method_for_multiple_expansions_of_move-carrier|instance_2;0;-1>
+113
+30 -1
+-1
+<m_get_to_via;move-carrier[r1,c1,l1,l2];_method_for_multiple_expansions_of_move-carrier|instance_1;1;0,-1>
+113
+114 29 -1
+-1
+m_i_am_there
+114
+31 -1
+-1
+<m_get_to_carrier;move-carrier[r1,c1,central_warehouse,l1];_method_for_multiple_expansions_of_move-carrier|instance_1;0;-1>
+114
+32 -1
+-1
+<m_get_to_carrier;move-carrier[r1,c1,entrance,l1];_method_for_multiple_expansions_of_move-carrier|instance_1;0;-1>
+114
+33 -1
+-1
+<m_get_to_carrier;move-carrier[r1,c1,l2,l1];_method_for_multiple_expansions_of_move-carrier|instance_2;0;-1>
+114
+34 -1
+-1
+<m_get_to_via;move-carrier[r1,c1,l2,l1];_method_for_multiple_expansions_of_move-carrier|instance_2;1;0,-1>
+114
+113 34 -1
+-1
+<m_get_to_via;move-carrier[r1,c1,l2,l1];_method_for_multiple_expansions_of_move-carrier|instance_2;1;0,-1>
+114
+113 34 -1
+-1
+<m_get_to_via;move-carrier[r1,c1,l2,l1];_method_for_multiple_expansions_of_move-carrier|instance_2;1;0,-1>
+114
+113 34 -1
+-1
+<m_get_to_via;move-carrier[r1,c1,l2,l1];_method_for_multiple_expansions_of_move-carrier|instance_2;1;0,-1>
+114
+113 34 -1
+-1
+<m_get_to_via;move-carrier[r1,c1,l2,l1];_method_for_multiple_expansions_of_move-carrier|instance_2;1;0,-1>
+114
+113 34 -1
+-1
+<m_get_to_via;move-carrier[r1,c1,entrance,l1];_method_for_multiple_expansions_of_move-carrier|instance_1;1;0,-1>
+114
+115 33 -1
+-1
+m_i_am_there
+115
+35 -1
+-1
+<m_get_to_carrier;move-carrier[r1,c1,l1,entrance];_method_for_multiple_expansions_of_move-carrier|instance_2;0;-1>
+115
+36 -1
+-1
+<m_get_to_via;move-carrier[r1,c1,l1,entrance];_method_for_multiple_expansions_of_move-carrier|instance_2;1;0,-1>
+115
+114 36 -1
+-1
+<m_get_to_via;move-carrier[r1,c1,l1,entrance];_method_for_multiple_expansions_of_move-carrier|instance_2;1;0,-1>
+115
+114 36 -1
+-1
+<m_get_to_via;move-carrier[r1,c1,l1,entrance];_method_for_multiple_expansions_of_move-carrier|instance_2;1;0,-1>
+115
+114 36 -1
+-1
+<m_get_to_via;move-carrier[r1,c1,l1,entrance];_method_for_multiple_expansions_of_move-carrier|instance_2;1;0,-1>
+115
+114 36 -1
+-1
+<m_get_to_via;move-carrier[r1,c1,l1,entrance];_method_for_multiple_expansions_of_move-carrier|instance_2;1;0,-1>
+115
+114 36 -1
+-1
+<m_get_to_via;move-carrier[r1,c1,entrance,l1];_method_for_multiple_expansions_of_move-carrier|instance_1;1;0,-1>
+114
+115 33 -1
+-1
+<m_get_to_via;move-carrier[r1,c1,entrance,l1];_method_for_multiple_expansions_of_move-carrier|instance_1;1;0,-1>
+114
+115 33 -1
+-1
+<m_get_to_via;move-carrier[r1,c1,entrance,l1];_method_for_multiple_expansions_of_move-carrier|instance_1;1;0,-1>
+114
+115 33 -1
+-1
+<m_get_to_via;move-carrier[r1,c1,entrance,l1];_method_for_multiple_expansions_of_move-carrier|instance_1;1;0,-1>
+114
+115 33 -1
+-1
+<m_get_to_via;move-carrier[r1,c1,central_warehouse,l1];_method_for_multiple_expansions_of_move-carrier|instance_1;1;0,-1>
+114
+116 32 -1
+-1
+m_i_am_there
+116
+37 -1
+-1
+<m_get_to_carrier;move-carrier[r1,c1,l1,central_warehouse];_method_for_multiple_expansions_of_move-carrier|instance_2;0;-1>
+116
+38 -1
+-1
+<m_get_to_via;move-carrier[r1,c1,l1,central_warehouse];_method_for_multiple_expansions_of_move-carrier|instance_2;1;0,-1>
+116
+114 38 -1
+-1
+<m_get_to_via;move-carrier[r1,c1,l1,central_warehouse];_method_for_multiple_expansions_of_move-carrier|instance_2;1;0,-1>
+116
+114 38 -1
+-1
+<m_get_to_via;move-carrier[r1,c1,l1,central_warehouse];_method_for_multiple_expansions_of_move-carrier|instance_2;1;0,-1>
+116
+114 38 -1
+-1
+<m_get_to_via;move-carrier[r1,c1,l1,central_warehouse];_method_for_multiple_expansions_of_move-carrier|instance_2;1;0,-1>
+116
+114 38 -1
+-1
+<m_get_to_via;move-carrier[r1,c1,l1,central_warehouse];_method_for_multiple_expansions_of_move-carrier|instance_2;1;0,-1>
+116
+114 38 -1
+-1
+<m_get_to_via;move-carrier[r1,c1,central_warehouse,l1];_method_for_multiple_expansions_of_move-carrier|instance_1;1;0,-1>
+114
+116 32 -1
+-1
+<m_get_to_via;move-carrier[r1,c1,central_warehouse,l1];_method_for_multiple_expansions_of_move-carrier|instance_1;1;0,-1>
+114
+116 32 -1
+-1
+<m_get_to_via;move-carrier[r1,c1,central_warehouse,l1];_method_for_multiple_expansions_of_move-carrier|instance_1;1;0,-1>
+114
+116 32 -1
+-1
+<m_get_to_via;move-carrier[r1,c1,central_warehouse,l1];_method_for_multiple_expansions_of_move-carrier|instance_1;1;0,-1>
+114
+116 32 -1
+-1
+<m_get_to_via;move-carrier[r1,c1,l1,l2];_method_for_multiple_expansions_of_move-carrier|instance_1;1;0,-1>
+113
+114 29 -1
+-1
+<m_get_to_via;move-carrier[r1,c1,l1,l2];_method_for_multiple_expansions_of_move-carrier|instance_1;1;0,-1>
+113
+114 29 -1
+-1
+<m_get_to_via;move-carrier[r1,c1,l1,l2];_method_for_multiple_expansions_of_move-carrier|instance_1;1;0,-1>
+113
+114 29 -1
+-1
+<m_get_to_via;move-carrier[r1,c1,l1,l2];_method_for_multiple_expansions_of_move-carrier|instance_1;1;0,-1>
+113
+114 29 -1
+-1
+<m_get_to_via;move-carrier[r1,c1,l3,l2];_method_for_multiple_expansions_of_move-carrier|instance_2;1;0,-1>
+113
+117 30 -1
+-1
+m_i_am_there
+117
+39 -1
+-1
+<m_get_to_carrier;move-carrier[r1,c1,l2,l3];_method_for_multiple_expansions_of_move-carrier|instance_1;0;-1>
+117
+40 -1
+-1
+<m_get_to_via;move-carrier[r1,c1,l2,l3];_method_for_multiple_expansions_of_move-carrier|instance_1;1;0,-1>
+117
+113 40 -1
+-1
+<m_get_to_via;move-carrier[r1,c1,l2,l3];_method_for_multiple_expansions_of_move-carrier|instance_1;1;0,-1>
+117
+113 40 -1
+-1
+<m_get_to_via;move-carrier[r1,c1,l2,l3];_method_for_multiple_expansions_of_move-carrier|instance_1;1;0,-1>
+117
+113 40 -1
+-1
+<m_get_to_via;move-carrier[r1,c1,l2,l3];_method_for_multiple_expansions_of_move-carrier|instance_1;1;0,-1>
+117
+113 40 -1
+-1
+<m_get_to_via;move-carrier[r1,c1,l2,l3];_method_for_multiple_expansions_of_move-carrier|instance_1;1;0,-1>
+117
+113 40 -1
+-1
+<m_get_to_via;move-carrier[r1,c1,l3,l2];_method_for_multiple_expansions_of_move-carrier|instance_2;1;0,-1>
+113
+117 30 -1
+-1
+<m_get_to_via;move-carrier[r1,c1,l3,l2];_method_for_multiple_expansions_of_move-carrier|instance_2;1;0,-1>
+113
+117 30 -1
+-1
+<m_get_to_via;move-carrier[r1,c1,l3,l2];_method_for_multiple_expansions_of_move-carrier|instance_2;1;0,-1>
+113
+117 30 -1
+-1
+<m_get_to_via;move-carrier[r1,c1,l3,l2];_method_for_multiple_expansions_of_move-carrier|instance_2;1;0,-1>
+113
+117 30 -1
+-1
+m_load
+118
+44 119 -1
+-1
+_splitting_method_m_load_splitted_2
+119
+41 -1
+-1
+_splitting_method_m_load_splitted_2
+119
+42 -1
+-1
+_splitting_method_m_load_splitted_2
+119
+43 -1
+-1
+m_load
+118
+48 120 -1
+-1
+_splitting_method_m_load_splitted_2
+120
+45 -1
+-1
+_splitting_method_m_load_splitted_2
+120
+46 -1
+-1
+_splitting_method_m_load_splitted_2
+120
+47 -1
+-1
+m_load
+118
+52 121 -1
+-1
+_splitting_method_m_load_splitted_2
+121
+49 -1
+-1
+_splitting_method_m_load_splitted_2
+121
+50 -1
+-1
+_splitting_method_m_load_splitted_2
+121
+51 -1
+-1
+m_load
+118
+56 122 -1
+-1
+_splitting_method_m_load_splitted_2
+122
+53 -1
+-1
+_splitting_method_m_load_splitted_2
+122
+54 -1
+-1
+_splitting_method_m_load_splitted_2
+122
+55 -1
+-1
+m_load
+118
+60 123 -1
+-1
+_splitting_method_m_load_splitted_2
+123
+57 -1
+-1
+_splitting_method_m_load_splitted_2
+123
+58 -1
+-1
+_splitting_method_m_load_splitted_2
+123
+59 -1
+-1
+m_load
+118
+64 124 -1
+-1
+_splitting_method_m_load_splitted_2
+124
+61 -1
+-1
+_splitting_method_m_load_splitted_2
+124
+62 -1
+-1
+_splitting_method_m_load_splitted_2
+124
+63 -1
+-1
+m_supply
+125
+69 126 -1
+-1
+_splitting_method_m_supply_splitted_3
+126
+66 -1
+-1
+_splitting_method_m_supply_splitted_3
+126
+67 -1
+-1
+_splitting_method_m_supply_splitted_3
+126
+68 -1
+-1
+m_supply
+125
+73 127 -1
+-1
+_splitting_method_m_supply_splitted_3
+127
+70 -1
+-1
+_splitting_method_m_supply_splitted_3
+127
+71 -1
+-1
+_splitting_method_m_supply_splitted_3
+127
+72 -1
+-1
+m_supply
+125
+77 128 -1
+-1
+_splitting_method_m_supply_splitted_3
+128
+74 -1
+-1
+_splitting_method_m_supply_splitted_3
+128
+75 -1
+-1
+_splitting_method_m_supply_splitted_3
+128
+76 -1
+-1
+m_load
+129
+81 130 -1
+-1
+_splitting_method_m_load_splitted_2
+130
+78 -1
+-1
+_splitting_method_m_load_splitted_2
+130
+79 -1
+-1
+_splitting_method_m_load_splitted_2
+130
+80 -1
+-1
+m_load
+129
+85 131 -1
+-1
+_splitting_method_m_load_splitted_2
+131
+82 -1
+-1
+_splitting_method_m_load_splitted_2
+131
+83 -1
+-1
+_splitting_method_m_load_splitted_2
+131
+84 -1
+-1
+m_load
+129
+89 132 -1
+-1
+_splitting_method_m_load_splitted_2
+132
+86 -1
+-1
+_splitting_method_m_load_splitted_2
+132
+87 -1
+-1
+_splitting_method_m_load_splitted_2
+132
+88 -1
+-1
+m_load
+129
+90 122 -1
+-1
+m_load
+129
+91 123 -1
+-1
+m_load
+129
+92 124 -1
+-1
+m_supply
+133
+94 126 -1
+-1
+m_supply
+133
+95 127 -1
+-1
+m_supply
+133
+96 128 -1
+-1
+m_load
+134
+97 130 -1
+-1
+m_load
+134
+98 131 -1
+-1
+m_load
+134
+99 132 -1
+-1
+m_load
+134
+100 122 -1
+-1
+m_load
+134
+101 123 -1
+-1
+m_load
+134
+102 124 -1
+-1
