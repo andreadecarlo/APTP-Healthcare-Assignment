@@ -4,6 +4,7 @@
         r2 - robot-patient
     
         b1 b2 b3 - box
+        c1 c2 c3 c4 - content
 
         u1 u2 u3 - unit
         l1 l2 - location
@@ -22,18 +23,21 @@
     (:htn
         :parameters ()
         :subtasks (and
-            (task0 (deliver scalpel u1))
-            (task1 (deliver scalpel u2))
-            (task2 (deliver tongue_depressor u2))
+            ; (task0 (deliver scalpel u1))
+            ; (task1 (deliver tongue_depressor u1))
+            ; (task2 (deliver c1 u1))
 
-            (task3 (accompany p1 u1))
+            ; (task3 (accompany p1 u1))
+
+            (task0 (load_all))
         )
 
-        :ordering (and
-            (task0 < task1)
-            (task1 < task2)
-            (task2 < task3)
-        )
+        ; :ordering (and
+        ;     ; (task0 < task1)
+        ;     ; (task1 < task2)
+        ;     ; (task2 < task3)
+        ;     ; (task2 < task0)
+        ; )
     )
     (:init
         (at b1 central_warehouse)
@@ -46,9 +50,9 @@
 
         (at tongue_depressor central_warehouse)
         (at scalpel central_warehouse)
+        (at c1 central_warehouse)
 
-
-        (at u1 l1)
+        (at u1 l2)
         (at u2 l2)
         (at u3 l2)
 
@@ -66,6 +70,10 @@
         (capacity_predecessor capacity_1 capacity_2)
         (capacity_predecessor capacity_2 capacity_3)        
         (capacity cr1 capacity_3)
+
+        (unit-wants u1 c1)
+        (unit-wants u1 c2)
+        (unit-wants u1 c3)
     )
 
 )
