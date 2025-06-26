@@ -44,6 +44,11 @@
 
 )
 
+(:task satisfy_all
+	:parameters ()
+	:precondition ()
+	:effect ()
+)
 
 (:task load_all
 	:parameters ()
@@ -67,6 +72,30 @@
 	:parameters (?u - unit)
 	:precondition ()
 	:effect ()
+)
+
+(:method m_units_all_satisfied
+	:parameters ()
+	:task (satisfy_all)
+	:precondition (
+		forall (?u - unit) (unit-satisfied ?u)
+	)
+	:subtasks ()
+)
+
+(:method m_units_not_satisfied
+	:parameters ()
+	:task (satisfy_all)
+	:precondition (
+		exists (?u - unit) (not (unit-satisfied ?u))
+	)
+	:subtasks (and
+		(task0 (load_all))
+		(task1 (satisfy_all))
+	)
+	:ordering (
+		task0 < task1
+	)
 )
 
 (:method m_load_all
