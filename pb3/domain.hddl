@@ -63,6 +63,12 @@
 	:effect ()
 )
 
+(:task make-unit-satisfied
+	:parameters (?u - unit)
+	:precondition ()
+	:effect ()
+)
+
 (:method m_load_all
 	:parameters (?c - content)
 	:task (load_all)
@@ -78,30 +84,65 @@
 (:method m_load_none
 	:parameters (?cr - carrier ?s1 - capacity_number)
 	:task (load_all)
-	:precondition (and
+	:precondition (or
+		(and
 		(capacity ?cr ?s1)
-		(not (exists (?s0 - capacity_number) (capacity_predecessor ?s0 ?s1)))
-		
-		; (not (exists (?u - unit) (not (unit-satisfied ?u))))
-		;(forall (?u - unit) (unit-satisfied ?u))
+		(not (exists (?s0 - capacity_number) (capacity_predecessor ?s0 ?s1))))
+
+		(forall (?u - unit) (unit-satisfied ?u))
 	)
 	:subtasks ()
 )
 
 (:method m_load
-	:parameters (?r - robot-box ?b - box ?c - content ?cr - carrier ?s1 - capacity_number ?s2 - capacity_number)
+	:parameters (?r - robot-box ?b - box ?c - content ?cr - carrier ?s1 - capacity_number ?s2 - capacity_number ?u - unit)
 	:task (load ?c)
-	:precondition (
-		at ?r central_warehouse
+	:precondition (and
+		(at ?r central_warehouse)
+		(unit-wants ?u ?c)
+		(not (ready-for-unit ?c ?u))
+		; (not (unit-satisfied ?u))
 	)
 	:subtasks (and
 		(task0 (fill ?r ?b ?c central_warehouse))
 		(task1 (pick-up ?r ?b central_warehouse ?cr ?s1 ?s2))
-		; (task2 (make-unit-satisfied))
+		(task2 (make-ready-for-unit ?c ?u))
+		(task3 (make-unit-satisfied ?u))
 	)
 	:ordering (and
 		(task0 < task1)
+		(task1 < task2)
+		(task2 < task3)
 	)
+)
+
+(:method m_make_unit_satisfied
+	:parameters (?u - unit)
+	:task (make-unit-satisfied ?u)
+	:precondition (
+		not (exists (?c - content) 
+			(and 
+				(unit-wants ?u ?c) 
+				(not (ready-for-unit ?c ?u))
+			)
+		)
+	)
+	:subtasks (
+		task0 (make-unit-satisfied_aux ?u)
+	)
+)
+
+(:method m_not_make_unit_satisfied
+	:parameters (?u - unit)
+	:task (make-unit-satisfied ?u)
+	:precondition (
+		exists (?c - content) 
+			(and 
+				(unit-wants ?u ?c) 
+				(not (ready-for-unit ?c ?u))
+			)
+	)
+	:subtasks ()
 )
 
 
@@ -140,8 +181,21 @@
 	)
 )
 
+(:action make-ready-for-unit
+	:parameters (?c - content ?u - unit)
+	:precondition ()
+	:effect (
+		ready-for-unit ?c ?u
+	)
+)
 
-
+(:action make-unit-satisfied_aux
+	:parameters (?u - unit)
+	:precondition ()
+	:effect (
+		unit-satisfied ?u
+	)
+)
 
 )
 
