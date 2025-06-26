@@ -44,22 +44,11 @@
 
 )
 
-(:task deliver_all
-    :parameters ()
-    :precondition ()
-    :effect ()
-)
 
 (:task load_all
 	:parameters ()
     :precondition ()
     :effect ()
-)
-
-(:task supply_all
-	:parameters ()
-	:precondition ()
-	:effect ()
 )
 
 (:task get_to
@@ -69,16 +58,90 @@
 )
 
 (:task load
-	:parameters (?r - robot-box ?c - content)
+	:parameters (?c - content)
 	:precondition ()
 	:effect ()
 )
 
-(:task supply
-	:parameters (?r - robot-box ?c - content ?u - unit)
-	:precondition ()
-	:effect ()
+(:method m_load_all
+	:parameters (?c - content)
+	:task (load_all)
+	:subtasks(and
+		(task0 (load ?c))
+		(task1 (load_all))
+	)
+	:ordering (
+		task0 < task1
+	)
 )
+
+(:method m_load_none
+	:parameters (?cr - carrier ?s1 - capacity_number)
+	:task (load_all)
+	:precondition (and
+		(capacity ?cr ?s1)
+		(not (exists (?s0 - capacity_number) (capacity_predecessor ?s0 ?s1)))
+		
+		; (not (exists (?u - unit) (not (unit-satisfied ?u))))
+		;(forall (?u - unit) (unit-satisfied ?u))
+	)
+	:subtasks ()
+)
+
+(:method m_load
+	:parameters (?r - robot-box ?b - box ?c - content ?cr - carrier ?s1 - capacity_number ?s2 - capacity_number)
+	:task (load ?c)
+	:precondition (
+		at ?r central_warehouse
+	)
+	:subtasks (and
+		(task0 (fill ?r ?b ?c central_warehouse))
+		(task1 (pick-up ?r ?b central_warehouse ?cr ?s1 ?s2))
+		; (task2 (make-unit-satisfied))
+	)
+	:ordering (and
+		(task0 < task1)
+	)
+)
+
+
+(:action fill
+	:parameters (?r - robot-box ?b - box ?c - content ?l - location)
+	:precondition (and 
+		(at ?b ?l)
+		(at ?r ?l)
+		(at ?c ?l)
+		(empty-box ?b)
+		; (= ?l central_warehouse) ; check made in upper level
+	)
+	:effect (and 
+		(filled-with ?b ?c)
+		(not (empty-box ?b))
+	)
+)
+
+; Robot-box can pick up a box from a location
+(:action pick-up
+	:parameters (?r - robot-box ?b - box ?l - location ?cr - carrier ?s1 - capacity_number ?s2 - capacity_number)
+	:precondition (and 
+		(at ?b ?l)
+		(at ?r ?l)
+
+		(rob-carrier ?r ?cr)
+		(capacity_predecessor ?s1 ?s2)
+		(capacity ?cr ?s2)
+	)
+	:effect (and 
+		(loaded ?cr ?b)
+		(not (at ?b ?l))
+
+		(capacity ?cr ?s1)
+		(not (capacity ?cr ?s2))
+	)
+)
+
+
+
 
 )
 

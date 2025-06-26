@@ -23,6 +23,8 @@
     (:htn
         :parameters ()
         :subtasks (
+            load_all
+        )
     )
     
     (:init
