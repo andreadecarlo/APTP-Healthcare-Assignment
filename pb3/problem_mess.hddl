@@ -22,9 +22,23 @@
     ; scalpel tongue_depressor aspirin bandage thermometer
     (:htn
         :parameters ()
-        :subtasks (
+        :subtasks (and
+            ; (task0 (deliver scalpel u1))
+            ; (task1 (deliver tongue_depressor u1))
+            ; (task2 (deliver c1 u1))
+
+            ; (task3 (accompany p1 u1))
+
+            (task0 (load_all))
+        )
+
+        ; :ordering (and
+        ;     ; (task0 < task1)
+        ;     ; (task1 < task2)
+        ;     ; (task2 < task3)
+        ;     ; (task2 < task0)
+        ; )
     )
-    
     (:init
         (at b1 central_warehouse)
         (at b2 central_warehouse)
@@ -37,9 +51,6 @@
         (at tongue_depressor central_warehouse)
         (at scalpel central_warehouse)
         (at c1 central_warehouse)
-        (at c2 central_warehouse)
-        (at c3 central_warehouse)
-        (at c4 central_warehouse)
 
         (at u1 l2)
         (at u2 l2)
@@ -61,8 +72,8 @@
         (capacity cr1 capacity_3)
 
         (unit-wants u1 c1)
-        ; (unit-wants u1 c2)
-        ; (unit-wants u1 c3)
+        (unit-wants u1 c2)
+        (unit-wants u1 c3)
     )
 
 )
