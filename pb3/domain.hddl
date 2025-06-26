@@ -123,6 +123,21 @@
 	:subtasks ()
 )
 
+(:method m_gotocw_and_load
+	:parameters (?r - robot-box ?c - content)
+	:task (load ?c)
+	:precondition (
+		not (at ?r central_warehouse)
+	)
+	:subtasks (and
+		(task0 (get_to ?r central_warehouse))
+		(task1 (load ?c))
+	)
+	:ordering (
+		task0 < task1
+	)
+)
+
 (:method m_load
 	:parameters (?r - robot-box ?b - box ?c - content ?cr - carrier ?s1 - capacity_number ?s2 - capacity_number ?u - unit)
 	:task (load ?c)
@@ -130,7 +145,8 @@
 		(at ?r central_warehouse)
 		(unit-wants ?u ?c)
 		(not (ready-for-unit ?c ?u))
-		; (not (unit-satisfied ?u))
+		(capacity_predecessor ?s1 ?s2)
+		(capacity ?cr ?s2)
 	)
 	:subtasks (and
 		(task0 (fill ?r ?b ?c central_warehouse))
@@ -171,6 +187,31 @@
 				(not (ready-for-unit ?c ?u))
 			)
 	)
+	:subtasks ()
+)
+
+
+(:method m_get_to
+    :parameters (?r - robot ?origin - location ?dest - location)
+    :task (get_to ?r ?dest)
+    :subtasks (and
+        (task0 (move ?r ?origin ?dest))
+    )
+)
+
+(:method m_get_to_via
+	:parameters (?r - robot ?middle - location ?dest - location)
+	:task (get_to ?r ?dest)
+	:subtasks (and
+		(task0 (get_to ?r ?middle))
+		(task1 (move ?r ?middle ?dest))
+	)
+)
+
+(:method m_i_am_there
+	:parameters (?r - robot ?dest - location)
+	:task (get_to ?r ?dest)
+	:precondition (at ?r ?dest)
 	:subtasks ()
 )
 
@@ -223,6 +264,18 @@
 	:precondition ()
 	:effect (
 		unit-satisfied ?u
+	)
+)
+
+(:action move
+	:parameters (?r - robot ?from - location ?to - location)
+	:precondition (and 
+		(at ?r ?from)
+		(or (connected ?from ?to) (connected ?to ?from))
+	)
+	:effect (and 
+		(at ?r ?to)
+		(not (at ?r ?from))
 	)
 )
 

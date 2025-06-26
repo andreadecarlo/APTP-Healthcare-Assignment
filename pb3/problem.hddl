@@ -6,7 +6,7 @@
         b1 b2 b3 b4 - box
         c1 c2 c3 c4 - content
 
-        u1 - unit
+        u1 u2 - unit
         l1 l2 - location
 
         p1 - patient
@@ -30,7 +30,7 @@
     (:init        
 
         (at u1 l2)
-        ; (at u2 l2)
+        (at u2 l2)
         ; (at u3 l2)
 
         (connected entrance l1)
@@ -39,14 +39,10 @@
 
         (capacity_predecessor capacity_0 capacity_1)
         (capacity_predecessor capacity_1 capacity_2)
-        (capacity_predecessor capacity_2 capacity_3)      
+        (capacity_predecessor capacity_2 capacity_3)   
 
         (at r1 central_warehouse)
         (at r2 central_warehouse)
-
-        (at rp entrance)
-
-        (at p1 entrance)
 
         (at b1 central_warehouse)
         (at b2 central_warehouse)
@@ -70,8 +66,8 @@
 
         (unit-wants u1 c1)
         (unit-wants u1 c2)
-        (unit-wants u1 c3)
-        (unit-wants u1 c4)
+        (unit-wants u2 c3)
+        (unit-wants u2 c4)
     )
 
 )
