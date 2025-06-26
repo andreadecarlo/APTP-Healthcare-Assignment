@@ -2,22 +2,22 @@
 
 # planutils activate  # activate planutils environment
 
-DOMAIN="domain.pddl"
+DOMAIN="../domain.pddl"
 OUTPUT_FILE="scaling_results.csv"
 
 # Add header if file does not exist
 if [ ! -f "$OUTPUT_FILE" ]; then
-    echo "problem,boxes,patients,locations,plan_length,expanded,evaluated,generated,search_time" > "$OUTPUT_FILE"
+    echo "problem,boxes,patients,locations,carrier_capacity,plan_length,expanded,evaluated,generated,search_time" > "$OUTPUT_FILE"
 fi
 
-
-for problem in scaled_problems/all/*.pddl; do
+for problem in scaled_problems/box/*.pddl; do
     name=$(basename "$problem" .pddl)
 
     # Count objects from the problem file
     boxes=$(echo "$name" | grep -oP '\d+(?=box)')
     patients=$(echo "$name" | grep -oP '\d+(?=patient)')
     locations=$(echo "$name" | grep -oP '\d+(?=loc)')
+    carrier_capacity=$(echo "$name" | grep -oP '\d+(?=carr)')
 
     echo "Running $name"
     echo "running $problem"
@@ -32,7 +32,7 @@ for problem in scaled_problems/all/*.pddl; do
     plan_length=$(grep "Plan length:" "$TMP_OUT" | sed -E 's/.*Plan length: ([0-9]+).*/\1/')
     expanded=$(grep "Expanded " "$TMP_OUT" | sed -E 's/.*Expanded ([0-9]+).*/\1/')
     evaluated=$(grep "Evaluated " "$TMP_OUT" | sed -E 's/.*Evaluated ([0-9]+).*/\1/')
-    generated=$(grep "Generated " "$TMP_OUT" | tail -1 | sed -E 's/.*Generated ([0-9]+).*/\1/')
+    generated=$(grep "Generated " "$TMP_OUT" | sed -E 's/.*Generated ([0-9]+).*/\1/')
     search_time=$(grep "Search time:" "$TMP_OUT" | sed -E 's/.*Search time: ([0-9.]+)s.*/\1/')
 
 
@@ -43,7 +43,7 @@ for problem in scaled_problems/all/*.pddl; do
     echo "Search time: $search_time"
 
     # Write to CSV
-    echo "$name,$boxes,$patients,$locations,$plan_length,$expanded,$evaluated,$generated,$search_time" >> "$OUTPUT_FILE"
+    echo "$name,$boxes,$patients,$locations,$carrier_capacity,$plan_length,$expanded,$evaluated,$generated,$search_time" >> "$OUTPUT_FILE"
 
     rm "$TMP_OUT"
 done

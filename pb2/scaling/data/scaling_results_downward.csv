@@ -1,0 +1,7 @@
+problem,boxes,patients,locations,carrier_capacity,plan_length,expanded,evaluated,generated,search_time
+pb_16box1patient3units2loc2carr,16,1,2,2,107,1391,1392,96
+104803,0.060108
+pb_20box1patient3units2loc2carr,20,1,2,2,135,1969,1970,96
+227941,0.115135
+pb_8box1patient3units2loc2carr,8,1,2,2,51,482,483,96
+10712,0.013198

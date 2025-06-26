@@ -21,6 +21,7 @@
 
 (:predicates
 	(at ?x - locatable ?l - location)			; x is at location
+	(at-unit ?p - patient ?u - unit) 			; patient is at unit
 	(connected ?l1 - location ?l2 - location)	; locations are connected
 	
 	(loaded ?r - robot ?b - box)          		; robot is carrying a box
@@ -32,7 +33,6 @@
 	
 	(with-patient ?r - robot ?p - patient)     	; robot is with a patient
 	(busy ?r - robot-patient)           		; robot is busy with a patient
-	(at-unit ?p - patient ?u - unit) 			; patient is at unit
 )
 
 

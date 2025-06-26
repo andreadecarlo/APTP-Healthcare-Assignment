@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DOMAIN="domain.pddl"
+DOMAIN="../domain.pddl"
 OUTPUT_FILE="scaling_results.csv"
 
 # Add header if file does not exist
@@ -8,7 +8,7 @@ if [ ! -f "$OUTPUT_FILE" ]; then
     echo "problem,plan_length,search_depth,num_states,time,num_facts,num_actions" > "$OUTPUT_FILE"
 fi
 
-for problem in scaled_problems/*/*.pddl; do
+for problem in scaled_problems/all/*.pddl; do
     name=$(basename "$problem" .pddl)
 
     # Extract numbers from filename
