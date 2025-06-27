@@ -128,32 +128,25 @@
 	:subtasks ()
 )
 
-; (:method m_gotocw_and_load_all
-; 	:parameters (?r - robot-box ?cr - carrier)
-; 	:task (load_all ?r ?cr)
-; 	:precondition (
-; 		not (at ?r central_warehouse)
-; 	)
-; )
-
 (:method m_load_all
 	:parameters (?r - robot-box ?cr - carrier ?c - content ?u - unit)
 	:task (load_all ?r ?cr)
 	:precondition (and
-		(at ?r central_warehouse)
 		(unit-wants ?u ?c)
 		(not (ready-for-unit ?c ?u))
 	)
 	:subtasks (and
-		(task0 (load ?r ?cr ?c))
-		(task1 (make-ready-for-unit ?c ?u))
-		(task2 (make-unit-ready ?u))	; when unit wants content but are all ready for deliver	
-		(task3 (load_all))
+		(task0 (get_to ?r central_warehouse))
+		(task1 (load ?r ?cr ?c))
+		(task2 (make-ready-for-unit ?c ?u))
+		(task3 (make-unit-ready ?u))	; when unit wants content but are all ready for deliver	
+		(task4 (load_all))
 	)
 	:ordering (and
 		(task0 < task1)
 		(task1 < task2)
 		(task2 < task3)
+		(task3 < task4)
 	)
 )
 
@@ -199,6 +192,30 @@
 	:subtasks ()
 )
 
+(:method m_get_to
+    :parameters (?r - robot ?origin - location ?dest - location)
+    :task (get_to ?r ?dest)
+    :subtasks (and
+        (task0 (move ?r ?origin ?dest))
+    )
+)
+
+(:method m_get_to_via
+	:parameters (?r - robot ?middle - location ?dest - location)
+	:task (get_to ?r ?dest)
+	:subtasks (and
+		(task0 (get_to ?r ?middle))
+		(task1 (move ?r ?middle ?dest))
+	)
+)
+
+(:method m_i_am_there
+	:parameters (?r - robot ?dest - location)
+	:task (get_to ?r ?dest)
+	:precondition (at ?r ?dest)
+	:subtasks ()
+)
+
 (:action make-unit-ready_aux
 	:parameters (?u - unit)
 	:precondition ()
@@ -208,9 +225,7 @@
 (:action make-ready-for-unit
 	:parameters (?c - content ?u - unit)
 	:precondition ()
-	:effect (
-		ready-for-unit ?c ?u
-	)
+	:effect (ready-for-unit ?c ?u)
 )
 
 (:action fill
@@ -245,6 +260,19 @@
 		(not (capacity ?cr ?s2))
 	)
 )
+
+(:action move
+	:parameters (?r - robot ?from - location ?to - location)
+	:precondition (and 
+		(at ?r ?from)
+		(or (connected ?from ?to) (connected ?to ?from))
+	)
+	:effect (and 
+		(at ?r ?to)
+		(not (at ?r ?from))
+	)
+)
+
 
 )
 
