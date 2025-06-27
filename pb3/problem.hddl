@@ -1,7 +1,7 @@
 (define (problem problem3) (:domain healthcare)
     (:objects 
-        r1 - robot-box
-        r2 - robot-patient
+        r1 r2 - robot-box
+        rp - robot-patient
     
         b1 b2 b3 - box
         c1 c2 c3 c4 - content
@@ -11,7 +11,7 @@
 
         p1 - patient
 
-        cr1 - carrier
+        cr1 cr2 - carrier
 
         capacity_0 - capacity_number
         capacity_1 - capacity_number
@@ -22,8 +22,9 @@
     ; scalpel tongue_depressor aspirin bandage thermometer
     (:htn
         :parameters ()
-        :subtasks (
-            deliver_all
+        :subtasks (and
+            (load_all r1 cr1)
+            (load_all r2 cr2)
         )
     )
     
@@ -48,7 +49,7 @@
         (at u3 l2)
 
         (at r1 central_warehouse)
-        (at r2 entrance)
+        (at r2 central_warehouse)
 
         (at p1 entrance)
 
@@ -57,13 +58,15 @@
         (connected l2 central_warehouse)
 
         (rob-carrier r1 cr1)
+        (rob-carrier r2 cr2)
         (capacity_predecessor capacity_0 capacity_1)
         (capacity_predecessor capacity_1 capacity_2)
         (capacity_predecessor capacity_2 capacity_3)        
-        (capacity cr1 capacity_3)
+        (capacity cr1 capacity_1)
+        (capacity cr2 capacity_1)
 
-        ; (unit-wants u1 c1)
-        ; (unit-wants u1 c2)
+        (unit-wants u1 c1)
+        (unit-wants u1 c2)
         ; (unit-wants u1 c3)
     )
 
