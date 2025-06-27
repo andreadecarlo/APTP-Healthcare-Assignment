@@ -50,13 +50,13 @@
 )
 
 (:task load_all
-	:parameters ()
+	:parameters (?r - robot-box)
     :precondition ()
     :effect ()
 )
 
 (:task supply_all
-	:parameters ()
+	:parameters (?r - robot-box)
 	:precondition ()
 	:effect ()
 )
@@ -78,6 +78,33 @@
 	:precondition ()
 	:effect ()
 )
+
+(:method m_deliver_none
+	:parameters ()
+	:task (deliver_all)
+	:precondition (
+		; all units satisfied
+		not (exists (?u - unit ?c - content) (unit-wants ?u ?c))
+	)
+	:subtasks ()
+)
+
+(:method m_deliver_all
+	:parameters (?r - robot-box)
+	:task (deliver_all)
+	:precondition ()
+	:subtasks (and
+		(task0 (load_all ?r))
+		(task1 (supply_all ?r))
+		(task2 (deliver_all))
+	)
+	:ordering (and
+		(task0 < task1)
+		(task1 < task2)
+	)
+)
+
+
 
 )
 

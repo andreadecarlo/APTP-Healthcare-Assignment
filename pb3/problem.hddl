@@ -23,6 +23,8 @@
     (:htn
         :parameters ()
         :subtasks (
+            deliver_all
+        )
     )
     
     (:init
@@ -60,9 +62,9 @@
         (capacity_predecessor capacity_2 capacity_3)        
         (capacity cr1 capacity_3)
 
-        (unit-wants u1 c1)
-        (unit-wants u1 c2)
-        (unit-wants u1 c3)
+        ; (unit-wants u1 c1)
+        ; (unit-wants u1 c2)
+        ; (unit-wants u1 c3)
     )
 
 )
