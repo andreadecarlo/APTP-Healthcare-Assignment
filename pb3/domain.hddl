@@ -125,17 +125,22 @@
 	)
 )
 
-(:method m_load_none
+(:method m_load_none_all_ready
 	:parameters (?r - robot-box ?cr - carrier ?s1 - capacity_number)
 	:task (load_all ?r ?cr)
-	:precondition (or
-		;carrier full
-		(and
+	:precondition (
+		;all content is ready for delivery
+		not (exists (?u - unit) (and (exists (?c - content)(unit-wants ?u ?c))(not(unit-ready ?u))))
+	)
+	:subtasks ()
+)
+
+(:method m_load_none_carrier_full
+	:parameters (?r - robot-box ?cr - carrier ?s1 - capacity_number)
+	:task (load_all ?r ?cr)
+	:precondition (and
 		(capacity ?cr ?s1)
 		(not (exists (?s0 - capacity_number) (capacity_predecessor ?s0 ?s1)))
-		)
-		;all content is ready for delivery
-		(not (exists (?u - unit) (and (exists (?c - content)(unit-wants ?u ?c))(not(unit-ready ?u)))))
 	)
 	:subtasks ()
 )
@@ -219,6 +224,7 @@
 		(task0 (get_to ?r ?middle))
 		(task1 (move ?r ?middle ?dest))
 	)
+	:ordering (task0 < task1)
 )
 
 (:method m_i_am_there
