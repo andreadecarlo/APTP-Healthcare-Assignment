@@ -111,8 +111,8 @@
 (:method m_deliver_all
 	:parameters (?r - robot-box ?cr - carrier)
 	:task (deliver_all)
-	:precondition (
-		rob-carrier ?r ?cr	
+	:precondition (and
+		(rob-carrier ?r ?cr)
 	)
 	:subtasks (and
 		(task0 (load_all ?r ?cr))
@@ -150,7 +150,7 @@
 	:task (load_all ?r ?cr)
 	:precondition (and
 		(unit-wants ?u ?c)
-		(not (ready-for-unit ?c ?u))
+		; (not (ready-for-unit ?c ?u))
 	)
 	:subtasks (and
 		(task0 (get_to ?r central_warehouse))
@@ -180,6 +180,19 @@
 	)
 )
 
+(:method m_not_make_unit_ready
+	:parameters (?u - unit)
+	:task (make-unit-ready ?u)
+	:precondition (
+		exists (?c - content) 
+			(and 
+				(unit-wants ?u ?c) 
+				(not (ready-for-unit ?c ?u))
+			)
+	)
+	:subtasks ()
+)
+
 (:method m_make_unit_ready
 	:parameters (?u - unit)
 	:task (make-unit-ready ?u)
@@ -196,24 +209,19 @@
 	)
 )
 
-(:method m_not_make_unit_ready
-	:parameters (?u - unit)
-	:task (make-unit-ready ?u)
-	:precondition (
-		exists (?c - content) 
-			(and 
-				(unit-wants ?u ?c) 
-				(not (ready-for-unit ?c ?u))
-			)
-	)
+
+(:method m_i_am_there
+	:parameters (?r - robot ?dest - location)
+	:task (get_to ?r ?dest)
+	:precondition (at ?r ?dest)
 	:subtasks ()
 )
 
 (:method m_get_to
     :parameters (?r - robot ?origin - location ?dest - location)
     :task (get_to ?r ?dest)
-    :subtasks (and
-        (task0 (move ?r ?origin ?dest))
+    :subtasks (
+        move ?r ?origin ?dest
     )
 )
 
@@ -227,14 +235,7 @@
 	:ordering (task0 < task1)
 )
 
-(:method m_i_am_there
-	:parameters (?r - robot ?dest - location)
-	:task (get_to ?r ?dest)
-	:precondition (at ?r ?dest)
-	:subtasks ()
-)
-
-(:method m_supply_none
+(:method m_supply_none_carrier_empty
 	:parameters (?r - robot-box ?cr - carrier ?s1 - capacity_number)
 	:task (supply_all ?r ?cr)
 	:precondition (and
@@ -249,11 +250,12 @@
 	:parameters (?r - robot-box ?cr - carrier ?c - content ?b - box ?u - unit ?l - location)
 	:task (supply_all ?r ?cr)
 	:precondition (and
-		(unit-wants ?u ?c)
+		; ; (unit-wants ?u ?c)
+		(ready-for-unit ?c ?u)
+		(at ?u ?l)
+
 		(filled-with ?b ?c)
 		(loaded ?cr ?b)
-		(at ?u ?l)
-		(ready-for-unit ?c ?u)
 	)
 	:subtasks (and
 		(task0 (get_to ?r ?l))
@@ -364,6 +366,7 @@
 	:precondition (and
 		(at ?r ?l)
 		(at ?u ?l)
+		(capacity_predecessor ?s1 ?s2)
 	)
 	:effect (and 
 		(unit-has-box ?u ?b)
