@@ -42,6 +42,7 @@
     (with-patient ?r - robot ?p - patient)  ; robot is with a patient
 	(busy ?r - robot-patient)              	; robot is busy with a patient
 
+	(wants-to-go ?p - patient ?u - unit)	; patient's desired direction
 )
 
 (:task deliver_all
@@ -98,10 +99,39 @@
 	:effect ()
 )
 
+(:task accompany-all
+	:parameters ()
+	:precondition ()
+	:effect ()
+)
+
 (:task accompany
 	:parameters (?p - patient ?u - unit)
 	:precondition ()
 	:effect ()
+)
+
+
+(:method m_accompany_none
+	:parameters ()
+	:task (accompany-all)
+	:precondition (and
+		(not (exists (?p - patient ?u - unit) (wants-to-go ?p ?u)))
+	)
+	:subtasks ()
+)
+
+(:method m_accompany_all
+	:parameters (?p - patient ?u - unit)
+	:task (accompany-all)
+	:precondition (and
+		(wants-to-go ?p ?u)
+	)
+	:subtasks (and
+		(task0 (accompany ?p ?u))
+		(task1 (accompany-all))
+	)
+	:ordering (task0 < task1)
 )
 
 (:method m_accompany
@@ -121,7 +151,7 @@
 	:precondition (
 		; all units ready
 		; not (exists (?u - unit ?c - content) (unit-wants ?u ?c))
-		not (exists (?u - unit) (not (unit-satisfied ?u)))		;TO TEST
+		not (exists (?u - unit) (not (unit-satisfied ?u)))
 	)
 	:subtasks ()
 )
@@ -452,6 +482,8 @@
 		
 		(not (with-patient ?r ?p))
 		(not (busy ?r))
+
+		(not (wants-to-go ?p ?u))
 	)
 )
 
