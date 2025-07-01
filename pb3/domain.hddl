@@ -32,7 +32,9 @@
     (loaded ?cr - carrier ?b - box)          ; carrier is carrying a box
     (capacity ?cr - carrier ?n - capacity_number)
 	(capacity_predecessor ?arg0 - capacity_number ?arg1 - capacity_number)
-	(ready-for-unit ?c - content ?u - unit)	;?cr - carrier ;content is ready for delivery to unit
+	(ready-for-unit ?c - content ?u - unit)
+	(unit-ready ?u - unit)		; unit is ready for deliver		MODIFY with "intended-for"
+	(unit-satisfied ?u - unit)
 
 	(unit-has-box ?u - unit ?b - box)           ; unit has a box
     (unit-has-content ?u - unit ?c - content)   ; unit has specific content
@@ -51,8 +53,14 @@
 )
 
 (:task load_all
-	:parameters ()
-    :precondition ()
+	:parameters (?r - robot-box ?cr - carrier)
+    :precondition (rob-carrier ?r ?cr)
+    :effect ()
+)
+
+(:task supply_all
+	:parameters (?r - robot-box ?cr - carrier)
+    :precondition (rob-carrier ?r ?cr)
     :effect ()
 )
 
@@ -63,9 +71,41 @@
 )
 
 (:task load
-	:parameters (?c - content)
+	:parameters (?r - robot-box ?cr - carrier ?c - content)
 	:precondition ()
+	:effect (
+		ready-for-unit ?c ?u
+	)
+)
+
+(:task supply
+	:parameters (?r - robot-box ?cr - carrier ?c - content ?b - box ?u - unit ?l - location)
+	:precondition (and
+		(unit-wants ?u ?c)
+		(filled-with ?b ?c)
+		(loaded ?cr ?b)
+	)
 	:effect ()
+)
+
+(:task make-unit-ready
+	:parameters (?u - unit)
+	:precondition ()
+	:effect (
+		unit-satisfied ?u
+	)
+)
+
+(:action move
+	:parameters (?r - robot ?from - location ?to - location)
+	:precondition (and 
+		(at ?r ?from)
+		(or (connected ?from ?to) (connected ?to ?from))
+	)
+	:effect (and 
+		(at ?r ?to)
+		(not (at ?r ?from))
+	)
 )
 
 (:task make-unit-satisfied
@@ -74,112 +114,92 @@
 	:effect ()
 )
 
-(:method m_units_all_satisfied
+(:method m_deliver_none
 	:parameters ()
-	:task (satisfy_all)
+	:task (deliver_all)
 	:precondition (
-		forall (?u - unit) (unit-satisfied ?u)
+		; all units ready
+		; not (exists (?u - unit ?c - content) (unit-wants ?u ?c))
+		not (exists (?u - unit) (not (unit-satisfied ?u)))		;TO TEST
 	)
 	:subtasks ()
 )
 
-(:method m_units_not_satisfied
-	:parameters ()
-	:task (satisfy_all)
-	:precondition (
-		exists (?u - unit) (not (unit-satisfied ?u))
+(:method m_deliver_all
+	:parameters (?r - robot-box ?cr - carrier)
+	:task (deliver_all)
+	:precondition (and
+		(rob-carrier ?r ?cr)
 	)
 	:subtasks (and
-		(task0 (load_all))
-		(task1 (satisfy_all))
+		(task0 (load_all ?r ?cr))
+		(task1 (supply_all ?r ?cr))
+		(task2 (deliver_all))
 	)
-	:ordering (
-		task0 < task1
+	:ordering (and
+		(task0 < task1)
+		(task1 < task2)
 	)
+)
+
+(:method m_load_none_all_ready
+	:parameters (?r - robot-box ?cr - carrier ?s1 - capacity_number)
+	:task (load_all ?r ?cr)
+	:precondition (
+		;all content is ready for delivery
+		not (exists (?u - unit) (and (exists (?c - content)(unit-wants ?u ?c))(not(unit-ready ?u))))
+	)
+	:subtasks ()
+)
+
+(:method m_load_none_carrier_full
+	:parameters (?r - robot-box ?cr - carrier ?s1 - capacity_number)
+	:task (load_all ?r ?cr)
+	:precondition (and
+		(capacity ?cr ?s1)
+		(not (exists (?s0 - capacity_number) (capacity_predecessor ?s0 ?s1)))
+	)
+	:subtasks ()
 )
 
 (:method m_load_all
-	:parameters (?c - content)
-	:task (load_all)
-	:subtasks(and
-		(task0 (load ?c))
-		(task1 (load_all))
-	)
-	:ordering (
-		task0 < task1
-	)
-)
-
-(:method m_load_none
-	:parameters (?cr - carrier ?s1 - capacity_number)
-	:task (load_all)
-	:precondition (or
-		(and
-		(capacity ?cr ?s1)
-		(not (exists (?s0 - capacity_number) (capacity_predecessor ?s0 ?s1))))
-
-		(forall (?u - unit) (unit-satisfied ?u))
-	)
-	:subtasks ()
-)
-
-(:method m_gotocw_and_load
-	:parameters (?r - robot-box ?c - content)
-	:task (load ?c)
-	:precondition (
-		not (at ?r central_warehouse)
+	:parameters (?r - robot-box ?cr - carrier ?c - content ?u - unit)
+	:task (load_all ?r ?cr)
+	:precondition (and
+		(unit-wants ?u ?c)
+		(not (ready-for-unit ?c ?u))
 	)
 	:subtasks (and
 		(task0 (get_to ?r central_warehouse))
-		(task1 (load ?c))
-	)
-	:ordering (
-		task0 < task1
-	)
-)
-
-(:method m_load
-	:parameters (?r - robot-box ?b - box ?c - content ?cr - carrier ?s1 - capacity_number ?s2 - capacity_number ?u - unit)
-	:task (load ?c)
-	:precondition (and
-		(at ?r central_warehouse)
-		(unit-wants ?u ?c)
-		(not (ready-for-unit ?c ?u))
-		(capacity_predecessor ?s1 ?s2)
-		(capacity ?cr ?s2)
-	)
-	:subtasks (and
-		(task0 (fill ?r ?b ?c central_warehouse))
-		(task1 (pick-up ?r ?b central_warehouse ?cr ?s1 ?s2))
+		(task1 (load ?r ?cr ?c))
 		(task2 (make-ready-for-unit ?c ?u))
-		(task3 (make-unit-satisfied ?u))
+		(task3 (make-unit-ready ?u))	; when unit wants content but are all ready for deliver	
+		(task4 (load_all))
 	)
 	:ordering (and
 		(task0 < task1)
 		(task1 < task2)
 		(task2 < task3)
+		(task3 < task4)
 	)
 )
 
-(:method m_make_unit_satisfied
-	:parameters (?u - unit)
-	:task (make-unit-satisfied ?u)
-	:precondition (
-		not (exists (?c - content) 
-			(and 
-				(unit-wants ?u ?c) 
-				(not (ready-for-unit ?c ?u))
-			)
-		)
+(:method m_load
+	:parameters (?r - robot-box ?cr - carrier ?c - content ?b - box ?s1 - capacity_number ?s2 - capacity_number)
+	:task (load ?r ?cr ?c)
+	:precondition ()
+	:subtasks (and
+		(task0 (fill ?r ?b ?c central_warehouse))
+		(task1 (pick-up ?r ?b central_warehouse ?cr ?s1 ?s2))
 	)
-	:subtasks (
-		task0 (make-unit-satisfied_aux ?u)
+	:ordering (and
+		(task0 < task1)
 	)
 )
 
-(:method m_not_make_unit_satisfied
+(:method m_not_make_unit_ready
 	:parameters (?u - unit)
-	:task (make-unit-satisfied ?u)
+	:task (make-unit-ready ?u)
 	:precondition (
 		exists (?c - content) 
 			(and 
@@ -190,12 +210,35 @@
 	:subtasks ()
 )
 
+(:method m_make_unit_ready
+	:parameters (?u - unit)
+	:task (make-unit-ready ?u)
+	:precondition (
+		not (exists (?c - content) 
+			(and 
+				(unit-wants ?u ?c) 
+				(not (ready-for-unit ?c ?u))
+			)
+		)
+	)
+	:subtasks (
+		task0 (make-unit-ready_aux ?u)
+	)
+)
+
+
+(:method m_i_am_there
+	:parameters (?r - robot ?dest - location)
+	:task (get_to ?r ?dest)
+	:precondition (at ?r ?dest)
+	:subtasks ()
+)
 
 (:method m_get_to
     :parameters (?r - robot ?origin - location ?dest - location)
     :task (get_to ?r ?dest)
-    :subtasks (and
-        (task0 (move ?r ?origin ?dest))
+    :subtasks (
+        move ?r ?origin ?dest
     )
 )
 
@@ -206,15 +249,89 @@
 		(task0 (get_to ?r ?middle))
 		(task1 (move ?r ?middle ?dest))
 	)
+	:ordering (task0 < task1)
 )
 
-(:method m_i_am_there
-	:parameters (?r - robot ?dest - location)
-	:task (get_to ?r ?dest)
-	:precondition (at ?r ?dest)
+(:method m_supply_none_carrier_empty
+	:parameters (?r - robot-box ?cr - carrier ?s1 - capacity_number)
+	:task (supply_all ?r ?cr)
+	:precondition (and
+		;carrier is empty 	(max capacity of the problem, every carrier has same capacity) otherwise we need to model it
+		(capacity ?cr ?s1)
+		(not (exists (?s2 - capacity_number) (capacity_predecessor ?s1 ?s2)))
+	)
 	:subtasks ()
 )
 
+(:method m_supply_all
+	:parameters (?r - robot-box ?cr - carrier ?c - content ?b - box ?u - unit ?l - location)
+	:task (supply_all ?r ?cr)
+	:precondition (and
+		; ; (unit-wants ?u ?c)
+		(ready-for-unit ?c ?u)
+		(filled-with ?b ?c)
+		(loaded ?cr ?b)
+
+		(at ?u ?l)
+	)
+	:subtasks (and
+		(task0 (get_to ?r ?l))				;ok
+		(task1 (supply ?r ?cr ?c ?b ?u ?l))	
+		(task2 (make-unit-satisfied ?u))
+		(task3 (supply_all ?r ?cr))
+	)
+	:ordering (and
+		(task0 < task1)
+		(task1 < task2)
+		(task2 < task3)
+	)
+)
+
+(:method m_supply
+	:parameters (?r - robot-box ?cr - carrier ?c - content ?b - box ?u - unit ?l - location ?s1 - capacity_number ?s2 - capacity_number)
+	:task (supply ?r ?cr ?c ?b ?u ?l)
+	:precondition (and
+		(capacity_predecessor ?s1 ?s2)
+		(capacity ?cr ?s1)
+	)
+	:subtasks (and
+		(task1 (drop ?r ?b ?l ?u ?cr ?s1 ?s2))
+		(task2 (empty ?r ?b ?c ?u ?l))
+	)
+	:ordering (task1 < task2)
+)
+
+(:method m_not_make_unit_satisfied
+	:parameters (?u - unit)
+	:task (make-unit-satisfied ?u)
+	:precondition (
+		exists (?c - content)(unit-wants ?u ?c) 
+	)
+	:subtasks ()
+)
+
+(:method m_make_unit_satisfied
+	:parameters (?u - unit)
+	:task (make-unit-satisfied ?u)
+	:precondition (
+		not (exists (?c - content)(unit-wants ?u ?c))
+	)
+	:subtasks (
+		task0 (make-unit-satisfied_aux ?u)
+	)
+)
+
+(:action make-unit-ready_aux
+	:parameters (?u - unit)
+	:precondition ()
+	:effect (unit-ready ?u)
+)
+
+(:action make-ready-for-unit
+	:parameters (?c - content ?u - unit)
+	:precondition ()
+	:effect (ready-for-unit ?c ?u)
+)
 
 (:action fill
 	:parameters (?r - robot-box ?b - box ?c - content ?l - location)
@@ -223,7 +340,6 @@
 		(at ?r ?l)
 		(at ?c ?l)
 		(empty-box ?b)
-		; (= ?l central_warehouse) ; check made in upper level
 	)
 	:effect (and 
 		(filled-with ?b ?c)
@@ -231,7 +347,6 @@
 	)
 )
 
-; Robot-box can pick up a box from a location
 (:action pick-up
 	:parameters (?r - robot-box ?b - box ?l - location ?cr - carrier ?s1 - capacity_number ?s2 - capacity_number)
 	:precondition (and 
@@ -251,22 +366,6 @@
 	)
 )
 
-(:action make-ready-for-unit
-	:parameters (?c - content ?u - unit)
-	:precondition ()
-	:effect (
-		ready-for-unit ?c ?u
-	)
-)
-
-(:action make-unit-satisfied_aux
-	:parameters (?u - unit)
-	:precondition ()
-	:effect (
-		unit-satisfied ?u
-	)
-)
-
 (:action move
 	:parameters (?r - robot ?from - location ?to - location)
 	:precondition (and 
@@ -278,6 +377,51 @@
 		(not (at ?r ?from))
 	)
 )
+
+(:action drop
+	:parameters (?r - robot-box ?b - box ?l - location ?u - unit ?cr - carrier ?s1 - capacity_number ?s2 - capacity_number)
+	:precondition (and
+		(at ?r ?l)
+		(at ?u ?l)
+		(loaded ?cr ?b)
+		(capacity ?cr ?s1)
+		(capacity_predecessor ?s1 ?s2)
+	)
+	:effect (and 
+		(unit-has-box ?u ?b)
+		(at ?b ?l)
+
+		(not (loaded ?cr ?b))
+		(capacity ?cr ?s2)
+		(not (capacity ?cr ?s1))
+	)
+)
+
+(:action empty
+	:parameters (?r - robot-box ?b - box ?c - content ?u - unit ?l - location)
+	:precondition (and 
+		(at ?u ?l)
+		(at ?b ?l)
+		(at ?r ?l)
+		(unit-has-box ?u ?b)
+	)
+	:effect (and 
+		(unit-has-content ?u ?c)
+		(not (filled-with ?b ?c))
+		(empty-box ?b)
+		(at ?c ?l)
+
+		(not (unit-wants ?u ?c))		; ADDED
+		(not (ready-for-unit ?c ?u))	; ADDED
+	)
+)
+
+(:action make-unit-satisfied_aux
+	:parameters (?u - unit)
+	:precondition ()
+	:effect (unit-satisfied ?u)
+)
+
 
 )
 
