@@ -15,19 +15,19 @@
     )
 
     (:htn
-        :parameters ()
-        :subtasks (and
-            (task0 (load_all r1 cr1))
-            (task1 (supply_all r1 cr1))
-            (task2 (load_all r1 cr1))
-            (task3 (supply_all r1 cr1))
-        )
-        :ordering (and
-            (task0 < task1)
-            (task1 < task2)
-            (task2 < task3)
-        )   
-        ; :subtasks (deliver_all)
+        ; :parameters ()
+        ; :subtasks (and
+        ;     (task0 (load_all r1 cr1))
+        ;     (task1 (supply_all r1 cr1))
+        ;     (task2 (load_all r1 cr1))
+        ;     (task3 (supply_all r1 cr1))
+        ; )
+        ; :ordering (and
+        ;     (task0 < task1)
+        ;     (task1 < task2)
+        ;     (task2 < task3)
+        ; )   
+        :subtasks (deliver_all)
     )
     
     (:init
