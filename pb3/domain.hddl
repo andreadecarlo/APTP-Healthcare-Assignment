@@ -33,7 +33,7 @@
     (capacity ?cr - carrier ?n - capacity_number)
 	(capacity_predecessor ?arg0 - capacity_number ?arg1 - capacity_number)
 	(ready-for-unit ?c - content ?u - unit)
-	(unit-ready ?u - unit)		; unit is ready for deliver
+	(unit-ready ?u - unit)		; unit is ready for deliver		MODIFY with "intended-for"
 	(unit-satisfied ?u - unit)
 
 	(unit-has-box ?u - unit ?b - box)           ; unit has a box
@@ -76,7 +76,7 @@
 )
 
 (:task supply
-	:parameters (?r - robot-box ?cr - carrier ?c - content ?b - box ?u - unit)
+	:parameters (?r - robot-box ?cr - carrier ?c - content ?b - box ?u - unit ?l - location)
 	:precondition (and
 		(unit-wants ?u ?c)
 		(filled-with ?b ?c)
@@ -102,8 +102,8 @@
 	:task (deliver_all)
 	:precondition (
 		; all units ready
-		not (exists (?u - unit ?c - content) (unit-wants ?u ?c))
-		; not (exists (?u - unit) (unit-satisfied ?u))
+		; not (exists (?u - unit ?c - content) (unit-wants ?u ?c))
+		not (exists (?u - unit) (not (unit-satisfied ?u)))		;TO TEST
 	)
 	:subtasks ()
 )
@@ -150,7 +150,7 @@
 	:task (load_all ?r ?cr)
 	:precondition (and
 		(unit-wants ?u ?c)
-		; (not (ready-for-unit ?c ?u))
+		(not (ready-for-unit ?c ?u))
 	)
 	:subtasks (and
 		(task0 (get_to ?r central_warehouse))
@@ -252,14 +252,14 @@
 	:precondition (and
 		; ; (unit-wants ?u ?c)
 		(ready-for-unit ?c ?u)
-		(at ?u ?l)
-
 		(filled-with ?b ?c)
 		(loaded ?cr ?b)
+
+		(at ?u ?l)
 	)
 	:subtasks (and
-		(task0 (get_to ?r ?l))
-		(task1 (supply ?r ?cr ?c ?b ?u))
+		(task0 (get_to ?r ?l))				;ok
+		(task1 (supply ?r ?cr ?c ?b ?u ?l))	
 		(task2 (make-unit-satisfied ?u))
 		(task3 (supply_all ?r ?cr))
 	)
@@ -272,7 +272,7 @@
 
 (:method m_supply
 	:parameters (?r - robot-box ?cr - carrier ?c - content ?b - box ?u - unit ?l - location ?s1 - capacity_number ?s2 - capacity_number)
-	:task (supply ?r ?cr ?c ?b ?u)
+	:task (supply ?r ?cr ?c ?b ?u ?l)
 	:precondition (and
 		(capacity_predecessor ?s1 ?s2)
 		(capacity ?cr ?s1)
@@ -366,6 +366,8 @@
 	:precondition (and
 		(at ?r ?l)
 		(at ?u ?l)
+		(loaded ?cr ?b)
+		(capacity ?cr ?s1)
 		(capacity_predecessor ?s1 ?s2)
 	)
 	:effect (and 
