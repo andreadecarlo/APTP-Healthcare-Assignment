@@ -39,14 +39,13 @@
 	(unit-has-box ?u - unit ?b - box)           ; unit has a box
     (unit-has-content ?u - unit ?c - content)   ; unit has specific content
 	(unit-wants ?u - unit ?c - content)
-	(unit-satisfied ?u - unit)
 
     (with-patient ?r - robot ?p - patient)  ; robot is with a patient
 	(busy ?r - robot-patient)              	; robot is busy with a patient
 
 )
 
-(:task satisfy_all
+(:task deliver_all
 	:parameters ()
 	:precondition ()
 	:effect ()
@@ -73,9 +72,7 @@
 (:task load
 	:parameters (?r - robot-box ?cr - carrier ?c - content)
 	:precondition ()
-	:effect (
-		ready-for-unit ?c ?u
-	)
+	:effect ()
 )
 
 (:task supply
@@ -93,18 +90,6 @@
 	:precondition ()
 	:effect (
 		unit-satisfied ?u
-	)
-)
-
-(:action move
-	:parameters (?r - robot ?from - location ?to - location)
-	:precondition (and 
-		(at ?r ?from)
-		(or (connected ?from ?to) (connected ?to ?from))
-	)
-	:effect (and 
-		(at ?r ?to)
-		(not (at ?r ?from))
 	)
 )
 
