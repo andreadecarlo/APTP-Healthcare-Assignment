@@ -1,0 +1,118 @@
+(define (problem problem3) (:domain healthcare)
+    (:objects 
+        r1 - robot-box
+        rp - robot-patient
+
+        p1 - patient
+    
+        b1 b2 b3 - box
+        c1 c2 - content
+
+        u1 u2 - unit
+        l1 l2 - location
+
+        cr1 - carrier
+
+        cap_0 cap_1 cap_2 - capacity_number
+
+    )
+
+    (:htn 
+        :subtasks (and
+            (task0 (deliver_all))
+            (task1 (accompany p1 u1))
+        )
+        :ordering (task0 < task1)
+    )
+    
+    (:init
+        (connected l1 central_warehouse)
+        (connected entrance l1)
+        
+        (at u1 l1)
+        (at u2 l1)
+        
+        (at b1 central_warehouse)
+        (at b2 central_warehouse)
+        (at b3 central_warehouse)
+
+        (at c1 central_warehouse)
+        (at c2 central_warehouse)
+
+        (at p1 entrance)
+
+        (capacity_predecessor cap_0 cap_1)
+        (capacity_predecessor cap_1 cap_2)
+        
+        (at r1 central_warehouse)
+        (at rp entrance)
+
+        (rob-carrier r1 cr1)
+        
+        (capacity cr1 cap_2)
+
+        (unit-wants u1 c1)
+        (unit-wants u1 c2)
+        (unit-wants u2 c2)
+    )
+
+)
+
+; with
+; :subtasks (and
+;             (task0 (load_all r1 cr1))
+;             (task1 (supply_all r1 cr1))
+;             (task2 (load_all r1 cr1))
+;             (task3 (supply_all r1 cr1))
+;         )
+;         :ordering (and
+;             (task0 < task1)
+;             (task1 < task2)
+;             (task2 < task3)
+;         )
+
+; SOLUTION SEQUENCE
+; 0: SHOP_methodm_load_all_4_precondition(u1,c1)
+; 1: SHOP_methodm_i_am_there_8_precondition(r1,central_warehouse)
+; 2: fill(r1,b2,c1,central_warehouse)
+; 3: pick-up(r1,b2,central_warehouse,cr1,cap_1,cap_2)
+; 4: make-ready-for-unit(c1,u1)
+; 5: SHOP_methodm_not_make_unit_ready_6_precondition(u1,c2)
+; 6: SHOP_methodm_load_all_4_precondition(u1,c2)
+; 7: SHOP_methodm_i_am_there_8_precondition(r1,central_warehouse)
+; 8: fill(r1,b1,c2,central_warehouse)
+; 9: pick-up(r1,b1,central_warehouse,cr1,cap_0,cap_1)
+; 10: make-ready-for-unit(c2,u1)
+; 11: SHOP_methodm_make_unit_ready_7_precondition__DISJUNCT-0__DISJUNCT-0__DISJUNCT-1__DISJUNCT-0__DISJUNCT-0__DISJUNCT-1__DISJUNCT-0(u1,tongue_depressor,bandage,c2,thermometer,aspirin,c1,scalpel)
+; 12: make-unit-ready_aux(u1)
+; 13: SHOP_methodm_load_none_carrier_full_3_precondition(cr1,cap_0,cap_0,cap_1,cap_2)
+; 14: SHOP_methodm_supply_all_12_precondition(c1,l1,u1,b2,cr1)
+; 15: move__DISJUNCT-1(r1,central_warehouse,l1)
+; 16: SHOP_methodm_supply_13_precondition(cap_0,cap_1,cr1)
+; 17: drop(r1,b2,l1,u1,cr1,cap_0,cap_1)
+; 18: empty(r1,b2,c1,u1,l1)
+; 19: SHOP_methodm_not_make_unit_satisfied_14_precondition(u1,c2)
+; 20: SHOP_methodm_supply_all_12_precondition(c2,l1,u1,b1,cr1)
+; 21: SHOP_methodm_i_am_there_8_precondition(r1,l1)
+; 22: SHOP_methodm_supply_13_precondition(cap_1,cap_2,cr1)
+; 23: drop(r1,b1,l1,u1,cr1,cap_1,cap_2)
+; 24: empty(r1,b1,c2,u1,l1)
+; 25: SHOP_methodm_make_unit_satisfied_15_precondition(u1,tongue_depressor,bandage,c2,thermometer,aspirin,c1,scalpel)
+; 26: make-unit-satisfied_aux(u1)
+; 27: SHOP_methodm_supply_none_carrier_empty_11_precondition(cr1,cap_2,cap_0,cap_1,cap_2)
+; 28: SHOP_methodm_load_all_4_precondition(u2,c2)
+; 29: move__DISJUNCT-0(r1,l1,central_warehouse)
+; 30: fill(r1,b3,c2,central_warehouse)
+; 31: pick-up(r1,b3,central_warehouse,cr1,cap_1,cap_2)
+; 32: make-ready-for-unit(c2,u2)
+; 33: SHOP_methodm_make_unit_ready_7_precondition__DISJUNCT-0__DISJUNCT-0__DISJUNCT-1__DISJUNCT-0__DISJUNCT-0__DISJUNCT-0__DISJUNCT-0(u2,tongue_depressor,bandage,c2,thermometer,aspirin,c1,scalpel)
+; 34: make-unit-ready_aux(u2)
+; 35: SHOP_methodm_load_none_all_ready_2_precondition__DISJUNCT-1__DISJUNCT-1(u1,u2)
+; 36: SHOP_methodm_supply_all_12_precondition(c2,l1,u2,b3,cr1)
+; 37: move__DISJUNCT-1(r1,central_warehouse,l1)
+; 38: SHOP_methodm_supply_13_precondition(cap_1,cap_2,cr1)
+; 39: drop(r1,b3,l1,u2,cr1,cap_1,cap_2)
+; 40: empty(r1,b3,c2,u2,l1)
+; 41: SHOP_methodm_make_unit_satisfied_15_precondition(u2,tongue_depressor,bandage,c2,thermometer,aspirin,c1,scalpel)
+; 42: make-unit-satisfied_aux(u2)
+; 43: SHOP_methodm_supply_none_carrier_empty_11_precondition(cr1,cap_2,cap_0,cap_1,cap_2)

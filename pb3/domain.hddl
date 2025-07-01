@@ -16,9 +16,8 @@
 )
 
 (:constants 
-	central_warehouse - location
-	entrance - location
-	scalpel tongue_depressor aspirin bandage thermometer - content
+	central_warehouse entrance - location
+	; scalpel tongue_depressor aspirin bandage thermometer - content
 )
 
 (:predicates
@@ -97,6 +96,23 @@
 	:parameters (?u - unit)
 	:precondition ()
 	:effect ()
+)
+
+(:task accompany
+	:parameters (?p - patient ?u - unit)
+	:precondition ()
+	:effect ()
+)
+
+(:method m_accompany
+	:parameters (?r - robot-patient ?p - patient ?origin - location ?dest - location ?u - unit)
+	:task (accompany ?p ?u)
+	:subtasks (and
+		(task0 (get_to ?r ?origin))
+		(task1 (take-patient ?r ?p ?origin))
+		(task2 (get_to ?r ?dest))
+		(task3 (release-patient ?r ?p ?dest ?u))
+	)
 )
 
 (:method m_deliver_none
@@ -407,6 +423,37 @@
 	:effect (unit-satisfied ?u)
 )
 
+
+(:action take-patient
+	:parameters (?r - robot-patient ?p - patient ?l - location)
+	:precondition (and 
+		(at ?r ?l)
+		(at ?p ?l)
+		(not (busy ?r))
+	)
+	:effect (and 
+		(with-patient ?r ?p)
+		(busy ?r)
+	)
+)
+
+(:action release-patient
+	:parameters (?r - robot-patient ?p - patient ?l - location ?u - unit)
+	:precondition (and 
+		(at ?r ?l)
+		(at ?u ?l)
+		(with-patient ?r ?p)
+		(busy ?r)
+	)
+
+	:effect (and 
+		(at ?p ?l)
+		(at-unit ?p ?u)
+		
+		(not (with-patient ?r ?p))
+		(not (busy ?r))
+	)
+)
 
 )
 
