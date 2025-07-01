@@ -1,0 +1,61 @@
+(define (problem problem3) (:domain healthcare)
+    (:objects 
+        r1 - robot-box
+    
+        b1 b2 b3 b4 b5 b6 b7 b8 - box
+        c1 c2 c3 c4 c5 c6 c7 c8 - content
+
+        u1 - unit
+        l1 - location
+
+        cr1 - carrier
+
+        cap_0 cap_1 cap_2 cap_3 cap_4 - capacity_number
+
+    )
+
+    (:htn
+        :parameters ()
+        :subtasks (deliver_all)
+    )   
+    
+    (:init
+
+        (connected l1 central_warehouse)
+        
+        (at b1 central_warehouse)
+        (at b2 central_warehouse)
+        (at b3 central_warehouse)
+        (at b4 central_warehouse)
+        (at b5 central_warehouse)
+        (at b6 central_warehouse)
+        (at b7 central_warehouse)
+        (at b8 central_warehouse)
+
+
+        (at c1 central_warehouse)
+
+        (at u1 l1)
+
+        (capacity_predecessor cap_0 cap_1)
+        (capacity_predecessor cap_1 cap_2)
+        (capacity_predecessor cap_2 cap_3)
+        (capacity_predecessor cap_3 cap_4)
+
+        (at r1 central_warehouse)
+
+        (rob-carrier r1 cr1)
+        
+        (capacity cr1 cap_4)
+
+        (unit-wants u1 c1)
+        (unit-wants u1 c2)
+        (unit-wants u1 c3)
+        (unit-wants u1 c4)
+        (unit-wants u1 c5)
+        (unit-wants u1 c6)
+        (unit-wants u1 c7)
+        (unit-wants u1 c8)
+    )
+
+)

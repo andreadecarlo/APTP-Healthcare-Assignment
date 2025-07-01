@@ -1,0 +1,256 @@
+PANDA - Planning and Acting in a Network Decomposition Architecture
+Believe us: It's great, it's fantastic!
+
+PANDA Copyright (C) 2014-2018 Gregor Behnke, Pascal Bercher, Thomas Geier, Kadir
+Dede, Daniel Höller, Kristof Mickeleit, Matthias Englert
+This program comes with ABSOLUTELY NO WARRANTY
+This is free software, and you are welcome to redistribute it under certain
+conditions; run PANDA with -license for details.
+
+Main Developers:
+- Gregor Behnke, http://www.uni-ulm.de/in/ki/behnke
+- Daniel Höller, http://www.uni-ulm.de/in/ki/hoeller
+
+With many thanks to various further contributors.
+Run PANDA with the command line argument -contributors for an extensive list.
+
+Run it with -help for more information like available options.
+
+
+PANDA was called with: "-parser hddl domain.hddl problem_c8_cr4.hddl"
+
+
+Planner Configuration
+=====================
+Domain: domain.hddl
+Problem: problem_c8_cr4.hddl
+Output: none
+
+Planning Configuration
+======================
+	printGeneralInformation : true
+	printAdditionalData     : true
+	random seed             : 42
+	time limit (in seconds) : none
+
+	external programs:
+
+
+	Parsing Configuration
+	---------------------
+	Parser                : HDDL Parser (Daniel's format)
+	Expand Sort Hierarchy : true
+	ClosedWordAssumption  : true
+	CompileSHOPMethods    : true
+	Eliminate Equality    : true
+	Strip Hybridity       : true
+	Reduce General Tasks  : true
+	
+	Preprocessing Configuration
+	---------------------------
+	Compile negative preconditions    : true
+	Compile unit methods              : false
+	Compile order in methods          : false
+	Compile initial plan              : true
+	Ensure Methods Have Last Task     : false
+	Split independent parameters      : true
+	Remove unnecessary predicates     : true
+	Expand choiceless abstract tasks  : true
+	Domain Cleanup                    : true
+	Convert to SAS+                   : false
+	Grounded Reachability Analysis    : Planning Graph (mutex-free)
+	Grounded Task Decomposition Graph : Two Way TDG
+	Iterate reachability analysis     : true
+	Ground domain                     : true
+	Iterate reachability analysis     : true
+	Stop directly after grounding     : false
+	
+	Progression-search Configuration
+	--------------------------------
+	Search Algorithm                 : AStarActionsType(2.0)
+	Heuristic                        : hhRC(hFF)
+	Abstract task selection strategy : random
+	
+	Post-processing Configuration
+	-----------------------------
+	search status
+	search result
+	timings
+	statistics
+#0 "00 global:01:problem"="problem_c8_cr4.hddl";"00 global:00:domain"="domain.hddl"
+Parsing domain ... done
+Preparing internal domain representation ... done.
+Initial domain
+	number of abstract tasks = 8201
+	number of tasks = 16415
+	number of decomposition methods = 16402
+	number of predicates = 17
+	number of sorts = 12
+	number of tasks in largest method = 6
+	number of primitive SHOP tasks = 8205
+	number of epsilon methods = 0
+	number of primitive tasks = 8214
+	number of constants = 32
+Compiling negative preconditions ... done.
+	number of abstract tasks = 8201
+	number of tasks = 16415
+	number of decomposition methods = 16402
+	number of predicates = 34
+	number of sorts = 12
+	number of tasks in largest method = 6
+	number of primitive SHOP tasks = 8205
+	number of epsilon methods = 0
+	number of primitive tasks = 8214
+	number of constants = 32
+Compiling split parameters ... done.
+	number of abstract tasks = 8201
+	number of tasks = 16415
+	number of decomposition methods = 16402
+	number of predicates = 34
+	number of sorts = 12
+	number of tasks in largest method = 6
+	number of primitive SHOP tasks = 8205
+	number of epsilon methods = 0
+	number of primitive tasks = 8214
+	number of constants = 32
+Lifted reachability analysis and domain cleanup ... done.
+	number of abstract tasks = 8201
+	number of tasks = 16415
+	number of decomposition methods = 16402
+	number of predicates = 16
+	number of sorts = 12
+	number of tasks in largest method = 6
+	number of primitive SHOP tasks = 8205
+	number of epsilon methods = 0
+	number of primitive tasks = 8214
+	number of constants = 32
+Grounded planning graph ... done in 37106ms.
+	Number of Grounded Actions 8430
+	Number of Grounded Literals 146
+	number of abstract tasks = 8201
+	number of tasks = 16415
+	number of decomposition methods = 16402
+	number of predicates = 16
+	number of sorts = 12
+	number of tasks in largest method = 6
+	number of primitive SHOP tasks = 8205
+	number of epsilon methods = 0
+	number of primitive tasks = 8214
+	number of constants = 32
+Two Way TDG ... done.
+	number of abstract tasks = 8201
+	number of tasks = 16415
+	number of decomposition methods = 16402
+	number of predicates = 16
+	number of sorts = 12
+	number of tasks in largest method = 6
+	number of primitive SHOP tasks = 8205
+	number of epsilon methods = 0
+	number of primitive tasks = 8214
+	number of constants = 32
+Grounding ... done.
+	number of abstract tasks = 8210
+	number of tasks = 16525
+	number of decomposition methods = 16492
+	number of predicates = 272
+	number of sorts = 0
+	number of tasks in largest method = 6
+	number of primitive SHOP tasks = 8230
+	number of epsilon methods = 0
+	number of primitive tasks = 8315
+	number of constants = 0
+Removing unnecessary predicates ... done.
+	number of abstract tasks = 8210
+	number of tasks = 16525
+	number of decomposition methods = 16492
+	number of predicates = 81
+	number of sorts = 0
+	number of tasks in largest method = 6
+	number of primitive SHOP tasks = 8230
+	number of epsilon methods = 0
+	number of primitive tasks = 8315
+	number of constants = 0
+Omitting lifted reachability analysis ... 
+Grounded planning graph ... done in 537ms.
+	Number of Grounded Actions 121
+	Number of Grounded Literals 62
+	number of abstract tasks = 19
+	number of tasks = 138
+	number of decomposition methods = 107
+	number of predicates = 81
+	number of sorts = 0
+	number of tasks in largest method = 6
+	number of primitive SHOP tasks = 36
+	number of epsilon methods = 0
+	number of primitive tasks = 119
+	number of constants = 0
+Two Way TDG ... done.
+	number of abstract tasks = 19
+	number of tasks = 138
+	number of decomposition methods = 103
+	number of predicates = 81
+	number of sorts = 0
+	number of tasks in largest method = 6
+	number of primitive SHOP tasks = 36
+	number of epsilon methods = 0
+	number of primitive tasks = 119
+	number of constants = 0
+Compiling expand choiceless abstract tasks ... done.
+	number of abstract tasks = 16
+	number of tasks = 135
+	number of decomposition methods = 100
+	number of predicates = 81
+	number of sorts = 0
+	number of tasks in largest method = 6
+	number of primitive SHOP tasks = 36
+	number of epsilon methods = 0
+	number of primitive tasks = 119
+	number of constants = 0
+Compiling initial plan ... done.
+	number of abstract tasks = 16
+	number of tasks = 135
+	number of decomposition methods = 100
+	number of predicates = 81
+	number of sorts = 0
+	number of tasks in largest method = 6
+	number of primitive SHOP tasks = 36
+	number of epsilon methods = 0
+	number of primitive tasks = 119
+	number of constants = 0
+Removing unnecessary predicates ... done.
+	number of abstract tasks = 16
+	number of tasks = 135
+	number of decomposition methods = 100
+	number of predicates = 62
+	number of sorts = 0
+	number of tasks in largest method = 6
+	number of primitive SHOP tasks = 36
+	number of epsilon methods = 0
+	number of primitive tasks = 119
+	number of constants = 0
+Omitting lifted reachability analysis ... 
+Grounded planning graph ... done in 6ms.
+	Number of Grounded Actions 117
+	Number of Grounded Literals 60
+	number of abstract tasks = 16
+	number of tasks = 133
+	number of decomposition methods = 98
+	number of predicates = 62
+	number of sorts = 0
+	number of tasks in largest method = 6
+	number of primitive SHOP tasks = 34
+	number of epsilon methods = 0
+	number of primitive tasks = 117
+	number of constants = 0
+Two Way TDG ... done.
+	number of abstract tasks = 16
+	number of tasks = 133
+	number of decomposition methods = 98
+	number of predicates = 62
+	number of sorts = 0
+	number of tasks in largest method = 6
+	number of primitive SHOP tasks = 34
+	number of epsilon methods = 0
+	number of primitive tasks = 117
+	number of constants = 0
+Compiling expand choiceless abstract tasks ... 

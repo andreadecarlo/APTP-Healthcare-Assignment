@@ -1,0 +1,721 @@
+PANDA - Planning and Acting in a Network Decomposition Architecture
+Believe us: It's great, it's fantastic!
+
+PANDA Copyright (C) 2014-2018 Gregor Behnke, Pascal Bercher, Thomas Geier, Kadir
+Dede, Daniel Höller, Kristof Mickeleit, Matthias Englert
+This program comes with ABSOLUTELY NO WARRANTY
+This is free software, and you are welcome to redistribute it under certain
+conditions; run PANDA with -license for details.
+
+Main Developers:
+- Gregor Behnke, http://www.uni-ulm.de/in/ki/behnke
+- Daniel Höller, http://www.uni-ulm.de/in/ki/hoeller
+
+With many thanks to various further contributors.
+Run PANDA with the command line argument -contributors for an extensive list.
+
+Run it with -help for more information like available options.
+
+
+PANDA was called with: "-parser hddl domain.hddl problem_c3_cr2_u2.hddl"
+
+
+Planner Configuration
+=====================
+Domain: domain.hddl
+Problem: problem_c3_cr2_u2.hddl
+Output: none
+
+Planning Configuration
+======================
+	printGeneralInformation : true
+	printAdditionalData     : true
+	random seed             : 42
+	time limit (in seconds) : none
+
+	external programs:
+
+
+	Parsing Configuration
+	---------------------
+	Parser                : HDDL Parser (Daniel's format)
+	Expand Sort Hierarchy : true
+	ClosedWordAssumption  : true
+	CompileSHOPMethods    : true
+	Eliminate Equality    : true
+	Strip Hybridity       : true
+	Reduce General Tasks  : true
+	
+	Preprocessing Configuration
+	---------------------------
+	Compile negative preconditions    : true
+	Compile unit methods              : false
+	Compile order in methods          : false
+	Compile initial plan              : true
+	Ensure Methods Have Last Task     : false
+	Split independent parameters      : true
+	Remove unnecessary predicates     : true
+	Expand choiceless abstract tasks  : true
+	Domain Cleanup                    : true
+	Convert to SAS+                   : false
+	Grounded Reachability Analysis    : Planning Graph (mutex-free)
+	Grounded Task Decomposition Graph : Two Way TDG
+	Iterate reachability analysis     : true
+	Ground domain                     : true
+	Iterate reachability analysis     : true
+	Stop directly after grounding     : false
+	
+	Progression-search Configuration
+	--------------------------------
+	Search Algorithm                 : AStarActionsType(2.0)
+	Heuristic                        : hhRC(hFF)
+	Abstract task selection strategy : random
+	
+	Post-processing Configuration
+	-----------------------------
+	search status
+	search result
+	timings
+	statistics
+#0 "00 global:01:problem"="problem_c3_cr2_u2.hddl";"00 global:00:domain"="domain.hddl"
+Parsing domain ... done
+Preparing internal domain representation ... done.
+Initial domain
+	number of abstract tasks = 139
+	number of tasks = 291
+	number of decomposition methods = 278
+	number of predicates = 17
+	number of sorts = 12
+	number of tasks in largest method = 6
+	number of primitive SHOP tasks = 143
+	number of epsilon methods = 0
+	number of primitive tasks = 152
+	number of constants = 21
+Compiling negative preconditions ... done.
+	number of abstract tasks = 139
+	number of tasks = 291
+	number of decomposition methods = 278
+	number of predicates = 34
+	number of sorts = 12
+	number of tasks in largest method = 6
+	number of primitive SHOP tasks = 143
+	number of epsilon methods = 0
+	number of primitive tasks = 152
+	number of constants = 21
+Compiling split parameters ... done.
+	number of abstract tasks = 139
+	number of tasks = 291
+	number of decomposition methods = 278
+	number of predicates = 34
+	number of sorts = 12
+	number of tasks in largest method = 6
+	number of primitive SHOP tasks = 143
+	number of epsilon methods = 0
+	number of primitive tasks = 152
+	number of constants = 21
+Lifted reachability analysis and domain cleanup ... done.
+	number of abstract tasks = 139
+	number of tasks = 291
+	number of decomposition methods = 278
+	number of predicates = 16
+	number of sorts = 12
+	number of tasks in largest method = 6
+	number of primitive SHOP tasks = 143
+	number of epsilon methods = 0
+	number of primitive tasks = 152
+	number of constants = 21
+Grounded planning graph ... done in 809ms.
+	Number of Grounded Actions 377
+	Number of Grounded Literals 100
+	number of abstract tasks = 139
+	number of tasks = 291
+	number of decomposition methods = 278
+	number of predicates = 16
+	number of sorts = 12
+	number of tasks in largest method = 6
+	number of primitive SHOP tasks = 143
+	number of epsilon methods = 0
+	number of primitive tasks = 152
+	number of constants = 21
+Two Way TDG ... done.
+	number of abstract tasks = 139
+	number of tasks = 291
+	number of decomposition methods = 278
+	number of predicates = 16
+	number of sorts = 12
+	number of tasks in largest method = 6
+	number of primitive SHOP tasks = 143
+	number of epsilon methods = 0
+	number of primitive tasks = 152
+	number of constants = 21
+Grounding ... done.
+	number of abstract tasks = 282
+	number of tasks = 618
+	number of decomposition methods = 590
+	number of predicates = 135
+	number of sorts = 0
+	number of tasks in largest method = 6
+	number of primitive SHOP tasks = 291
+	number of epsilon methods = 0
+	number of primitive tasks = 336
+	number of constants = 0
+Removing unnecessary predicates ... done.
+	number of abstract tasks = 282
+	number of tasks = 618
+	number of decomposition methods = 590
+	number of predicates = 58
+	number of sorts = 0
+	number of tasks in largest method = 6
+	number of primitive SHOP tasks = 291
+	number of epsilon methods = 0
+	number of primitive tasks = 336
+	number of constants = 0
+Omitting lifted reachability analysis ... 
+Grounded planning graph ... done in 36ms.
+	Number of Grounded Actions 83
+	Number of Grounded Literals 47
+	number of abstract tasks = 49
+	number of tasks = 129
+	number of decomposition methods = 101
+	number of predicates = 58
+	number of sorts = 0
+	number of tasks in largest method = 6
+	number of primitive SHOP tasks = 38
+	number of epsilon methods = 0
+	number of primitive tasks = 80
+	number of constants = 0
+Two Way TDG ... done.
+	number of abstract tasks = 49
+	number of tasks = 129
+	number of decomposition methods = 99
+	number of predicates = 58
+	number of sorts = 0
+	number of tasks in largest method = 6
+	number of primitive SHOP tasks = 38
+	number of epsilon methods = 0
+	number of primitive tasks = 80
+	number of constants = 0
+Compiling expand choiceless abstract tasks ... done.
+	number of abstract tasks = 27
+	number of tasks = 107
+	number of decomposition methods = 77
+	number of predicates = 58
+	number of sorts = 0
+	number of tasks in largest method = 6
+	number of primitive SHOP tasks = 38
+	number of epsilon methods = 0
+	number of primitive tasks = 80
+	number of constants = 0
+Compiling initial plan ... done.
+	number of abstract tasks = 27
+	number of tasks = 107
+	number of decomposition methods = 77
+	number of predicates = 58
+	number of sorts = 0
+	number of tasks in largest method = 6
+	number of primitive SHOP tasks = 38
+	number of epsilon methods = 0
+	number of primitive tasks = 80
+	number of constants = 0
+Removing unnecessary predicates ... done.
+	number of abstract tasks = 27
+	number of tasks = 107
+	number of decomposition methods = 77
+	number of predicates = 47
+	number of sorts = 0
+	number of tasks in largest method = 6
+	number of primitive SHOP tasks = 38
+	number of epsilon methods = 0
+	number of primitive tasks = 80
+	number of constants = 0
+Omitting lifted reachability analysis ... 
+Grounded planning graph ... done in 10ms.
+	Number of Grounded Actions 80
+	Number of Grounded Literals 47
+	number of abstract tasks = 27
+	number of tasks = 107
+	number of decomposition methods = 77
+	number of predicates = 47
+	number of sorts = 0
+	number of tasks in largest method = 6
+	number of primitive SHOP tasks = 38
+	number of epsilon methods = 0
+	number of primitive tasks = 80
+	number of constants = 0
+Two Way TDG ... done.
+	number of abstract tasks = 27
+	number of tasks = 107
+	number of decomposition methods = 77
+	number of predicates = 47
+	number of sorts = 0
+	number of tasks in largest method = 6
+	number of primitive SHOP tasks = 38
+	number of epsilon methods = 0
+	number of primitive tasks = 80
+	number of constants = 0
+Compiling expand choiceless abstract tasks ... done.
+	number of abstract tasks = 27
+	number of tasks = 107
+	number of decomposition methods = 77
+	number of predicates = 47
+	number of sorts = 0
+	number of tasks in largest method = 6
+	number of primitive SHOP tasks = 38
+	number of epsilon methods = 0
+	number of primitive tasks = 80
+	number of constants = 0
+Compiling initial plan ... done.
+	number of abstract tasks = 27
+	number of tasks = 107
+	number of decomposition methods = 77
+	number of predicates = 47
+	number of sorts = 0
+	number of tasks in largest method = 6
+	number of primitive SHOP tasks = 38
+	number of epsilon methods = 0
+	number of primitive tasks = 80
+	number of constants = 0
+Removing unnecessary predicates ... done.
+	number of abstract tasks = 27
+	number of tasks = 107
+	number of decomposition methods = 77
+	number of predicates = 47
+	number of sorts = 0
+	number of tasks in largest method = 6
+	number of primitive SHOP tasks = 38
+	number of epsilon methods = 0
+	number of primitive tasks = 80
+	number of constants = 0
+Tasks 80 - 1
+Domain is acyclic: false
+Domain is mostly acyclic: false
+Domain is regular: false
+Domain is tail recursive: false
+Domain is totally ordered: true
+Domain has last task in all methods: true
+Time remaining for planner 9223372036854772962ms
+Reducing flat domain ... done.
+ - Reduced number of operators from 336 to 80
+ - Reduced number of state-bits from 56 to 45
+Generating Relaxed Composition Model ...
+Calculating top down reachability ...
+ - Found 106 SCCs with up to 2 tasks.
+ - Reachability calculated in 3 ms.
+ - model has 157 operators
+ - model has 232 state features
+ - operators' mean count of (pre, add, del) = (2.80, 1.57, 0.47)
+ - effects' mean achiever count: 1.57
+ - effects' mean consumer count: 2.80
+
+Searching with 
+ - Priority Queue search routine
+ - A-Star search
+ - HTN heuristic:hhRelataxedComposition-with-hFF-EQ
+ - Abstract task choice: randomly
+ - time limit for search is 2147483647 sec
+
+Starting priority queue search
+nodes/sec: 58666 - generated nodes: 58725 - fringe size: 14182 - current modification depth: 37 - g(s)+h(s)= 24
+nodes/sec: 69553 - generated nodes: 139246 - fringe size: 29924 - current modification depth: 36 - g(s)+h(s)= 29
+nodes/sec: 79061 - generated nodes: 239159 - fringe size: 48391 - current modification depth: 43 - g(s)+h(s)= 29
+nodes/sec: 78605 - generated nodes: 316464 - fringe size: 62004 - current modification depth: 42 - g(s)+h(s)= 31
+nodes/sec: 82224 - generated nodes: 413341 - fringe size: 79028 - current modification depth: 42 - g(s)+h(s)= 31
+nodes/sec: 83999 - generated nodes: 506348 - fringe size: 93133 - current modification depth: 48 - g(s)+h(s)= 33
+nodes/sec: 86291 - generated nodes: 606539 - fringe size: 110168 - current modification depth: 48 - g(s)+h(s)= 30
+nodes/sec: 87181 - generated nodes: 700066 - fringe size: 124935 - current modification depth: 54 - g(s)+h(s)= 32
+nodes/sec: 88631 - generated nodes: 800423 - fringe size: 140271 - current modification depth: 47 - g(s)+h(s)= 34
+nodes/sec: 88972 - generated nodes: 892569 - fringe size: 155525 - current modification depth: 55 - g(s)+h(s)= 31
+nodes/sec: 90280 - generated nodes: 996061 - fringe size: 171141 - current modification depth: 49 - g(s)+h(s)= 34
+nodes/sec: 91303 - generated nodes: 1098735 - fringe size: 184560 - current modification depth: 58 - g(s)+h(s)= 32
+nodes/sec: 91665 - generated nodes: 1194849 - fringe size: 199536 - current modification depth: 57 - g(s)+h(s)= 32
+nodes/sec: 92038 - generated nodes: 1291850 - fringe size: 214739 - current modification depth: 55 - g(s)+h(s)= 31
+nodes/sec: 91868 - generated nodes: 1381420 - fringe size: 228422 - current modification depth: 50 - g(s)+h(s)= 34
+nodes/sec: 92259 - generated nodes: 1479650 - fringe size: 241902 - current modification depth: 50 - g(s)+h(s)= 33
+nodes/sec: 93255 - generated nodes: 1588967 - fringe size: 255769 - current modification depth: 50 - g(s)+h(s)= 36
+nodes/sec: 93247 - generated nodes: 1682179 - fringe size: 270158 - current modification depth: 55 - g(s)+h(s)= 32
+nodes/sec: 93726 - generated nodes: 1784639 - fringe size: 285555 - current modification depth: 49 - g(s)+h(s)= 36
+nodes/sec: 93448 - generated nodes: 1872891 - fringe size: 299403 - current modification depth: 44 - g(s)+h(s)= 36
+nodes/sec: 93715 - generated nodes: 1976081 - fringe size: 313632 - current modification depth: 60 - g(s)+h(s)= 33
+nodes/sec: 93986 - generated nodes: 2075878 - fringe size: 326448 - current modification depth: 53 - g(s)+h(s)= 35
+nodes/sec: 94394 - generated nodes: 2179369 - fringe size: 338799 - current modification depth: 62 - g(s)+h(s)= 34
+nodes/sec: 94674 - generated nodes: 2283525 - fringe size: 352720 - current modification depth: 62 - g(s)+h(s)= 37
+nodes/sec: 94644 - generated nodes: 2377557 - fringe size: 365873 - current modification depth: 52 - g(s)+h(s)= 36
+nodes/sec: 94613 - generated nodes: 2471472 - fringe size: 379053 - current modification depth: 60 - g(s)+h(s)= 35
+nodes/sec: 94913 - generated nodes: 2574327 - fringe size: 394671 - current modification depth: 63 - g(s)+h(s)= 36
+nodes/sec: 94932 - generated nodes: 2669873 - fringe size: 407776 - current modification depth: 65 - g(s)+h(s)= 34
+nodes/sec: 95110 - generated nodes: 2770087 - fringe size: 420993 - current modification depth: 62 - g(s)+h(s)= 34
+nodes/sec: 95118 - generated nodes: 2865528 - fringe size: 432662 - current modification depth: 63 - g(s)+h(s)= 34
+nodes/sec: 94312 - generated nodes: 2935649 - fringe size: 441599 - current modification depth: 53 - g(s)+h(s)= 37
+nodes/sec: 94402 - generated nodes: 3032937 - fringe size: 453522 - current modification depth: 58 - g(s)+h(s)= 34
+nodes/sec: 94536 - generated nodes: 3131892 - fringe size: 466253 - current modification depth: 59 - g(s)+h(s)= 36
+nodes/sec: 94337 - generated nodes: 3219716 - fringe size: 478258 - current modification depth: 46 - g(s)+h(s)= 38
+nodes/sec: 94482 - generated nodes: 3319255 - fringe size: 492094 - current modification depth: 56 - g(s)+h(s)= 34
+nodes/sec: 94421 - generated nodes: 3411606 - fringe size: 505038 - current modification depth: 62 - g(s)+h(s)= 36
+nodes/sec: 94517 - generated nodes: 3509712 - fringe size: 518787 - current modification depth: 61 - g(s)+h(s)= 38
+nodes/sec: 94458 - generated nodes: 3602073 - fringe size: 531888 - current modification depth: 63 - g(s)+h(s)= 38
+nodes/sec: 94497 - generated nodes: 3700888 - fringe size: 545781 - current modification depth: 64 - g(s)+h(s)= 38
+nodes/sec: 93890 - generated nodes: 3771110 - fringe size: 554851 - current modification depth: 59 - g(s)+h(s)= 37
+nodes/sec: 93840 - generated nodes: 3863007 - fringe size: 565829 - current modification depth: 64 - g(s)+h(s)= 35
+nodes/sec: 93372 - generated nodes: 3937210 - fringe size: 574430 - current modification depth: 59 - g(s)+h(s)= 38
+nodes/sec: 93085 - generated nodes: 4018311 - fringe size: 583902 - current modification depth: 65 - g(s)+h(s)= 35
+nodes/sec: 92773 - generated nodes: 4097669 - fringe size: 592819 - current modification depth: 61 - g(s)+h(s)= 38
+nodes/sec: 92967 - generated nodes: 4199301 - fringe size: 603538 - current modification depth: 59 - g(s)+h(s)= 34
+nodes/sec: 93015 - generated nodes: 4294613 - fringe size: 616442 - current modification depth: 64 - g(s)+h(s)= 37
+nodes/sec: 92967 - generated nodes: 4385421 - fringe size: 628351 - current modification depth: 65 - g(s)+h(s)= 36
+nodes/sec: 92567 - generated nodes: 4459216 - fringe size: 637885 - current modification depth: 65 - g(s)+h(s)= 36
+nodes/sec: 92579 - generated nodes: 4552482 - fringe size: 649548 - current modification depth: 49 - g(s)+h(s)= 39
+nodes/sec: 92433 - generated nodes: 4637841 - fringe size: 660465 - current modification depth: 58 - g(s)+h(s)= 39
+nodes/sec: 92461 - generated nodes: 4731808 - fringe size: 673137 - current modification depth: 60 - g(s)+h(s)= 39
+nodes/sec: 92534 - generated nodes: 4828126 - fringe size: 687128 - current modification depth: 50 - g(s)+h(s)= 39
+nodes/sec: 92321 - generated nodes: 4909423 - fringe size: 698878 - current modification depth: 65 - g(s)+h(s)= 36
+nodes/sec: 91948 - generated nodes: 4981632 - fringe size: 708578 - current modification depth: 57 - g(s)+h(s)= 39
+nodes/sec: 91961 - generated nodes: 5074431 - fringe size: 720790 - current modification depth: 67 - g(s)+h(s)= 36
+nodes/sec: 91982 - generated nodes: 5167659 - fringe size: 732153 - current modification depth: 65 - g(s)+h(s)= 36
+nodes/sec: 91914 - generated nodes: 5255850 - fringe size: 742194 - current modification depth: 60 - g(s)+h(s)= 38
+nodes/sec: 91471 - generated nodes: 5322075 - fringe size: 749830 - current modification depth: 61 - g(s)+h(s)= 39
+nodes/sec: 91432 - generated nodes: 5411323 - fringe size: 759128 - current modification depth: 60 - g(s)+h(s)= 38
+nodes/sec: 91482 - generated nodes: 5509875 - fringe size: 769165 - current modification depth: 70 - g(s)+h(s)= 38
+nodes/sec: 91568 - generated nodes: 5606719 - fringe size: 778897 - current modification depth: 61 - g(s)+h(s)= 38
+nodes/sec: 91330 - generated nodes: 5683562 - fringe size: 788208 - current modification depth: 60 - g(s)+h(s)= 36
+nodes/sec: 91077 - generated nodes: 5758994 - fringe size: 798118 - current modification depth: 68 - g(s)+h(s)= 40
+nodes/sec: 91128 - generated nodes: 5853417 - fringe size: 810067 - current modification depth: 69 - g(s)+h(s)= 37
+nodes/sec: 91100 - generated nodes: 5942815 - fringe size: 821337 - current modification depth: 58 - g(s)+h(s)= 40
+nodes/sec: 91017 - generated nodes: 6028480 - fringe size: 831768 - current modification depth: 67 - g(s)+h(s)= 40
+nodes/sec: 90728 - generated nodes: 6100200 - fringe size: 840837 - current modification depth: 58 - g(s)+h(s)= 40
+nodes/sec: 90602 - generated nodes: 6182378 - fringe size: 851481 - current modification depth: 66 - g(s)+h(s)= 40
+nodes/sec: 90562 - generated nodes: 6270308 - fringe size: 862536 - current modification depth: 67 - g(s)+h(s)= 40
+nodes/sec: 90636 - generated nodes: 6366151 - fringe size: 874458 - current modification depth: 59 - g(s)+h(s)= 40
+nodes/sec: 90397 - generated nodes: 6443138 - fringe size: 884013 - current modification depth: 63 - g(s)+h(s)= 38
+nodes/sec: 90144 - generated nodes: 6515302 - fringe size: 892739 - current modification depth: 54 - g(s)+h(s)= 40
+nodes/sec: 90139 - generated nodes: 6605236 - fringe size: 903809 - current modification depth: 62 - g(s)+h(s)= 37
+nodes/sec: 90052 - generated nodes: 6688936 - fringe size: 914416 - current modification depth: 56 - g(s)+h(s)= 40
+nodes/sec: 90024 - generated nodes: 6777039 - fringe size: 925888 - current modification depth: 65 - g(s)+h(s)= 37
+nodes/sec: 89778 - generated nodes: 6848378 - fringe size: 935132 - current modification depth: 69 - g(s)+h(s)= 37
+nodes/sec: 89546 - generated nodes: 6920301 - fringe size: 944014 - current modification depth: 68 - g(s)+h(s)= 40
+nodes/sec: 89552 - generated nodes: 7010383 - fringe size: 954679 - current modification depth: 50 - g(s)+h(s)= 40
+nodes/sec: 89556 - generated nodes: 7107472 - fringe size: 964761 - current modification depth: 69 - g(s)+h(s)= 37
+nodes/sec: 89549 - generated nodes: 7196523 - fringe size: 973973 - current modification depth: 55 - g(s)+h(s)= 40
+nodes/sec: 89715 - generated nodes: 7299646 - fringe size: 984478 - current modification depth: 61 - g(s)+h(s)= 39
+nodes/sec: 89647 - generated nodes: 7383898 - fringe size: 992584 - current modification depth: 71 - g(s)+h(s)= 38
+nodes/sec: 89550 - generated nodes: 7465527 - fringe size: 1000759 - current modification depth: 68 - g(s)+h(s)= 39
+nodes/sec: 89294 - generated nodes: 7533575 - fringe size: 1010051 - current modification depth: 71 - g(s)+h(s)= 39
+nodes/sec: 89264 - generated nodes: 7620371 - fringe size: 1021324 - current modification depth: 69 - g(s)+h(s)= 41
+nodes/sec: 89366 - generated nodes: 7718564 - fringe size: 1033640 - current modification depth: 71 - g(s)+h(s)= 38
+nodes/sec: 89321 - generated nodes: 7804073 - fringe size: 1044370 - current modification depth: 63 - g(s)+h(s)= 40
+nodes/sec: 89116 - generated nodes: 7875362 - fringe size: 1053202 - current modification depth: 60 - g(s)+h(s)= 41
+nodes/sec: 88875 - generated nodes: 7943070 - fringe size: 1061460 - current modification depth: 69 - g(s)+h(s)= 41
+nodes/sec: 88663 - generated nodes: 8012823 - fringe size: 1070104 - current modification depth: 68 - g(s)+h(s)= 37
+nodes/sec: 88728 - generated nodes: 8107535 - fringe size: 1081560 - current modification depth: 69 - g(s)+h(s)= 37
+nodes/sec: 88827 - generated nodes: 8205487 - fringe size: 1093617 - current modification depth: 57 - g(s)+h(s)= 41
+nodes/sec: 88771 - generated nodes: 8289176 - fringe size: 1103848 - current modification depth: 62 - g(s)+h(s)= 40
+nodes/sec: 88533 - generated nodes: 8357668 - fringe size: 1112137 - current modification depth: 70 - g(s)+h(s)= 41
+nodes/sec: 88351 - generated nodes: 8428938 - fringe size: 1121244 - current modification depth: 62 - g(s)+h(s)= 41
+nodes/sec: 88088 - generated nodes: 8496555 - fringe size: 1129943 - current modification depth: 68 - g(s)+h(s)= 39
+nodes/sec: 88190 - generated nodes: 8594651 - fringe size: 1142454 - current modification depth: 65 - g(s)+h(s)= 39
+nodes/sec: 88298 - generated nodes: 8693540 - fringe size: 1154836 - current modification depth: 69 - g(s)+h(s)= 41
+nodes/sec: 88281 - generated nodes: 8780235 - fringe size: 1165807 - current modification depth: 70 - g(s)+h(s)= 41
+nodes/sec: 88105 - generated nodes: 8850939 - fringe size: 1174460 - current modification depth: 58 - g(s)+h(s)= 41
+nodes/sec: 87911 - generated nodes: 8923080 - fringe size: 1182662 - current modification depth: 73 - g(s)+h(s)= 39
+nodes/sec: 87757 - generated nodes: 8995220 - fringe size: 1190200 - current modification depth: 67 - g(s)+h(s)= 41
+nodes/sec: 87817 - generated nodes: 9089307 - fringe size: 1200197 - current modification depth: 71 - g(s)+h(s)= 38
+nodes/sec: 87827 - generated nodes: 9188864 - fringe size: 1210112 - current modification depth: 71 - g(s)+h(s)= 40
+nodes/sec: 87901 - generated nodes: 9284545 - fringe size: 1219317 - current modification depth: 67 - g(s)+h(s)= 38
+nodes/sec: 87781 - generated nodes: 9359723 - fringe size: 1226461 - current modification depth: 72 - g(s)+h(s)= 39
+nodes/sec: 87663 - generated nodes: 9434949 - fringe size: 1233590 - current modification depth: 73 - g(s)+h(s)= 39
+nodes/sec: 87557 - generated nodes: 9511165 - fringe size: 1241044 - current modification depth: 61 - g(s)+h(s)= 41
+nodes/sec: 87608 - generated nodes: 9604395 - fringe size: 1249732 - current modification depth: 65 - g(s)+h(s)= 40
+nodes/sec: 87654 - generated nodes: 9697194 - fringe size: 1258303 - current modification depth: 70 - g(s)+h(s)= 41
+nodes/sec: 87669 - generated nodes: 9786556 - fringe size: 1268897 - current modification depth: 65 - g(s)+h(s)= 40
+nodes/sec: 87525 - generated nodes: 9858138 - fringe size: 1277689 - current modification depth: 66 - g(s)+h(s)= 42
+nodes/sec: 87363 - generated nodes: 9927374 - fringe size: 1285876 - current modification depth: 71 - g(s)+h(s)= 42
+nodes/sec: 87207 - generated nodes: 9996942 - fringe size: 1293965 - current modification depth: 58 - g(s)+h(s)= 42
+nodes/sec: 87251 - generated nodes: 10089327 - fringe size: 1304596 - current modification depth: 67 - g(s)+h(s)= 42
+nodes/sec: 87372 - generated nodes: 10190695 - fringe size: 1315762 - current modification depth: 66 - g(s)+h(s)= 41
+nodes/sec: 87294 - generated nodes: 10269030 - fringe size: 1324537 - current modification depth: 62 - g(s)+h(s)= 42
+nodes/sec: 87176 - generated nodes: 10342426 - fringe size: 1332754 - current modification depth: 66 - g(s)+h(s)= 39
+nodes/sec: 86994 - generated nodes: 10407893 - fringe size: 1340149 - current modification depth: 71 - g(s)+h(s)= 38
+nodes/sec: 86887 - generated nodes: 10482008 - fringe size: 1348336 - current modification depth: 58 - g(s)+h(s)= 42
+nodes/sec: 86870 - generated nodes: 10566953 - fringe size: 1357891 - current modification depth: 73 - g(s)+h(s)= 39
+nodes/sec: 86936 - generated nodes: 10661967 - fringe size: 1368720 - current modification depth: 59 - g(s)+h(s)= 42
+nodes/sec: 86850 - generated nodes: 10738359 - fringe size: 1377288 - current modification depth: 62 - g(s)+h(s)= 42
+nodes/sec: 86701 - generated nodes: 10806747 - fringe size: 1385015 - current modification depth: 67 - g(s)+h(s)= 40
+nodes/sec: 86561 - generated nodes: 10875953 - fringe size: 1393064 - current modification depth: 62 - g(s)+h(s)= 42
+nodes/sec: 86413 - generated nodes: 10943864 - fringe size: 1401890 - current modification depth: 62 - g(s)+h(s)= 42
+nodes/sec: 86333 - generated nodes: 11020184 - fringe size: 1412017 - current modification depth: 69 - g(s)+h(s)= 39
+nodes/sec: 86390 - generated nodes: 11113879 - fringe size: 1423989 - current modification depth: 68 - g(s)+h(s)= 39
+nodes/sec: 86359 - generated nodes: 11196310 - fringe size: 1434279 - current modification depth: 73 - g(s)+h(s)= 39
+nodes/sec: 86257 - generated nodes: 11269415 - fringe size: 1443524 - current modification depth: 58 - g(s)+h(s)= 42
+nodes/sec: 86130 - generated nodes: 11339066 - fringe size: 1452353 - current modification depth: 58 - g(s)+h(s)= 42
+nodes/sec: 85978 - generated nodes: 11405189 - fringe size: 1460675 - current modification depth: 62 - g(s)+h(s)= 41
+nodes/sec: 85871 - generated nodes: 11476982 - fringe size: 1469610 - current modification depth: 59 - g(s)+h(s)= 42
+nodes/sec: 85912 - generated nodes: 11568350 - fringe size: 1480444 - current modification depth: 62 - g(s)+h(s)= 41
+nodes/sec: 85932 - generated nodes: 11657080 - fringe size: 1490106 - current modification depth: 69 - g(s)+h(s)= 39
+nodes/sec: 85887 - generated nodes: 11736921 - fringe size: 1497860 - current modification depth: 63 - g(s)+h(s)= 42
+nodes/sec: 85786 - generated nodes: 11809056 - fringe size: 1505073 - current modification depth: 67 - g(s)+h(s)= 41
+nodes/sec: 85704 - generated nodes: 11883540 - fringe size: 1512464 - current modification depth: 63 - g(s)+h(s)= 42
+nodes/sec: 85577 - generated nodes: 11951548 - fringe size: 1519205 - current modification depth: 70 - g(s)+h(s)= 40
+nodes/sec: 85600 - generated nodes: 12040512 - fringe size: 1527744 - current modification depth: 61 - g(s)+h(s)= 42
+nodes/sec: 85693 - generated nodes: 12139321 - fringe size: 1537177 - current modification depth: 66 - g(s)+h(s)= 42
+nodes/sec: 85628 - generated nodes: 12215829 - fringe size: 1544254 - current modification depth: 75 - g(s)+h(s)= 39
+nodes/sec: 85550 - generated nodes: 12290361 - fringe size: 1551022 - current modification depth: 71 - g(s)+h(s)= 39
+nodes/sec: 85446 - generated nodes: 12360930 - fringe size: 1557033 - current modification depth: 64 - g(s)+h(s)= 42
+nodes/sec: 85370 - generated nodes: 12435459 - fringe size: 1563504 - current modification depth: 74 - g(s)+h(s)= 40
+nodes/sec: 85331 - generated nodes: 12515144 - fringe size: 1570203 - current modification depth: 73 - g(s)+h(s)= 41
+nodes/sec: 85396 - generated nodes: 12610240 - fringe size: 1581560 - current modification depth: 56 - g(s)+h(s)= 43
+nodes/sec: 85406 - generated nodes: 12697124 - fringe size: 1592173 - current modification depth: 68 - g(s)+h(s)= 40
+nodes/sec: 85303 - generated nodes: 12767166 - fringe size: 1600538 - current modification depth: 73 - g(s)+h(s)= 43
+nodes/sec: 85204 - generated nodes: 12837741 - fringe size: 1608730 - current modification depth: 75 - g(s)+h(s)= 40
+nodes/sec: 85115 - generated nodes: 12909548 - fringe size: 1616734 - current modification depth: 67 - g(s)+h(s)= 41
+nodes/sec: 85019 - generated nodes: 12979992 - fringe size: 1624505 - current modification depth: 58 - g(s)+h(s)= 43
+nodes/sec: 85027 - generated nodes: 13066291 - fringe size: 1633953 - current modification depth: 72 - g(s)+h(s)= 41
+nodes/sec: 85031 - generated nodes: 13152039 - fringe size: 1643405 - current modification depth: 68 - g(s)+h(s)= 39
+nodes/sec: 84961 - generated nodes: 13226292 - fringe size: 1651153 - current modification depth: 60 - g(s)+h(s)= 43
+nodes/sec: 84862 - generated nodes: 13295814 - fringe size: 1658606 - current modification depth: 75 - g(s)+h(s)= 40
+nodes/sec: 84769 - generated nodes: 13366128 - fringe size: 1666202 - current modification depth: 64 - g(s)+h(s)= 43
+nodes/sec: 84673 - generated nodes: 13435691 - fringe size: 1673937 - current modification depth: 75 - g(s)+h(s)= 40
+nodes/sec: 84569 - generated nodes: 13503895 - fringe size: 1681503 - current modification depth: 73 - g(s)+h(s)= 40
+nodes/sec: 84583 - generated nodes: 13590752 - fringe size: 1690887 - current modification depth: 71 - g(s)+h(s)= 39
+nodes/sec: 83018 - generated nodes: 13675735 - fringe size: 1700279 - current modification depth: 73 - g(s)+h(s)= 43
+nodes/sec: 82948 - generated nodes: 13747258 - fringe size: 1708267 - current modification depth: 73 - g(s)+h(s)= 43
+nodes/sec: 82836 - generated nodes: 13811525 - fringe size: 1715162 - current modification depth: 72 - g(s)+h(s)= 41
+nodes/sec: 82628 - generated nodes: 13859580 - fringe size: 1720432 - current modification depth: 75 - g(s)+h(s)= 40
+nodes/sec: 82457 - generated nodes: 13913460 - fringe size: 1726235 - current modification depth: 75 - g(s)+h(s)= 40
+nodes/sec: 82116 - generated nodes: 13944038 - fringe size: 1729402 - current modification depth: 69 - g(s)+h(s)= 43
+nodes/sec: 81895 - generated nodes: 13988325 - fringe size: 1733983 - current modification depth: 73 - g(s)+h(s)= 40
+nodes/sec: 81693 - generated nodes: 14035591 - fringe size: 1738923 - current modification depth: 77 - g(s)+h(s)= 41
+nodes/sec: 81573 - generated nodes: 14096763 - fringe size: 1745380 - current modification depth: 63 - g(s)+h(s)= 43
+nodes/sec: 81547 - generated nodes: 14173847 - fringe size: 1753331 - current modification depth: 60 - g(s)+h(s)= 43
+nodes/sec: 81490 - generated nodes: 14247867 - fringe size: 1761190 - current modification depth: 61 - g(s)+h(s)= 43
+nodes/sec: 81281 - generated nodes: 14292745 - fringe size: 1766210 - current modification depth: 65 - g(s)+h(s)= 43
+nodes/sec: 81076 - generated nodes: 14337821 - fringe size: 1770998 - current modification depth: 61 - g(s)+h(s)= 40
+nodes/sec: 80850 - generated nodes: 14378706 - fringe size: 1775334 - current modification depth: 70 - g(s)+h(s)= 41
+nodes/sec: 80700 - generated nodes: 14432928 - fringe size: 1780923 - current modification depth: 73 - g(s)+h(s)= 43
+nodes/sec: 80528 - generated nodes: 14482752 - fringe size: 1786224 - current modification depth: 74 - g(s)+h(s)= 43
+nodes/sec: 80349 - generated nodes: 14530875 - fringe size: 1791337 - current modification depth: 60 - g(s)+h(s)= 43
+nodes/sec: 80216 - generated nodes: 14587260 - fringe size: 1797424 - current modification depth: 73 - g(s)+h(s)= 43
+nodes/sec: 80088 - generated nodes: 14644042 - fringe size: 1803452 - current modification depth: 57 - g(s)+h(s)= 43
+nodes/sec: 80132 - generated nodes: 14732401 - fringe size: 1812694 - current modification depth: 61 - g(s)+h(s)= 43
+nodes/sec: 80130 - generated nodes: 14812107 - fringe size: 1821438 - current modification depth: 70 - g(s)+h(s)= 41
+nodes/sec: 80018 - generated nodes: 14871596 - fringe size: 1828282 - current modification depth: 65 - g(s)+h(s)= 43
+nodes/sec: 79955 - generated nodes: 14939865 - fringe size: 1836027 - current modification depth: 68 - g(s)+h(s)= 42
+nodes/sec: 79794 - generated nodes: 14989732 - fringe size: 1841854 - current modification depth: 71 - g(s)+h(s)= 40
+nodes/sec: 79683 - generated nodes: 15048636 - fringe size: 1848759 - current modification depth: 76 - g(s)+h(s)= 40
+nodes/sec: 79536 - generated nodes: 15100484 - fringe size: 1854940 - current modification depth: 70 - g(s)+h(s)= 41
+nodes/sec: 79412 - generated nodes: 15156435 - fringe size: 1861491 - current modification depth: 61 - g(s)+h(s)= 43
+nodes/sec: 79346 - generated nodes: 15223277 - fringe size: 1869283 - current modification depth: 75 - g(s)+h(s)= 40
+nodes/sec: 79285 - generated nodes: 15290842 - fringe size: 1877319 - current modification depth: 65 - g(s)+h(s)= 43
+nodes/sec: 79115 - generated nodes: 15337254 - fringe size: 1882308 - current modification depth: 63 - g(s)+h(s)= 43
+nodes/sec: 78965 - generated nodes: 15387306 - fringe size: 1886776 - current modification depth: 74 - g(s)+h(s)= 43
+nodes/sec: 77488 - generated nodes: 15416467 - fringe size: 1889299 - current modification depth: 76 - g(s)+h(s)= 40
+nodes/sec: 77440 - generated nodes: 15484492 - fringe size: 1895407 - current modification depth: 65 - g(s)+h(s)= 43
+nodes/sec: 77407 - generated nodes: 15555232 - fringe size: 1901794 - current modification depth: 69 - g(s)+h(s)= 42
+nodes/sec: 77368 - generated nodes: 15624952 - fringe size: 1908018 - current modification depth: 68 - g(s)+h(s)= 42
+nodes/sec: 77345 - generated nodes: 15697708 - fringe size: 1914457 - current modification depth: 60 - g(s)+h(s)= 43
+nodes/sec: 77316 - generated nodes: 15769162 - fringe size: 1920411 - current modification depth: 77 - g(s)+h(s)= 41
+nodes/sec: 77269 - generated nodes: 15837583 - fringe size: 1926271 - current modification depth: 75 - g(s)+h(s)= 40
+nodes/sec: 77356 - generated nodes: 15932878 - fringe size: 1934151 - current modification depth: 64 - g(s)+h(s)= 42
+nodes/sec: 76519 - generated nodes: 16021907 - fringe size: 1941666 - current modification depth: 57 - g(s)+h(s)= 43
+Found solution 1 length 47
+Number of nodes in final fringe: 1943554
+Generated search nodes (total): 16037267
+Search time: 209554 ms
+
+Found a solution:
+m_deliver_all[?cr=cr1,?r=r1] @ deliver_all[]
+SHOP_methodm_deliver_all_1_precondition[r1,cr1]
+m_load_all[?r=r1,?c=c2,varToConstConstant(central_warehouse)=central_warehouse,?cr=cr1,?u=u1] @ load_all[r1,cr1]
+SHOP_methodm_load_all_4_precondition[u1,c2]
+m_i_am_there[?l=central_warehouse,?r=r1] @ get_to[r1,central_warehouse]
+SHOP_methodm_i_am_there_8_precondition[r1,central_warehouse]
+m_load[?cr=cr1,?c=c2,varToConstConstant(central_warehouse)=central_warehouse,?s2=cap_2,?r=r1,?b=b2,?s1=cap_1] @ load[r1,cr1,c2]
+fill[r1,b2,c2,central_warehouse]
+pick-up[r1,b2,central_warehouse,cr1,cap_1,cap_2]
+make-ready-for-unit[c2,u1]
+m_not_make_unit_ready[?c__EXISTENTIAL-8_ps1=c1,?u=u1] @ make-unit-ready[u1]
+SHOP_methodm_not_make_unit_ready_6_precondition[u1,c1]
+m_load_all[?r=r1,?c=c1,varToConstConstant(central_warehouse)=central_warehouse,?cr=cr1,?u=u1] @ load_all[r1,cr1]
+SHOP_methodm_load_all_4_precondition[u1,c1]
+m_i_am_there[?l=central_warehouse,?r=r1] @ get_to[r1,central_warehouse]
+SHOP_methodm_i_am_there_8_precondition[r1,central_warehouse]
+m_load[?cr=cr1,?c=c1,varToConstConstant(central_warehouse)=central_warehouse,?s2=cap_1,?r=r1,?b=b1,?s1=cap_0] @ load[r1,cr1,c1]
+fill[r1,b1,c1,central_warehouse]
+pick-up[r1,b1,central_warehouse,cr1,cap_0,cap_1]
+make-ready-for-unit[c1,u1]
+m_make_unit_ready[?c__UNIVERSAL-11___ps3=c2,?c__UNIVERSAL-13___ps3=aspirin,?c__UNIVERSAL-12___ps3=thermometer,?u=u1,?c__UNIVERSAL-15___ps3=scalpel,?c__UNIVERSAL-9___ps3=tongue_depressor,?c__UNIVERSAL-10___ps3=bandage,?c__UNIVERSAL-14___ps3=c1] @ make-unit-ready[u1]
+M-SHOP_methodm_make_unit_ready_7_precondition__DISJUNCT-0__DISJUNCT-0__DISJUNCT-1[?c__UNIVERSAL-15__=scalpel,?c__UNIVERSAL-12__=thermometer,?c__UNIVERSAL-9__=tongue_depressor,?c__UNIVERSAL-11__=c2,?c__UNIVERSAL-10__=bandage,?u=u1,?c__UNIVERSAL-13__=aspirin,?c__UNIVERSAL-14__=c1] @ SHOP_methodm_make_unit_ready_7_precondition__DISJUNCT-0__DISJUNCT-0[u1,tongue_depressor,bandage,c2,thermometer,aspirin,c1,scalpel]
+M-SHOP_methodm_make_unit_ready_7_precondition__DISJUNCT-0__DISJUNCT-0__DISJUNCT-1__DISJUNCT-0__DISJUNCT-0__DISJUNCT-1[?c__UNIVERSAL-15__=scalpel,?c__UNIVERSAL-12__=thermometer,?c__UNIVERSAL-9__=tongue_depressor,?c__UNIVERSAL-11__=c2,?c__UNIVERSAL-10__=bandage,?u=u1,?c__UNIVERSAL-13__=aspirin,?c__UNIVERSAL-14__=c1] @ SHOP_methodm_make_unit_ready_7_precondition__DISJUNCT-0__DISJUNCT-0__DISJUNCT-1__DISJUNCT-0__DISJUNCT-0[u1,tongue_depressor,bandage,c2,thermometer,aspirin,c1,scalpel]
+SHOP_methodm_make_unit_ready_7_precondition__DISJUNCT-0__DISJUNCT-0__DISJUNCT-1__DISJUNCT-0__DISJUNCT-0__DISJUNCT-1__DISJUNCT-0[u1,tongue_depressor,bandage,c2,thermometer,aspirin,c1,scalpel]
+make-unit-ready_aux[u1]
+m_load_none_carrier_full[?s1=cap_0,?s0__UNIVERSAL-7___ps1=cap_2,?s0__UNIVERSAL-6___ps1=cap_1,?s0__UNIVERSAL-5___ps1=cap_0,?r=r1,?cr=cr1] @ load_all[r1,cr1]
+SHOP_methodm_load_none_carrier_full_3_precondition[cr1,cap_0,cap_0,cap_1,cap_2]
+m_supply_all[?u=u1,?c=c1,?cr=cr1,?r=r1,?l=l1,?b=b1] @ supply_all[r1,cr1]
+SHOP_methodm_supply_all_12_precondition[cr1,u1,c1,l1,b1]
+m_get_to[?origin=central_warehouse,?l=l1,?r=r1] @ get_to[r1,l1]
+move__DISJUNCT-1[r1,central_warehouse,l1]
+m_supply[?s1=cap_0,?r=r1,?l=l1,?s2=cap_1,?c=c1,?cr=cr1,?u=u1,?b=b1] @ supply[r1,cr1,c1,b1,u1,l1]
+SHOP_methodm_supply_13_precondition[cap_0,cap_1,cr1]
+drop[r1,b1,l1,u1,cr1,cap_0,cap_1]
+empty[r1,b1,c1,u1,l1]
+m_not_make_unit_satisfied[?u=u1,?c__EXISTENTIAL-19_ps1=c2] @ make-unit-satisfied[u1]
+SHOP_methodm_not_make_unit_satisfied_14_precondition[u1,c2]
+m_supply_all[?u=u1,?c=c2,?cr=cr1,?r=r1,?l=l1,?b=b2] @ supply_all[r1,cr1]
+SHOP_methodm_supply_all_12_precondition[cr1,u1,c2,l1,b2]
+m_i_am_there[?l=l1,?r=r1] @ get_to[r1,l1]
+SHOP_methodm_i_am_there_8_precondition[r1,l1]
+m_supply[?s1=cap_1,?r=r1,?l=l1,?s2=cap_2,?c=c2,?cr=cr1,?u=u1,?b=b2] @ supply[r1,cr1,c2,b2,u1,l1]
+SHOP_methodm_supply_13_precondition[cap_1,cap_2,cr1]
+drop[r1,b2,l1,u1,cr1,cap_1,cap_2]
+empty[r1,b2,c2,u1,l1]
+m_make_unit_satisfied[?c__UNIVERSAL-21___ps3=bandage,?c__UNIVERSAL-22___ps3=c2,?c__UNIVERSAL-26___ps3=scalpel,?c__UNIVERSAL-24___ps3=aspirin,?c__UNIVERSAL-23___ps3=thermometer,?c__UNIVERSAL-25___ps3=c1,?u=u1,?c__UNIVERSAL-20___ps3=tongue_depressor] @ make-unit-satisfied[u1]
+SHOP_methodm_make_unit_satisfied_15_precondition[u1,tongue_depressor,bandage,c2,thermometer,aspirin,c1,scalpel]
+make-unit-satisfied_aux[u1]
+m_supply_none_carrier_empty[?s2__UNIVERSAL-16___ps1=cap_0,?cr=cr1,?r=r1,?s2__UNIVERSAL-18___ps1=cap_2,?s2__UNIVERSAL-17___ps1=cap_1,?s1=cap_2] @ supply_all[r1,cr1]
+SHOP_methodm_supply_none_carrier_empty_11_precondition[cr1,cap_2,cap_0,cap_1,cap_2]
+m_deliver_all[?cr=cr1,?r=r1] @ deliver_all[]
+SHOP_methodm_deliver_all_1_precondition[r1,cr1]
+m_load_all[?r=r1,?c=c2,varToConstConstant(central_warehouse)=central_warehouse,?cr=cr1,?u=u2] @ load_all[r1,cr1]
+SHOP_methodm_load_all_4_precondition[u2,c2]
+m_get_to[?origin=l1,?l=central_warehouse,?r=r1] @ get_to[r1,central_warehouse]
+move__DISJUNCT-0[r1,l1,central_warehouse]
+m_load[?cr=cr1,?c=c2,varToConstConstant(central_warehouse)=central_warehouse,?s2=cap_2,?r=r1,?b=b3,?s1=cap_1] @ load[r1,cr1,c2]
+fill[r1,b3,c2,central_warehouse]
+pick-up[r1,b3,central_warehouse,cr1,cap_1,cap_2]
+make-ready-for-unit[c2,u2]
+m_make_unit_ready[?c__UNIVERSAL-11___ps3=c2,?c__UNIVERSAL-13___ps3=aspirin,?c__UNIVERSAL-12___ps3=thermometer,?u=u2,?c__UNIVERSAL-15___ps3=scalpel,?c__UNIVERSAL-9___ps3=tongue_depressor,?c__UNIVERSAL-10___ps3=bandage,?c__UNIVERSAL-14___ps3=c1] @ make-unit-ready[u2]
+M-SHOP_methodm_make_unit_ready_7_precondition__DISJUNCT-0__DISJUNCT-0__DISJUNCT-1[?c__UNIVERSAL-15__=scalpel,?c__UNIVERSAL-12__=thermometer,?c__UNIVERSAL-9__=tongue_depressor,?c__UNIVERSAL-11__=c2,?c__UNIVERSAL-10__=bandage,?u=u2,?c__UNIVERSAL-13__=aspirin,?c__UNIVERSAL-14__=c1] @ SHOP_methodm_make_unit_ready_7_precondition__DISJUNCT-0__DISJUNCT-0[u2,tongue_depressor,bandage,c2,thermometer,aspirin,c1,scalpel]
+SHOP_methodm_make_unit_ready_7_precondition__DISJUNCT-0__DISJUNCT-0__DISJUNCT-1__DISJUNCT-0__DISJUNCT-0__DISJUNCT-0__DISJUNCT-0[u2,tongue_depressor,bandage,c2,thermometer,aspirin,c1,scalpel]
+make-unit-ready_aux[u2]
+m_load_none_all_ready[?u__UNIVERSAL-4___ps1=u2,?u__UNIVERSAL-3___ps1=u1,?r=r1,?s1=cap_2,?cr=cr1] @ load_all[r1,cr1]
+M-SHOP_methodm_load_none_all_ready_2_precondition__DISJUNCT-0[?c__UNIVERSAL-31___ps1=aspirin,?c__UNIVERSAL-27___ps1=tongue_depressor,?u__UNIVERSAL-3__=u1,?c__UNIVERSAL-33___ps1=scalpel,?c__UNIVERSAL-32___ps1=c1,?c__UNIVERSAL-30___ps1=thermometer,?c__UNIVERSAL-29___ps1=c2,?c__UNIVERSAL-28___ps1=bandage,?u__UNIVERSAL-4__=u2] @ SHOP_methodm_load_none_all_ready_2_precondition[u1,u2]
+M-SHOP_methodm_load_none_all_ready_2_precondition__DISJUNCT-0__DISJUNCT-1[?c__UNIVERSAL-33__=scalpel,?u__UNIVERSAL-3__=u1,?c__UNIVERSAL-29__=c2,?c__UNIVERSAL-30__=thermometer,?c__UNIVERSAL-28__=bandage,?c__UNIVERSAL-31__=aspirin,?c__UNIVERSAL-27__=tongue_depressor,?u__UNIVERSAL-4__=u2,?c__UNIVERSAL-32__=c1] @ SHOP_methodm_load_none_all_ready_2_precondition__DISJUNCT-0[u1,u2,tongue_depressor,bandage,c2,thermometer,aspirin,c1,scalpel]
+SHOP_methodm_load_none_all_ready_2_precondition__DISJUNCT-0__DISJUNCT-1[u1,u2,tongue_depressor,bandage,c2,thermometer,aspirin,c1,scalpel]
+m_supply_all[?u=u2,?c=c2,?cr=cr1,?r=r1,?l=l1,?b=b3] @ supply_all[r1,cr1]
+SHOP_methodm_supply_all_12_precondition[cr1,u2,c2,l1,b3]
+m_get_to[?origin=central_warehouse,?l=l1,?r=r1] @ get_to[r1,l1]
+move__DISJUNCT-1[r1,central_warehouse,l1]
+m_supply[?s1=cap_1,?r=r1,?l=l1,?s2=cap_2,?c=c2,?cr=cr1,?u=u2,?b=b3] @ supply[r1,cr1,c2,b3,u2,l1]
+SHOP_methodm_supply_13_precondition[cap_1,cap_2,cr1]
+drop[r1,b3,l1,u2,cr1,cap_1,cap_2]
+empty[r1,b3,c2,u2,l1]
+m_make_unit_satisfied[?c__UNIVERSAL-21___ps3=bandage,?c__UNIVERSAL-22___ps3=c2,?c__UNIVERSAL-26___ps3=scalpel,?c__UNIVERSAL-24___ps3=aspirin,?c__UNIVERSAL-23___ps3=thermometer,?c__UNIVERSAL-25___ps3=c1,?u=u2,?c__UNIVERSAL-20___ps3=tongue_depressor] @ make-unit-satisfied[u2]
+SHOP_methodm_make_unit_satisfied_15_precondition[u2,tongue_depressor,bandage,c2,thermometer,aspirin,c1,scalpel]
+make-unit-satisfied_aux[u2]
+m_supply_none_carrier_empty[?s2__UNIVERSAL-16___ps1=cap_0,?cr=cr1,?r=r1,?s2__UNIVERSAL-18___ps1=cap_2,?s2__UNIVERSAL-17___ps1=cap_1,?s1=cap_2] @ supply_all[r1,cr1]
+SHOP_methodm_supply_none_carrier_empty_11_precondition[cr1,cap_2,cap_0,cap_1,cap_2]
+m_deliver_none[?u__UNIVERSAL-1___ps1=u1,?u__UNIVERSAL-2___ps1=u2] @ deliver_all[]
+SHOP_methodm_deliver_none_0_precondition[u1,u2]
+It contains 83 modifications, including 47 actions.
+Panda says: SOLUTION
+============ global ============
+randomseed     = 42
+peak memory    = 5718894448
+planner result = SOLUTION
+============ properties ============
+acyclic                  = false
+mostly acyclic           = false
+regular                  = false
+tail recursive           = false
+totally ordered          = true
+last task in all methods = true
+============ problem ============
+number of constants                  = 0
+number of predicates                 = 47
+number of actions                    = 107
+number of abstract actions           = 27
+number of primitive actions          = 80
+number of methods                    = 77
+number of primitive shop actions     = 38
+number of primitive non-shop actions = 42
+size of largest method               = 6
+average method size                  = 2
+============ progression ============
+status                 = solved
+aStar                  = 1
+heuristic              = hhRelataxedComposition-with-hFF-EQ
+numSearchNodes         = 16037267
+numPrimTasks           = 47
+numShopTasks           = 0
+numDecompositions      = 36
+findShortestPlan       = 0
+foundShortestPlanAfter = 209550
+foundFirstPlanAfter    = 209550
+foundPlans             = 1
+
+----------------- TIMINGS -----------------
+============ total ============
+total = 212428
+============ parsing ============
+total                         = 849
+file parser                   = 191
+sort expansion                = 100
+closed world assumption       = 69
+inherit preconditions         = 0
+shop methods                  = 9
+eliminate identical variables = 80
+strip domain of hybridity     = 45
+flatten formula               = 355
+============ preprocessing ============
+total                                      = 1954
+compile negative preconditions             = 80
+compile unit methods                       = 0
+split parameter                            = 33
+expand choiceless abstract tasks           = 42
+compile methods with identical tasks       = 0
+removing unnecessary predicates            = 128
+lifted reachabiltiy analysis               = 147
+grounded planning graph analysis           = 1060
+grounded task decomposition graph analysis = 318
+grounding                                  = 131
+create artificial top task                 = 2
+============ progression ============
+searchTime = 209550
+
+#1 "30 problem:05:number of primitive actions"="80";"30 problem:01:number of constants"="0";"30 problem:04:number of abstract actions"="27";"02 properties:04:tail recursive"="false";"30 progression:04:numSearchNodes"="16037267";"30 progression:06:numPrimTasks"="47";"00 global:80:peak memory"="5718894448";"30 progression:93:foundFirstPlanAfter"="209550";"02 properties:02:mostly acyclic"="false";"30 problem:06:number of methods"="77";"30 problem:07:number of primitive shop actions"="38";"02 properties:05:totally ordered"="true";"02 properties:06:last task in all methods"="true";"30 problem:03:number of actions"="107";"30 problem:08:number of primitive non-shop actions"="42";"30 problem:02:number of predicates"="47";"30 progression:01:status"="solved";"30 progression:03:heuristic"="hhRelataxedComposition-with-hFF-EQ";"30 problem:10:average method size"="2";"02 properties:03:regular"="false";"30 problem:09:size of largest method"="6";"30 progression:08:numDecompositions"="36";"00 global:90:planner result"="SOLUTION";"02 properties:01:acyclic"="false";"30 progression:02:aStar"="1";"30 progression:92:foundShortestPlanAfter"="209550";"00 global:02:randomseed"="42";"30 progression:07:numShopTasks"="0";"30 progression:91:findShortestPlan"="0";"30 progression:94:foundPlans"="1";"01 parsing:01:file parser"="191";"01 parsing:08:flatten formula"="355";"02 preprocessing:07:compile methods with identical tasks"="0";"01 parsing:07:strip domain of hybridity"="45";"02 preprocessing:08:removing unnecessary predicates"="128";"01 parsing:03:closed world assumption"="69";"02 preprocessing:11:lifted reachabiltiy analysis"="147";"01 parsing:02:sort expansion"="100";"01 parsing:00:total"="849";"30 progression:01:searchTime"="209550";"01 parsing:04:inherit preconditions"="0";"02 preprocessing:01:compile negative preconditions"="80";"00 total:00:total"="212428";"02 preprocessing:12:grounded planning graph analysis"="1060";"02 preprocessing:02:compile unit methods"="0";"02 preprocessing:23:grounded task decomposition graph analysis"="318";"02 preprocessing:04:split parameter"="33";"01 parsing:05:shop methods"="9";"01 parsing:06:eliminate identical variables"="80";"02 preprocessing:05:expand choiceless abstract tasks"="42";"02 preprocessing:00:total"="1954";"02 preprocessing:99:create artificial top task"="2";"02 preprocessing:84:grounding"="131"
+SOLUTION SEQUENCE
+0: SHOP_methodm_deliver_all_1_precondition(r1,cr1)
+1: SHOP_methodm_load_all_4_precondition(u1,c2)
+2: SHOP_methodm_i_am_there_8_precondition(r1,central_warehouse)
+3: fill(r1,b2,c2,central_warehouse)
+4: pick-up(r1,b2,central_warehouse,cr1,cap_1,cap_2)
+5: make-ready-for-unit(c2,u1)
+6: SHOP_methodm_not_make_unit_ready_6_precondition(u1,c1)
+7: SHOP_methodm_load_all_4_precondition(u1,c1)
+8: SHOP_methodm_i_am_there_8_precondition(r1,central_warehouse)
+9: fill(r1,b1,c1,central_warehouse)
+10: pick-up(r1,b1,central_warehouse,cr1,cap_0,cap_1)
+11: make-ready-for-unit(c1,u1)
+12: SHOP_methodm_make_unit_ready_7_precondition__DISJUNCT-0__DISJUNCT-0__DISJUNCT-1__DISJUNCT-0__DISJUNCT-0__DISJUNCT-1__DISJUNCT-0(u1,tongue_depressor,bandage,c2,thermometer,aspirin,c1,scalpel)
+13: make-unit-ready_aux(u1)
+14: SHOP_methodm_load_none_carrier_full_3_precondition(cr1,cap_0,cap_0,cap_1,cap_2)
+15: SHOP_methodm_supply_all_12_precondition(cr1,u1,c1,l1,b1)
+16: move__DISJUNCT-1(r1,central_warehouse,l1)
+17: SHOP_methodm_supply_13_precondition(cap_0,cap_1,cr1)
+18: drop(r1,b1,l1,u1,cr1,cap_0,cap_1)
+19: empty(r1,b1,c1,u1,l1)
+20: SHOP_methodm_not_make_unit_satisfied_14_precondition(u1,c2)
+21: SHOP_methodm_supply_all_12_precondition(cr1,u1,c2,l1,b2)
+22: SHOP_methodm_i_am_there_8_precondition(r1,l1)
+23: SHOP_methodm_supply_13_precondition(cap_1,cap_2,cr1)
+24: drop(r1,b2,l1,u1,cr1,cap_1,cap_2)
+25: empty(r1,b2,c2,u1,l1)
+26: SHOP_methodm_make_unit_satisfied_15_precondition(u1,tongue_depressor,bandage,c2,thermometer,aspirin,c1,scalpel)
+27: make-unit-satisfied_aux(u1)
+28: SHOP_methodm_supply_none_carrier_empty_11_precondition(cr1,cap_2,cap_0,cap_1,cap_2)
+29: SHOP_methodm_deliver_all_1_precondition(r1,cr1)
+30: SHOP_methodm_load_all_4_precondition(u2,c2)
+31: move__DISJUNCT-0(r1,l1,central_warehouse)
+32: fill(r1,b3,c2,central_warehouse)
+33: pick-up(r1,b3,central_warehouse,cr1,cap_1,cap_2)
+34: make-ready-for-unit(c2,u2)
+35: SHOP_methodm_make_unit_ready_7_precondition__DISJUNCT-0__DISJUNCT-0__DISJUNCT-1__DISJUNCT-0__DISJUNCT-0__DISJUNCT-0__DISJUNCT-0(u2,tongue_depressor,bandage,c2,thermometer,aspirin,c1,scalpel)
+36: make-unit-ready_aux(u2)
+37: SHOP_methodm_load_none_all_ready_2_precondition__DISJUNCT-0__DISJUNCT-1(u1,u2,tongue_depressor,bandage,c2,thermometer,aspirin,c1,scalpel)
+38: SHOP_methodm_supply_all_12_precondition(cr1,u2,c2,l1,b3)
+39: move__DISJUNCT-1(r1,central_warehouse,l1)
+40: SHOP_methodm_supply_13_precondition(cap_1,cap_2,cr1)
+41: drop(r1,b3,l1,u2,cr1,cap_1,cap_2)
+42: empty(r1,b3,c2,u2,l1)
+43: SHOP_methodm_make_unit_satisfied_15_precondition(u2,tongue_depressor,bandage,c2,thermometer,aspirin,c1,scalpel)
+44: make-unit-satisfied_aux(u2)
+45: SHOP_methodm_supply_none_carrier_empty_11_precondition(cr1,cap_2,cap_0,cap_1,cap_2)
+46: SHOP_methodm_deliver_none_0_precondition(u1,u2)

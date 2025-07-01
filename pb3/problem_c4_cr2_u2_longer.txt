@@ -1,0 +1,527 @@
+PANDA - Planning and Acting in a Network Decomposition Architecture
+Believe us: It's great, it's fantastic!
+
+PANDA Copyright (C) 2014-2018 Gregor Behnke, Pascal Bercher, Thomas Geier, Kadir
+Dede, Daniel Höller, Kristof Mickeleit, Matthias Englert
+This program comes with ABSOLUTELY NO WARRANTY
+This is free software, and you are welcome to redistribute it under certain
+conditions; run PANDA with -license for details.
+
+Main Developers:
+- Gregor Behnke, http://www.uni-ulm.de/in/ki/behnke
+- Daniel Höller, http://www.uni-ulm.de/in/ki/hoeller
+
+With many thanks to various further contributors.
+Run PANDA with the command line argument -contributors for an extensive list.
+
+Run it with -help for more information like available options.
+
+
+PANDA was called with: "-parser hddl domain.hddl problem_c4_cr2_u2_longer.hddl"
+
+
+Planner Configuration
+=====================
+Domain: domain.hddl
+Problem: problem_c4_cr2_u2_longer.hddl
+Output: none
+
+Planning Configuration
+======================
+	printGeneralInformation : true
+	printAdditionalData     : true
+	random seed             : 42
+	time limit (in seconds) : none
+
+	external programs:
+
+
+	Parsing Configuration
+	---------------------
+	Parser                : HDDL Parser (Daniel's format)
+	Expand Sort Hierarchy : true
+	ClosedWordAssumption  : true
+	CompileSHOPMethods    : true
+	Eliminate Equality    : true
+	Strip Hybridity       : true
+	Reduce General Tasks  : true
+	
+	Preprocessing Configuration
+	---------------------------
+	Compile negative preconditions    : true
+	Compile unit methods              : false
+	Compile order in methods          : false
+	Compile initial plan              : true
+	Ensure Methods Have Last Task     : false
+	Split independent parameters      : true
+	Remove unnecessary predicates     : true
+	Expand choiceless abstract tasks  : true
+	Domain Cleanup                    : true
+	Convert to SAS+                   : false
+	Grounded Reachability Analysis    : Planning Graph (mutex-free)
+	Grounded Task Decomposition Graph : Two Way TDG
+	Iterate reachability analysis     : true
+	Ground domain                     : true
+	Iterate reachability analysis     : true
+	Stop directly after grounding     : false
+	
+	Progression-search Configuration
+	--------------------------------
+	Search Algorithm                 : AStarActionsType(2.0)
+	Heuristic                        : hhRC(hFF)
+	Abstract task selection strategy : random
+	
+	Post-processing Configuration
+	-----------------------------
+	search status
+	search result
+	timings
+	statistics
+#0 "00 global:01:problem"="problem_c4_cr2_u2_longer.hddl";"00 global:00:domain"="domain.hddl"
+Parsing domain ... done
+Preparing internal domain representation ... done.
+Initial domain
+	number of abstract tasks = 139
+	number of tasks = 291
+	number of decomposition methods = 278
+	number of predicates = 17
+	number of sorts = 12
+	number of tasks in largest method = 6
+	number of primitive SHOP tasks = 143
+	number of epsilon methods = 0
+	number of primitive tasks = 152
+	number of constants = 22
+Compiling negative preconditions ... done.
+	number of abstract tasks = 139
+	number of tasks = 291
+	number of decomposition methods = 278
+	number of predicates = 34
+	number of sorts = 12
+	number of tasks in largest method = 6
+	number of primitive SHOP tasks = 143
+	number of epsilon methods = 0
+	number of primitive tasks = 152
+	number of constants = 22
+Compiling split parameters ... done.
+	number of abstract tasks = 139
+	number of tasks = 291
+	number of decomposition methods = 278
+	number of predicates = 34
+	number of sorts = 12
+	number of tasks in largest method = 6
+	number of primitive SHOP tasks = 143
+	number of epsilon methods = 0
+	number of primitive tasks = 152
+	number of constants = 22
+Lifted reachability analysis and domain cleanup ... done.
+	number of abstract tasks = 139
+	number of tasks = 291
+	number of decomposition methods = 278
+	number of predicates = 16
+	number of sorts = 12
+	number of tasks in largest method = 6
+	number of primitive SHOP tasks = 143
+	number of epsilon methods = 0
+	number of primitive tasks = 152
+	number of constants = 22
+Grounded planning graph ... done in 626ms.
+	Number of Grounded Actions 409
+	Number of Grounded Literals 122
+	number of abstract tasks = 139
+	number of tasks = 291
+	number of decomposition methods = 278
+	number of predicates = 16
+	number of sorts = 12
+	number of tasks in largest method = 6
+	number of primitive SHOP tasks = 143
+	number of epsilon methods = 0
+	number of primitive tasks = 152
+	number of constants = 22
+Two Way TDG ... done.
+	number of abstract tasks = 139
+	number of tasks = 291
+	number of decomposition methods = 278
+	number of predicates = 16
+	number of sorts = 12
+	number of tasks in largest method = 6
+	number of primitive SHOP tasks = 143
+	number of epsilon methods = 0
+	number of primitive tasks = 152
+	number of constants = 22
+Grounding ... done.
+	number of abstract tasks = 289
+	number of tasks = 648
+	number of decomposition methods = 616
+	number of predicates = 161
+	number of sorts = 0
+	number of tasks in largest method = 6
+	number of primitive SHOP tasks = 299
+	number of epsilon methods = 0
+	number of primitive tasks = 359
+	number of constants = 0
+Removing unnecessary predicates ... done.
+	number of abstract tasks = 289
+	number of tasks = 648
+	number of decomposition methods = 616
+	number of predicates = 76
+	number of sorts = 0
+	number of tasks in largest method = 6
+	number of primitive SHOP tasks = 299
+	number of epsilon methods = 0
+	number of primitive tasks = 359
+	number of constants = 0
+Omitting lifted reachability analysis ... 
+Grounded planning graph ... done in 39ms.
+	Number of Grounded Actions 111
+	Number of Grounded Literals 66
+	number of abstract tasks = 61
+	number of tasks = 172
+	number of decomposition methods = 140
+	number of predicates = 76
+	number of sorts = 0
+	number of tasks in largest method = 6
+	number of primitive SHOP tasks = 51
+	number of epsilon methods = 0
+	number of primitive tasks = 111
+	number of constants = 0
+Two Way TDG ... done.
+	number of abstract tasks = 61
+	number of tasks = 172
+	number of decomposition methods = 138
+	number of predicates = 76
+	number of sorts = 0
+	number of tasks in largest method = 6
+	number of primitive SHOP tasks = 51
+	number of epsilon methods = 0
+	number of primitive tasks = 111
+	number of constants = 0
+Compiling expand choiceless abstract tasks ... done.
+	number of abstract tasks = 37
+	number of tasks = 148
+	number of decomposition methods = 114
+	number of predicates = 76
+	number of sorts = 0
+	number of tasks in largest method = 6
+	number of primitive SHOP tasks = 51
+	number of epsilon methods = 0
+	number of primitive tasks = 111
+	number of constants = 0
+Compiling initial plan ... done.
+	number of abstract tasks = 37
+	number of tasks = 148
+	number of decomposition methods = 114
+	number of predicates = 76
+	number of sorts = 0
+	number of tasks in largest method = 6
+	number of primitive SHOP tasks = 51
+	number of epsilon methods = 0
+	number of primitive tasks = 111
+	number of constants = 0
+Removing unnecessary predicates ... done.
+	number of abstract tasks = 37
+	number of tasks = 148
+	number of decomposition methods = 114
+	number of predicates = 66
+	number of sorts = 0
+	number of tasks in largest method = 6
+	number of primitive SHOP tasks = 51
+	number of epsilon methods = 0
+	number of primitive tasks = 111
+	number of constants = 0
+Omitting lifted reachability analysis ... 
+Grounded planning graph ... done in 9ms.
+	Number of Grounded Actions 111
+	Number of Grounded Literals 66
+	number of abstract tasks = 37
+	number of tasks = 148
+	number of decomposition methods = 114
+	number of predicates = 66
+	number of sorts = 0
+	number of tasks in largest method = 6
+	number of primitive SHOP tasks = 51
+	number of epsilon methods = 0
+	number of primitive tasks = 111
+	number of constants = 0
+Two Way TDG ... done.
+	number of abstract tasks = 37
+	number of tasks = 148
+	number of decomposition methods = 114
+	number of predicates = 66
+	number of sorts = 0
+	number of tasks in largest method = 6
+	number of primitive SHOP tasks = 51
+	number of epsilon methods = 0
+	number of primitive tasks = 111
+	number of constants = 0
+Compiling expand choiceless abstract tasks ... done.
+	number of abstract tasks = 37
+	number of tasks = 148
+	number of decomposition methods = 114
+	number of predicates = 66
+	number of sorts = 0
+	number of tasks in largest method = 6
+	number of primitive SHOP tasks = 51
+	number of epsilon methods = 0
+	number of primitive tasks = 111
+	number of constants = 0
+Compiling initial plan ... done.
+	number of abstract tasks = 37
+	number of tasks = 148
+	number of decomposition methods = 114
+	number of predicates = 66
+	number of sorts = 0
+	number of tasks in largest method = 6
+	number of primitive SHOP tasks = 51
+	number of epsilon methods = 0
+	number of primitive tasks = 111
+	number of constants = 0
+Removing unnecessary predicates ... done.
+	number of abstract tasks = 37
+	number of tasks = 148
+	number of decomposition methods = 114
+	number of predicates = 66
+	number of sorts = 0
+	number of tasks in largest method = 6
+	number of primitive SHOP tasks = 51
+	number of epsilon methods = 0
+	number of primitive tasks = 111
+	number of constants = 0
+Tasks 111 - 1
+Domain is acyclic: false
+Domain is mostly acyclic: false
+Domain is regular: false
+Domain is tail recursive: false
+Domain is totally ordered: true
+Domain has last task in all methods: true
+Time remaining for planner 9223372036854773313ms
+Reducing flat domain ... done.
+ - Reduced number of operators from 359 to 111
+ - Reduced number of state-bits from 72 to 62
+Generating Relaxed Composition Model ...
+Calculating top down reachability ...
+ - Found 146 SCCs with up to 3 tasks.
+ - Reachability calculated in 2 ms.
+ - model has 225 operators
+ - model has 321 state features
+ - operators' mean count of (pre, add, del) = (2.92, 1.59, 0.50)
+ - effects' mean achiever count: 1.59
+ - effects' mean consumer count: 2.92
+
+Searching with 
+ - Priority Queue search routine
+ - A-Star search
+ - HTN heuristic:hhRelataxedComposition-with-hFF-EQ
+ - Abstract task choice: randomly
+ - time limit for search is 2147483647 sec
+
+Starting priority queue search
+nodes/sec: 41879 - generated nodes: 41921 - fringe size: 17006 - current modification depth: 22 - g(s)+h(s)= 23
+nodes/sec: 51216 - generated nodes: 102534 - fringe size: 41002 - current modification depth: 16 - g(s)+h(s)= 25
+nodes/sec: 52877 - generated nodes: 158791 - fringe size: 62072 - current modification depth: 28 - g(s)+h(s)= 22
+nodes/sec: 56752 - generated nodes: 227234 - fringe size: 87543 - current modification depth: 34 - g(s)+h(s)= 25
+nodes/sec: 57085 - generated nodes: 285708 - fringe size: 108112 - current modification depth: 30 - g(s)+h(s)= 24
+nodes/sec: 58696 - generated nodes: 352530 - fringe size: 133124 - current modification depth: 28 - g(s)+h(s)= 27
+nodes/sec: 59482 - generated nodes: 416790 - fringe size: 155580 - current modification depth: 21 - g(s)+h(s)= 27
+nodes/sec: 60607 - generated nodes: 485339 - fringe size: 179101 - current modification depth: 41 - g(s)+h(s)= 25
+nodes/sec: 61831 - generated nodes: 557039 - fringe size: 202933 - current modification depth: 37 - g(s)+h(s)= 25
+nodes/sec: 61684 - generated nodes: 617460 - fringe size: 224148 - current modification depth: 38 - g(s)+h(s)= 26
+nodes/sec: 61932 - generated nodes: 683425 - fringe size: 247551 - current modification depth: 30 - g(s)+h(s)= 28
+nodes/sec: 62569 - generated nodes: 753077 - fringe size: 271064 - current modification depth: 30 - g(s)+h(s)= 28
+nodes/sec: 62604 - generated nodes: 816174 - fringe size: 292013 - current modification depth: 37 - g(s)+h(s)= 26
+nodes/sec: 63120 - generated nodes: 886083 - fringe size: 314434 - current modification depth: 36 - g(s)+h(s)= 28
+nodes/sec: 63216 - generated nodes: 950708 - fringe size: 335065 - current modification depth: 34 - g(s)+h(s)= 27
+nodes/sec: 63272 - generated nodes: 1014890 - fringe size: 355081 - current modification depth: 40 - g(s)+h(s)= 25
+nodes/sec: 63481 - generated nodes: 1082550 - fringe size: 376816 - current modification depth: 40 - g(s)+h(s)= 27
+nodes/sec: 63739 - generated nodes: 1150749 - fringe size: 400607 - current modification depth: 24 - g(s)+h(s)= 29
+nodes/sec: 63987 - generated nodes: 1219266 - fringe size: 423660 - current modification depth: 36 - g(s)+h(s)= 27
+nodes/sec: 64273 - generated nodes: 1289061 - fringe size: 447159 - current modification depth: 39 - g(s)+h(s)= 27
+nodes/sec: 64279 - generated nodes: 1353528 - fringe size: 468362 - current modification depth: 31 - g(s)+h(s)= 29
+nodes/sec: 63795 - generated nodes: 1407196 - fringe size: 485688 - current modification depth: 25 - g(s)+h(s)= 29
+nodes/sec: 63656 - generated nodes: 1467841 - fringe size: 505331 - current modification depth: 46 - g(s)+h(s)= 28
+nodes/sec: 63046 - generated nodes: 1516885 - fringe size: 521191 - current modification depth: 38 - g(s)+h(s)= 28
+nodes/sec: 63306 - generated nodes: 1586508 - fringe size: 542610 - current modification depth: 38 - g(s)+h(s)= 28
+nodes/sec: 63420 - generated nodes: 1652841 - fringe size: 563379 - current modification depth: 34 - g(s)+h(s)= 29
+nodes/sec: 63425 - generated nodes: 1716459 - fringe size: 582306 - current modification depth: 42 - g(s)+h(s)= 26
+nodes/sec: 63598 - generated nodes: 1784824 - fringe size: 602825 - current modification depth: 40 - g(s)+h(s)= 28
+nodes/sec: 63717 - generated nodes: 1851924 - fringe size: 622787 - current modification depth: 38 - g(s)+h(s)= 28
+nodes/sec: 63716 - generated nodes: 1918999 - fringe size: 643218 - current modification depth: 43 - g(s)+h(s)= 26
+nodes/sec: 63150 - generated nodes: 1968132 - fringe size: 658420 - current modification depth: 44 - g(s)+h(s)= 28
+nodes/sec: 63059 - generated nodes: 2028410 - fringe size: 678289 - current modification depth: 40 - g(s)+h(s)= 28
+nodes/sec: 63276 - generated nodes: 2098751 - fringe size: 702330 - current modification depth: 36 - g(s)+h(s)= 30
+nodes/sec: 63219 - generated nodes: 2160133 - fringe size: 722455 - current modification depth: 42 - g(s)+h(s)= 28
+nodes/sec: 62733 - generated nodes: 2206324 - fringe size: 737129 - current modification depth: 39 - g(s)+h(s)= 30
+nodes/sec: 62585 - generated nodes: 2263762 - fringe size: 755542 - current modification depth: 39 - g(s)+h(s)= 30
+nodes/sec: 62760 - generated nodes: 2332922 - fringe size: 778052 - current modification depth: 44 - g(s)+h(s)= 29
+nodes/sec: 62624 - generated nodes: 2390545 - fringe size: 797344 - current modification depth: 42 - g(s)+h(s)= 28
+nodes/sec: 62267 - generated nodes: 2439261 - fringe size: 812847 - current modification depth: 44 - g(s)+h(s)= 27
+nodes/sec: 62129 - generated nodes: 2496051 - fringe size: 831623 - current modification depth: 47 - g(s)+h(s)= 28
+nodes/sec: 62213 - generated nodes: 2561671 - fringe size: 853029 - current modification depth: 34 - g(s)+h(s)= 30
+nodes/sec: 61611 - generated nodes: 2598566 - fringe size: 864743 - current modification depth: 40 - g(s)+h(s)= 29
+nodes/sec: 61824 - generated nodes: 2669453 - fringe size: 886805 - current modification depth: 44 - g(s)+h(s)= 27
+nodes/sec: 62012 - generated nodes: 2739636 - fringe size: 908646 - current modification depth: 38 - g(s)+h(s)= 28
+nodes/sec: 61683 - generated nodes: 2786858 - fringe size: 922805 - current modification depth: 44 - g(s)+h(s)= 27
+nodes/sec: 61344 - generated nodes: 2832931 - fringe size: 936794 - current modification depth: 38 - g(s)+h(s)= 30
+nodes/sec: 61334 - generated nodes: 2893878 - fringe size: 955045 - current modification depth: 38 - g(s)+h(s)= 29
+nodes/sec: 60999 - generated nodes: 2939134 - fringe size: 968050 - current modification depth: 38 - g(s)+h(s)= 28
+nodes/sec: 61030 - generated nodes: 3001687 - fringe size: 986879 - current modification depth: 28 - g(s)+h(s)= 30
+nodes/sec: 61100 - generated nodes: 3066303 - fringe size: 1006003 - current modification depth: 44 - g(s)+h(s)= 27
+nodes/sec: 61178 - generated nodes: 3131445 - fringe size: 1024070 - current modification depth: 34 - g(s)+h(s)= 30
+nodes/sec: 60911 - generated nodes: 3179497 - fringe size: 1037732 - current modification depth: 37 - g(s)+h(s)= 30
+nodes/sec: 60720 - generated nodes: 3230320 - fringe size: 1051314 - current modification depth: 48 - g(s)+h(s)= 29
+nodes/sec: 60782 - generated nodes: 3294462 - fringe size: 1069309 - current modification depth: 44 - g(s)+h(s)= 29
+nodes/sec: 60451 - generated nodes: 3339199 - fringe size: 1082071 - current modification depth: 42 - g(s)+h(s)= 29
+nodes/sec: 60496 - generated nodes: 3402226 - fringe size: 1099473 - current modification depth: 40 - g(s)+h(s)= 29
+nodes/sec: 60311 - generated nodes: 3452179 - fringe size: 1113443 - current modification depth: 40 - g(s)+h(s)= 29
+nodes/sec: 60119 - generated nodes: 3501377 - fringe size: 1127445 - current modification depth: 27 - g(s)+h(s)= 30
+nodes/sec: 60046 - generated nodes: 3557224 - fringe size: 1143911 - current modification depth: 40 - g(s)+h(s)= 28
+nodes/sec: 60155 - generated nodes: 3623939 - fringe size: 1163571 - current modification depth: 44 - g(s)+h(s)= 29
+nodes/sec: 59938 - generated nodes: 3686431 - fringe size: 1184259 - current modification depth: 34 - g(s)+h(s)= 31
+nodes/sec: 60052 - generated nodes: 3753579 - fringe size: 1205944 - current modification depth: 40 - g(s)+h(s)= 31
+nodes/sec: 59866 - generated nodes: 3801864 - fringe size: 1221590 - current modification depth: 30 - g(s)+h(s)= 31
+nodes/sec: 59717 - generated nodes: 3852146 - fringe size: 1237787 - current modification depth: 46 - g(s)+h(s)= 28
+nodes/sec: 59502 - generated nodes: 3897861 - fringe size: 1252724 - current modification depth: 30 - g(s)+h(s)= 31
+nodes/sec: 59501 - generated nodes: 3957334 - fringe size: 1272075 - current modification depth: 44 - g(s)+h(s)= 28
+nodes/sec: 59642 - generated nodes: 4026451 - fringe size: 1294140 - current modification depth: 48 - g(s)+h(s)= 28
+nodes/sec: 59381 - generated nodes: 4068236 - fringe size: 1307992 - current modification depth: 34 - g(s)+h(s)= 31
+nodes/sec: 59478 - generated nodes: 4134460 - fringe size: 1329051 - current modification depth: 28 - g(s)+h(s)= 31
+nodes/sec: 59289 - generated nodes: 4182209 - fringe size: 1344272 - current modification depth: 46 - g(s)+h(s)= 28
+nodes/sec: 59154 - generated nodes: 4231905 - fringe size: 1360143 - current modification depth: 29 - g(s)+h(s)= 31
+nodes/sec: 59091 - generated nodes: 4286497 - fringe size: 1377560 - current modification depth: 36 - g(s)+h(s)= 31
+nodes/sec: 59051 - generated nodes: 4342760 - fringe size: 1395358 - current modification depth: 42 - g(s)+h(s)= 31
+nodes/sec: 59197 - generated nodes: 4412692 - fringe size: 1417635 - current modification depth: 40 - g(s)+h(s)= 31
+nodes/sec: 58942 - generated nodes: 4452709 - fringe size: 1430529 - current modification depth: 33 - g(s)+h(s)= 31
+nodes/sec: 58987 - generated nodes: 4515135 - fringe size: 1450962 - current modification depth: 30 - g(s)+h(s)= 31
+nodes/sec: 58847 - generated nodes: 4563373 - fringe size: 1466629 - current modification depth: 45 - g(s)+h(s)= 29
+nodes/sec: 58712 - generated nodes: 4611686 - fringe size: 1481887 - current modification depth: 35 - g(s)+h(s)= 31
+nodes/sec: 58626 - generated nodes: 4663606 - fringe size: 1498501 - current modification depth: 33 - g(s)+h(s)= 31
+nodes/sec: 58600 - generated nodes: 4720201 - fringe size: 1515833 - current modification depth: 36 - g(s)+h(s)= 31
+nodes/sec: 58718 - generated nodes: 4788469 - fringe size: 1536675 - current modification depth: 37 - g(s)+h(s)= 31
+nodes/sec: 58518 - generated nodes: 4830693 - fringe size: 1549649 - current modification depth: 39 - g(s)+h(s)= 31
+nodes/sec: 58463 - generated nodes: 4884725 - fringe size: 1566073 - current modification depth: 31 - g(s)+h(s)= 31
+nodes/sec: 58358 - generated nodes: 4934314 - fringe size: 1580864 - current modification depth: 42 - g(s)+h(s)= 30
+nodes/sec: 58163 - generated nodes: 4976117 - fringe size: 1592622 - current modification depth: 46 - g(s)+h(s)= 28
+nodes/sec: 58067 - generated nodes: 5025996 - fringe size: 1606630 - current modification depth: 44 - g(s)+h(s)= 29
+nodes/sec: 58092 - generated nodes: 5086342 - fringe size: 1623934 - current modification depth: 44 - g(s)+h(s)= 29
+nodes/sec: 58181 - generated nodes: 5152291 - fringe size: 1642475 - current modification depth: 44 - g(s)+h(s)= 29
+nodes/sec: 57981 - generated nodes: 5192622 - fringe size: 1653784 - current modification depth: 48 - g(s)+h(s)= 29
+nodes/sec: 57877 - generated nodes: 5241239 - fringe size: 1667527 - current modification depth: 33 - g(s)+h(s)= 31
+nodes/sec: 57764 - generated nodes: 5288831 - fringe size: 1681036 - current modification depth: 34 - g(s)+h(s)= 31
+nodes/sec: 57646 - generated nodes: 5335752 - fringe size: 1694494 - current modification depth: 42 - g(s)+h(s)= 30
+nodes/sec: 57533 - generated nodes: 5382901 - fringe size: 1707726 - current modification depth: 36 - g(s)+h(s)= 27
+nodes/sec: 57573 - generated nodes: 5444376 - fringe size: 1724661 - current modification depth: 44 - g(s)+h(s)= 29
+nodes/sec: 57586 - generated nodes: 5503301 - fringe size: 1740614 - current modification depth: 42 - g(s)+h(s)= 31
+nodes/sec: 57424 - generated nodes: 5545223 - fringe size: 1752074 - current modification depth: 32 - g(s)+h(s)= 31
+nodes/sec: 57322 - generated nodes: 5592786 - fringe size: 1765165 - current modification depth: 42 - g(s)+h(s)= 30
+nodes/sec: 57224 - generated nodes: 5640502 - fringe size: 1778134 - current modification depth: 29 - g(s)+h(s)= 31
+nodes/sec: 57126 - generated nodes: 5687988 - fringe size: 1791328 - current modification depth: 44 - g(s)+h(s)= 28
+nodes/sec: 56992 - generated nodes: 5731769 - fringe size: 1803247 - current modification depth: 46 - g(s)+h(s)= 28
+nodes/sec: 57038 - generated nodes: 5793442 - fringe size: 1819716 - current modification depth: 31 - g(s)+h(s)= 31
+nodes/sec: 57055 - generated nodes: 5852289 - fringe size: 1835717 - current modification depth: 40 - g(s)+h(s)= 29
+nodes/sec: 56966 - generated nodes: 5900181 - fringe size: 1848519 - current modification depth: 36 - g(s)+h(s)= 31
+nodes/sec: 56852 - generated nodes: 5945297 - fringe size: 1860862 - current modification depth: 31 - g(s)+h(s)= 31
+nodes/sec: 56730 - generated nodes: 5989290 - fringe size: 1873162 - current modification depth: 44 - g(s)+h(s)= 29
+nodes/sec: 56627 - generated nodes: 6035147 - fringe size: 1885534 - current modification depth: 40 - g(s)+h(s)= 30
+nodes/sec: 56651 - generated nodes: 6094627 - fringe size: 1901801 - current modification depth: 44 - g(s)+h(s)= 29
+nodes/sec: 56687 - generated nodes: 6155199 - fringe size: 1917872 - current modification depth: 29 - g(s)+h(s)= 31
+nodes/sec: 56623 - generated nodes: 6204985 - fringe size: 1930735 - current modification depth: 48 - g(s)+h(s)= 29
+nodes/sec: 56493 - generated nodes: 6247327 - fringe size: 1941688 - current modification depth: 48 - g(s)+h(s)= 29
+nodes/sec: 56401 - generated nodes: 6293575 - fringe size: 1953150 - current modification depth: 46 - g(s)+h(s)= 28
+nodes/sec: 56313 - generated nodes: 6340085 - fringe size: 1965080 - current modification depth: 48 - g(s)+h(s)= 30
+nodes/sec: 54954 - generated nodes: 6367214 - fringe size: 1972779 - current modification depth: 48 - g(s)+h(s)= 29
+nodes/sec: 54979 - generated nodes: 6425170 - fringe size: 1989360 - current modification depth: 35 - g(s)+h(s)= 31
+nodes/sec: 54927 - generated nodes: 6474042 - fringe size: 2003107 - current modification depth: 36 - g(s)+h(s)= 31
+nodes/sec: 54864 - generated nodes: 6521523 - fringe size: 2015675 - current modification depth: 29 - g(s)+h(s)= 31
+nodes/sec: 54816 - generated nodes: 6570796 - fringe size: 2029013 - current modification depth: 49 - g(s)+h(s)= 29
+nodes/sec: 54737 - generated nodes: 6616085 - fringe size: 2042713 - current modification depth: 48 - g(s)+h(s)= 29
+nodes/sec: 54810 - generated nodes: 6679750 - fringe size: 2063279 - current modification depth: 50 - g(s)+h(s)= 29
+nodes/sec: 54880 - generated nodes: 6743233 - fringe size: 2083832 - current modification depth: 48 - g(s)+h(s)= 29
+nodes/sec: 54819 - generated nodes: 6790627 - fringe size: 2098902 - current modification depth: 47 - g(s)+h(s)= 30
+nodes/sec: 54756 - generated nodes: 6837553 - fringe size: 2113441 - current modification depth: 38 - g(s)+h(s)= 31
+nodes/sec: 53718 - generated nodes: 6843192 - fringe size: 2115296 - current modification depth: 50 - g(s)+h(s)= 30
+nodes/sec: 53709 - generated nodes: 6895809 - fringe size: 2131991 - current modification depth: 46 - g(s)+h(s)= 29
+nodes/sec: 52674 - generated nodes: 6935581 - fringe size: 2144486 - current modification depth: 42 - g(s)+h(s)= 32
+nodes/sec: 51835 - generated nodes: 6945019 - fringe size: 2147583 - current modification depth: 46 - g(s)+h(s)= 30
+nodes/sec: 50994 - generated nodes: 6953326 - fringe size: 2150246 - current modification depth: 42 - g(s)+h(s)= 32
+nodes/sec: 50190 - generated nodes: 6961387 - fringe size: 2152741 - current modification depth: 40 - g(s)+h(s)= 32
+nodes/sec: 49401 - generated nodes: 6969346 - fringe size: 2155436 - current modification depth: 31 - g(s)+h(s)= 32
+nodes/sec: 48638 - generated nodes: 6977058 - fringe size: 2157888 - current modification depth: 48 - g(s)+h(s)= 29
+nodes/sec: 47897 - generated nodes: 6984600 - fringe size: 2160309 - current modification depth: 44 - g(s)+h(s)= 29
+nodes/sec: 47201 - generated nodes: 6991982 - fringe size: 2162553 - current modification depth: 52 - g(s)+h(s)= 29
+nodes/sec: 46503 - generated nodes: 6999254 - fringe size: 2164769 - current modification depth: 49 - g(s)+h(s)= 29
+nodes/sec: 45835 - generated nodes: 7006368 - fringe size: 2167075 - current modification depth: 47 - g(s)+h(s)= 30
+nodes/sec: 45194 - generated nodes: 7013281 - fringe size: 2169518 - current modification depth: 33 - g(s)+h(s)= 32
+nodes/sec: 44571 - generated nodes: 7019969 - fringe size: 2171654 - current modification depth: 35 - g(s)+h(s)= 32
+nodes/sec: 43961 - generated nodes: 7026597 - fringe size: 2173667 - current modification depth: 50 - g(s)+h(s)= 29
+nodes/sec: 43348 - generated nodes: 7033103 - fringe size: 2175695 - current modification depth: 50 - g(s)+h(s)= 30
+nodes/sec: 42783 - generated nodes: 7039355 - fringe size: 2177658 - current modification depth: 40 - g(s)+h(s)= 32
+nodes/sec: 42211 - generated nodes: 7045531 - fringe size: 2179642 - current modification depth: 42 - g(s)+h(s)= 32
+nodes/sec: 41669 - generated nodes: 7051614 - fringe size: 2181512 - current modification depth: 42 - g(s)+h(s)= 32
+nodes/sec: 41121 - generated nodes: 7057445 - fringe size: 2183389 - current modification depth: 30 - g(s)+h(s)= 32
+nodes/sec: 40604 - generated nodes: 7063280 - fringe size: 2185265 - current modification depth: 30 - g(s)+h(s)= 32
+nodes/sec: 40093 - generated nodes: 7068930 - fringe size: 2187108 - current modification depth: 44 - g(s)+h(s)= 32
+nodes/sec: 39609 - generated nodes: 7074432 - fringe size: 2188872 - current modification depth: 31 - g(s)+h(s)= 32
+nodes/sec: 39117 - generated nodes: 7079912 - fringe size: 2190630 - current modification depth: 37 - g(s)+h(s)= 32
+nodes/sec: 38658 - generated nodes: 7085156 - fringe size: 2192294 - current modification depth: 50 - g(s)+h(s)= 29
+nodes/sec: 38186 - generated nodes: 7090284 - fringe size: 2193912 - current modification depth: 30 - g(s)+h(s)= 32
+nodes/sec: 37747 - generated nodes: 7095425 - fringe size: 2195583 - current modification depth: 33 - g(s)+h(s)= 32
+nodes/sec: 37305 - generated nodes: 7100425 - fringe size: 2197243 - current modification depth: 33 - g(s)+h(s)= 32
+nodes/sec: 36880 - generated nodes: 7105428 - fringe size: 2198841 - current modification depth: 43 - g(s)+h(s)= 32
+nodes/sec: 36462 - generated nodes: 7110436 - fringe size: 2200428 - current modification depth: 48 - g(s)+h(s)= 29
+nodes/sec: 36057 - generated nodes: 7115436 - fringe size: 2202088 - current modification depth: 30 - g(s)+h(s)= 32
+nodes/sec: 35668 - generated nodes: 7120443 - fringe size: 2203617 - current modification depth: 50 - g(s)+h(s)= 30
+nodes/sec: 35276 - generated nodes: 7125443 - fringe size: 2205229 - current modification depth: 42 - g(s)+h(s)= 32
+nodes/sec: 34897 - generated nodes: 7130445 - fringe size: 2206740 - current modification depth: 37 - g(s)+h(s)= 32
+nodes/sec: 34519 - generated nodes: 7135445 - fringe size: 2208309 - current modification depth: 47 - g(s)+h(s)= 30
+nodes/sec: 33776 - generated nodes: 7140457 - fringe size: 2209924 - current modification depth: 48 - g(s)+h(s)= 29
+nodes/sec: 33434 - generated nodes: 7145463 - fringe size: 2211442 - current modification depth: 50 - g(s)+h(s)= 30
+nodes/sec: 33079 - generated nodes: 7150464 - fringe size: 2213069 - current modification depth: 30 - g(s)+h(s)= 32
+nodes/sec: 32742 - generated nodes: 7155467 - fringe size: 2214663 - current modification depth: 46 - g(s)+h(s)= 30
+nodes/sec: 32091 - generated nodes: 7160468 - fringe size: 2216245 - current modification depth: 33 - g(s)+h(s)= 32
+nodes/sec: 31773 - generated nodes: 7165473 - fringe size: 2217790 - current modification depth: 50 - g(s)+h(s)= 30
+nodes/sec: 31150 - generated nodes: 7170473 - fringe size: 2219329 - current modification depth: 40 - g(s)+h(s)= 32
+nodes/sec: 30858 - generated nodes: 7175475 - fringe size: 2220829 - current modification depth: 31 - g(s)+h(s)= 32
+nodes/sec: 30239 - generated nodes: 7180478 - fringe size: 2222388 - current modification depth: 47 - g(s)+h(s)= 28
+nodes/sec: 29968 - generated nodes: 7185485 - fringe size: 2223978 - current modification depth: 45 - g(s)+h(s)= 30
+nodes/sec: 29361 - generated nodes: 7190490 - fringe size: 2225545 - current modification depth: 37 - g(s)+h(s)= 32
+nodes/sec: 28833 - generated nodes: 7195495 - fringe size: 2227030 - current modification depth: 50 - g(s)+h(s)= 30
+nodes/sec: 28549 - generated nodes: 7200498 - fringe size: 2228554 - current modification depth: 31 - g(s)+h(s)= 32
+nodes/sec: 28052 - generated nodes: 7205499 - fringe size: 2230184 - current modification depth: 31 - g(s)+h(s)= 32
+nodes/sec: 27548 - generated nodes: 7210501 - fringe size: 2231735 - current modification depth: 48 - g(s)+h(s)= 31
+nodes/sec: 27085 - generated nodes: 7215502 - fringe size: 2233347 - current modification depth: 30 - g(s)+h(s)= 32
+nodes/sec: 26635 - generated nodes: 7220504 - fringe size: 2234920 - current modification depth: 42 - g(s)+h(s)= 32
+nodes/sec: 26185 - generated nodes: 7225509 - fringe size: 2236527 - current modification depth: 40 - g(s)+h(s)= 32
+nodes/sec: 25559 - generated nodes: 7230515 - fringe size: 2237984 - current modification depth: 36 - g(s)+h(s)= 31
+nodes/sec: 25147 - generated nodes: 7235529 - fringe size: 2239573 - current modification depth: 44 - g(s)+h(s)= 29
+nodes/sec: 24548 - generated nodes: 7240533 - fringe size: 2241188 - current modification depth: 50 - g(s)+h(s)= 30
+nodes/sec: 24003 - generated nodes: 7245535 - fringe size: 2242829 - current modification depth: 30 - g(s)+h(s)= 32
+nodes/sec: 23652 - generated nodes: 7250537 - fringe size: 2244418 - current modification depth: 31 - g(s)+h(s)= 32
+nodes/sec: 23145 - generated nodes: 7255546 - fringe size: 2246008 - current modification depth: 48 - g(s)+h(s)= 29
+nodes/sec: 22495 - generated nodes: 7260557 - fringe size: 2247659 - current modification depth: 38 - g(s)+h(s)= 31
+nodes/sec: 21888 - generated nodes: 7265562 - fringe size: 2249242 - current modification depth: 49 - g(s)+h(s)= 29
+nodes/sec: 21449 - generated nodes: 7270562 - fringe size: 2250754 - current modification depth: 45 - g(s)+h(s)= 31
+nodes/sec: 20896 - generated nodes: 7275568 - fringe size: 2252369 - current modification depth: 48 - g(s)+h(s)= 29
+nodes/sec: 20240 - generated nodes: 7280584 - fringe size: 2254015 - current modification depth: 50 - g(s)+h(s)= 30
+nodes/sec: 19628 - generated nodes: 7285590 - fringe size: 2255638 - current modification depth: 50 - g(s)+h(s)= 29
+nodes/sec: 18903 - generated nodes: 7290592 - fringe size: 2257193 - current modification depth: 30 - g(s)+h(s)= 32
+nodes/sec: 18237 - generated nodes: 7295596 - fringe size: 2258770 - current modification depth: 48 - g(s)+h(s)= 30
+nodes/sec: 17406 - generated nodes: 7300604 - fringe size: 2260489 - current modification depth: 33 - g(s)+h(s)= 32
+nodes/sec: 16655 - generated nodes: 7305611 - fringe size: 2262014 - current modification depth: 37 - g(s)+h(s)= 31
+nodes/sec: 15573 - generated nodes: 7310612 - fringe size: 2263719 - current modification depth: 36 - g(s)+h(s)= 32
+nodes/sec: 14544 - generated nodes: 7315614 - fringe size: 2265229 - current modification depth: 39 - g(s)+h(s)= 32
+nodes/sec: 13355 - generated nodes: 7320614 - fringe size: 2266791 - current modification depth: 37 - g(s)+h(s)= 32
+nodes/sec: 11886 - generated nodes: 7325627 - fringe size: 2268402 - current modification depth: 48 - g(s)+h(s)= 29
+nodes/sec: 10580 - generated nodes: 7330627 - fringe size: 2269939 - current modification depth: 50 - g(s)+h(s)= 30
+nodes/sec: 9121 - generated nodes: 7335628 - fringe size: 2271457 - current modification depth: 33 - g(s)+h(s)= 32
+nodes/sec: 9070 - generated nodes: 7340641 - fringe size: 2273032 - current modification depth: 47 - g(s)+h(s)= 30
+nodes/sec: 9044 - generated nodes: 7345643 - fringe size: 2274590 - current modification depth: 48 - g(s)+h(s)= 29
+nodes/sec: 8992 - generated nodes: 7350644 - fringe size: 2276152 - current modification depth: 32 - g(s)+h(s)= 32
+nodes/sec: 8940 - generated nodes: 7355644 - fringe size: 2277698 - current modification depth: 48 - g(s)+h(s)= 29
+nodes/sec: 8855 - generated nodes: 7360645 - fringe size: 2279266 - current modification depth: 48 - g(s)+h(s)= 29
+nodes/sec: 8804 - generated nodes: 7365645 - fringe size: 2280869 - current modification depth: 35 - g(s)+h(s)= 32
+nodes/sec: 8758 - generated nodes: 7370650 - fringe size: 2282419 - current modification depth: 46 - g(s)+h(s)= 29
+nodes/sec: 8685 - generated nodes: 7375654 - fringe size: 2284054 - current modification depth: 37 - g(s)+h(s)= 32
+nodes/sec: 8616 - generated nodes: 7380657 - fringe size: 2285661 - current modification depth: 50 - g(s)+h(s)= 29
+nodes/sec: 8573 - generated nodes: 7385657 - fringe size: 2287282 - current modification depth: 41 - g(s)+h(s)= 32
+nodes/sec: 8508 - generated nodes: 7390658 - fringe size: 2288784 - current modification depth: 38 - g(s)+h(s)= 32
+nodes/sec: 8421 - generated nodes: 7395660 - fringe size: 2290358 - current modification depth: 46 - g(s)+h(s)= 29
+nodes/sec: 8330 - generated nodes: 7400660 - fringe size: 2291886 - current modification depth: 37 - g(s)+h(s)= 32
