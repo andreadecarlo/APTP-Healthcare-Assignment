@@ -37,24 +37,6 @@
     (at b15 central_warehouse)
     (at b16 central_warehouse)
 
-
-    (empty-box b1)
-    (empty-box b2)
-    (empty-box b3)
-    (empty-box b4)
-    (empty-box b5)
-    (empty-box b6)
-    (empty-box b7)
-    (empty-box b8)
-    (empty-box b9)
-    (empty-box b10)
-    (empty-box b11)
-    (empty-box b12)
-    (empty-box b13)
-    (empty-box b14)
-    (empty-box b15)
-    (empty-box b16)
-
     (at tongue_depressor central_warehouse)
     (at scalpel central_warehouse)
 

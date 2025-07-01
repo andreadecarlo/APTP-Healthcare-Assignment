@@ -27,7 +27,7 @@
 	(connected ?l1 - location ?l2 - location) ; locations are connected
 
 	; (unloaded ?r - robot-box)               	; robot is empty
-	(empty-box ?b - box)               			; box is empty
+	(full ?b - box)
 	(filled-with ?b - box ?c - content) 		; box is filled with content 
 	
 	(unit-has-box ?u - unit ?b - box)              ; unit has a box
@@ -83,12 +83,12 @@
 		(at ?b ?l)
 		(at ?r ?l)
 		(at ?c ?l)
-		(empty-box ?b)
+		(not (full ?b))
 		(= ?l central_warehouse) ; content can only be filled in the central warehouse
 	)
 	:effect (and 
 		(filled-with ?b ?c)
-		(not (empty-box ?b))
+		(full ?b)
 	)
 )
 
@@ -151,7 +151,7 @@
 	:effect (and 
 		(unit-has-content ?u ?c)
 		(not (filled-with ?b ?c))
-		(empty-box ?b)
+		(not (full ?b))
 		(at ?c ?l)
 	)
 )

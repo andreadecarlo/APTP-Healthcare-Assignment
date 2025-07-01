@@ -26,7 +26,7 @@
 	
 	(loaded ?r - robot ?b - box)          		; robot is carrying a box
 	(unloaded ?r - robot-box)               	; robot is empty
-	(empty-box ?b - box)               			; box is empty
+	(full ?b - box)
 	(filled-with ?b - box ?c - content) 		; box is filled with content 
 	(unit-has-box ?u - unit ?b - box)           ; unit has a box
 	(unit-has-content ?u - unit ?c - content) 	; unit has specific content
@@ -77,12 +77,12 @@
 		(at ?b ?l)
 		(at ?r ?l)
 		(at ?c ?l)
-		(empty-box ?b)
+		(not (full ?b))
 		(= ?l central_warehouse) ; content can only be filled in the central warehouse
 	)
 	:effect (and 
 		(filled-with ?b ?c)
-		(not (empty-box ?b))
+		(full ?b)
 	)
 )
 
@@ -95,13 +95,11 @@
 		(at ?r ?l)
 		(unit-has-box ?u ?b)
 		(filled-with ?b ?c)
-		; (not (empty-box ?b))					; redundant
-		; (not (unit-has-content ?u ?c))			; necessary?
 	)
 	:effect (and 
 		(unit-has-content ?u ?c)
 		(not (filled-with ?b ?c))
-		(empty-box ?b)
+		(not (full ?b))
 		(at ?c ?l)
 	)
 )

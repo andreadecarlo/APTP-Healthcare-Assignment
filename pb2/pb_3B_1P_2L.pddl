@@ -23,10 +23,6 @@
     (at b2 central_warehouse)
     (at b3 central_warehouse)
 
-    (empty-box b1)
-    (empty-box b2)
-    (empty-box b3)
-
     (at tongue_depressor central_warehouse)
     (at scalpel central_warehouse)
 

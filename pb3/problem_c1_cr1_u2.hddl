@@ -30,11 +30,7 @@
         (at b1 central_warehouse)
         (at b2 central_warehouse)
         (at b3 central_warehouse)
-
-        (empty-box b1)
-        (empty-box b2)
-        (empty-box b3)
-
+        
         (at c1 central_warehouse)
         (at c2 central_warehouse)
         (at c3 central_warehouse)

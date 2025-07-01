@@ -44,10 +44,6 @@
         (at u1 l1)
         (at u2 l2)
 
-        (empty-box b1)
-        (empty-box b2)
-        (empty-box b3)
-
         (at scalpel central_warehouse)
         (at aspirin central_warehouse)
         (at bandage central_warehouse)        

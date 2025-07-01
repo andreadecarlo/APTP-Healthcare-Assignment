@@ -28,7 +28,7 @@
     (connected ?l1 - location ?l2 - location) ; locations are connected
 
     (filled-with ?b - box ?c - content) 		; box is filled with content 
-	(empty-box ?b - box)               			; box is empty
+	(full ?b - box)
 
     (unit-has-content ?u - unit ?c - content)   ; unit has specific content
 	(unit-has-box ?u - unit ?b - box)           ; unit has a box
@@ -87,13 +87,13 @@
 		(at start (at ?b ?l))
 		(at start (at ?r ?l))
 		(at start (at ?c ?l))
-		(at start (empty-box ?b))
+		(at start (not (full ?b)))
 		(at start (available ?r))
 	)
 	:effect (and 
 		(at start (not (available ?r)))
 		(at end (filled-with ?b ?c))
-		(at end (not (empty-box ?b)))
+		(at end (full ?b))
 		(at end (available ?r))
 	)
 )
@@ -153,7 +153,7 @@
 		(at start (at ?r ?l))
 		(at start (unit-has-box ?u ?b))
 		(at start (filled-with ?b ?c))
-		(at start (not (empty-box ?b)))
+		(at start (full ?b))
 		(at start (not (unit-has-content ?u ?c)))
 		(at start (available ?r))
 	)
@@ -161,7 +161,7 @@
 		(at start (not (available ?r)))
 		(at end (unit-has-content ?u ?c))
 		(at end (not (filled-with ?b ?c)))
-		(at end (empty-box ?b))
+		(at end (not (full ?b)))
 		(at end (at ?c ?l))
 		(at end (available ?r))
 	)

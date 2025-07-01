@@ -26,7 +26,7 @@
 	(at-unit ?p - patient ?u - unit) 		; patient is at unit
     (connected ?l1 - location ?l2 - location) ; locations are connected
 
-	(empty-box ?b - box)               			; box is empty
+	(full ?b - box)
     (filled-with ?b - box ?c - content) 		; box is filled with content 
     (rob-carrier ?r - robot-box ?cr - carrier)          ; robot has a carrier
     (loaded ?cr - carrier ?b - box)          ; carrier is carrying a box
@@ -324,11 +324,11 @@
 		(at ?b ?l)
 		(at ?r ?l)
 		(at ?c ?l)
-		(empty-box ?b)
+		(not (full ?b))
 	)
 	:effect (and 
 		(filled-with ?b ?c)
-		(not (empty-box ?b))
+		(full ?b)
 	)
 )
 
@@ -393,7 +393,7 @@
 	:effect (and 
 		(unit-has-content ?u ?c)
 		(not (filled-with ?b ?c))
-		(empty-box ?b)
+		(not (full ?b))
 		(at ?c ?l)
 
 		(not (unit-wants ?u ?c))		; ADDED

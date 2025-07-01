@@ -29,15 +29,6 @@
     (at b7 central_warehouse)
     (at b8 central_warehouse)
 
-    (empty-box b1)
-    (empty-box b2)
-    (empty-box b3)
-    (empty-box b4)
-    (empty-box b5)
-    (empty-box b6)
-    (empty-box b7)
-    (empty-box b8)
-
     (at tongue_depressor central_warehouse)
     (at scalpel central_warehouse)
 
