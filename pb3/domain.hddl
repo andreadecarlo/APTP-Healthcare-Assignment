@@ -135,11 +135,11 @@
 )
 
 (:method m_accompany
-	:parameters (?r - robot-patient ?p - patient ?origin - location ?dest - location ?u - unit)
+	:parameters (?r - robot-patient ?p - patient ?dest - location ?u - unit)
 	:task (accompany ?p ?u)
 	:subtasks (and
-		(task0 (get_to ?r ?origin))
-		(task1 (take-patient ?r ?p ?origin))
+		(task0 (get_to ?r entrance))
+		(task1 (take-patient ?r ?p entrance))
 		(task2 (get_to ?r ?dest))
 		(task3 (release-patient ?r ?p ?dest ?u))
 	)

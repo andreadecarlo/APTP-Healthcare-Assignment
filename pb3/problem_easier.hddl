@@ -3,7 +3,7 @@
         r1 - robot-box
         rp - robot-patient
 
-        p1 - patient
+        p1 p2 - patient
     
         b1 b2 - box
         c1 c2 - content
@@ -38,6 +38,7 @@
         (at c2 central_warehouse)
 
         (at p1 entrance)
+        (at p2 entrance)
 
         (capacity_predecessor cap_0 cap_1)
         
@@ -52,6 +53,7 @@
         (unit-wants u1 c2)
 
         (wants-to-go p1 u1)
+        (wants-to-go p2 u1)
     )
 
 )
