@@ -1,0 +1,480 @@
+PANDA - Planning and Acting in a Network Decomposition Architecture
+Believe us: It's great, it's fantastic!
+
+PANDA Copyright (C) 2014-2018 Gregor Behnke, Pascal Bercher, Thomas Geier, Kadir
+Dede, Daniel Höller, Kristof Mickeleit, Matthias Englert
+This program comes with ABSOLUTELY NO WARRANTY
+This is free software, and you are welcome to redistribute it under certain
+conditions; run PANDA with -license for details.
+
+Main Developers:
+- Gregor Behnke, http://www.uni-ulm.de/in/ki/behnke
+- Daniel Höller, http://www.uni-ulm.de/in/ki/hoeller
+
+With many thanks to various further contributors.
+Run PANDA with the command line argument -contributors for an extensive list.
+
+Run it with -help for more information like available options.
+
+
+PANDA was called with: "-parser hddl domain_no_carrier.hddl problem_no_carrier.hddl"
+
+
+Planner Configuration
+=====================
+Domain: domain_no_carrier.hddl
+Problem: problem_no_carrier.hddl
+Output: none
+
+Planning Configuration
+======================
+	printGeneralInformation : true
+	printAdditionalData     : true
+	random seed             : 42
+	time limit (in seconds) : none
+
+	external programs:
+
+
+	Parsing Configuration
+	---------------------
+	Parser                : HDDL Parser (Daniel's format)
+	Expand Sort Hierarchy : true
+	ClosedWordAssumption  : true
+	CompileSHOPMethods    : true
+	Eliminate Equality    : true
+	Strip Hybridity       : true
+	Reduce General Tasks  : true
+	
+	Preprocessing Configuration
+	---------------------------
+	Compile negative preconditions    : true
+	Compile unit methods              : false
+	Compile order in methods          : false
+	Compile initial plan              : true
+	Ensure Methods Have Last Task     : false
+	Split independent parameters      : true
+	Remove unnecessary predicates     : true
+	Expand choiceless abstract tasks  : true
+	Domain Cleanup                    : true
+	Convert to SAS+                   : false
+	Grounded Reachability Analysis    : Planning Graph (mutex-free)
+	Grounded Task Decomposition Graph : Two Way TDG
+	Iterate reachability analysis     : true
+	Ground domain                     : true
+	Iterate reachability analysis     : true
+	Stop directly after grounding     : false
+	
+	Progression-search Configuration
+	--------------------------------
+	Search Algorithm                 : AStarActionsType(2.0)
+	Heuristic                        : hhRC(hFF)
+	Abstract task selection strategy : random
+	
+	Post-processing Configuration
+	-----------------------------
+	search status
+	search result
+	timings
+	statistics
+#0 "00 global:01:problem"="problem_no_carrier.hddl";"00 global:00:domain"="domain_no_carrier.hddl"
+Parsing domain ... done
+Preparing internal domain representation ... done.
+Initial domain
+	number of abstract tasks = 7
+	number of tasks = 19
+	number of decomposition methods = 13
+	number of predicates = 13
+	number of sorts = 12
+	number of tasks in largest method = 5
+	number of primitive SHOP tasks = 2
+	number of epsilon methods = 0
+	number of primitive tasks = 12
+	number of constants = 25
+Compiling negative preconditions ... done.
+	number of abstract tasks = 7
+	number of tasks = 19
+	number of decomposition methods = 13
+	number of predicates = 26
+	number of sorts = 12
+	number of tasks in largest method = 5
+	number of primitive SHOP tasks = 2
+	number of epsilon methods = 0
+	number of primitive tasks = 12
+	number of constants = 25
+Compiling split parameters ... done.
+	number of abstract tasks = 7
+	number of tasks = 19
+	number of decomposition methods = 13
+	number of predicates = 26
+	number of sorts = 12
+	number of tasks in largest method = 5
+	number of primitive SHOP tasks = 2
+	number of epsilon methods = 0
+	number of primitive tasks = 12
+	number of constants = 25
+Lifted reachability analysis and domain cleanup ... done.
+	number of abstract tasks = 7
+	number of tasks = 19
+	number of decomposition methods = 13
+	number of predicates = 14
+	number of sorts = 12
+	number of tasks in largest method = 5
+	number of primitive SHOP tasks = 2
+	number of epsilon methods = 0
+	number of primitive tasks = 12
+	number of constants = 25
+Grounded planning graph ... done in 53ms.
+	Number of Grounded Actions 116
+	Number of Grounded Literals 94
+	number of abstract tasks = 7
+	number of tasks = 19
+	number of decomposition methods = 13
+	number of predicates = 14
+	number of sorts = 12
+	number of tasks in largest method = 5
+	number of primitive SHOP tasks = 2
+	number of epsilon methods = 0
+	number of primitive tasks = 12
+	number of constants = 25
+Two Way TDG ... done.
+	number of abstract tasks = 7
+	number of tasks = 19
+	number of decomposition methods = 13
+	number of predicates = 14
+	number of sorts = 12
+	number of tasks in largest method = 5
+	number of primitive SHOP tasks = 2
+	number of epsilon methods = 0
+	number of primitive tasks = 12
+	number of constants = 25
+Grounding ... done.
+	number of abstract tasks = 39
+	number of tasks = 155
+	number of decomposition methods = 244
+	number of predicates = 94
+	number of sorts = 0
+	number of tasks in largest method = 5
+	number of primitive SHOP tasks = 14
+	number of epsilon methods = 0
+	number of primitive tasks = 116
+	number of constants = 0
+Removing unnecessary predicates ... done.
+	number of abstract tasks = 39
+	number of tasks = 155
+	number of decomposition methods = 244
+	number of predicates = 65
+	number of sorts = 0
+	number of tasks in largest method = 5
+	number of primitive SHOP tasks = 14
+	number of epsilon methods = 0
+	number of primitive tasks = 116
+	number of constants = 0
+Omitting lifted reachability analysis ... 
+Grounded planning graph ... done in 14ms.
+	Number of Grounded Actions 116
+	Number of Grounded Literals 65
+	number of abstract tasks = 39
+	number of tasks = 155
+	number of decomposition methods = 244
+	number of predicates = 65
+	number of sorts = 0
+	number of tasks in largest method = 5
+	number of primitive SHOP tasks = 14
+	number of epsilon methods = 0
+	number of primitive tasks = 116
+	number of constants = 0
+Two Way TDG ... done.
+	number of abstract tasks = 39
+	number of tasks = 155
+	number of decomposition methods = 180
+	number of predicates = 65
+	number of sorts = 0
+	number of tasks in largest method = 5
+	number of primitive SHOP tasks = 14
+	number of epsilon methods = 0
+	number of primitive tasks = 116
+	number of constants = 0
+Compiling expand choiceless abstract tasks ... done.
+	number of abstract tasks = 18
+	number of tasks = 134
+	number of decomposition methods = 159
+	number of predicates = 65
+	number of sorts = 0
+	number of tasks in largest method = 2
+	number of primitive SHOP tasks = 14
+	number of epsilon methods = 0
+	number of primitive tasks = 116
+	number of constants = 0
+Compiling initial plan ... done.
+	number of abstract tasks = 19
+	number of tasks = 135
+	number of decomposition methods = 160
+	number of predicates = 65
+	number of sorts = 0
+	number of tasks in largest method = 24
+	number of primitive SHOP tasks = 14
+	number of epsilon methods = 0
+	number of primitive tasks = 116
+	number of constants = 0
+Removing unnecessary predicates ... done.
+	number of abstract tasks = 19
+	number of tasks = 135
+	number of decomposition methods = 160
+	number of predicates = 65
+	number of sorts = 0
+	number of tasks in largest method = 24
+	number of primitive SHOP tasks = 14
+	number of epsilon methods = 0
+	number of primitive tasks = 116
+	number of constants = 0
+Omitting lifted reachability analysis ... 
+Grounded planning graph ... done in 5ms.
+	Number of Grounded Actions 116
+	Number of Grounded Literals 65
+	number of abstract tasks = 19
+	number of tasks = 135
+	number of decomposition methods = 160
+	number of predicates = 65
+	number of sorts = 0
+	number of tasks in largest method = 24
+	number of primitive SHOP tasks = 14
+	number of epsilon methods = 0
+	number of primitive tasks = 116
+	number of constants = 0
+Two Way TDG ... done.
+	number of abstract tasks = 19
+	number of tasks = 135
+	number of decomposition methods = 160
+	number of predicates = 65
+	number of sorts = 0
+	number of tasks in largest method = 24
+	number of primitive SHOP tasks = 14
+	number of epsilon methods = 0
+	number of primitive tasks = 116
+	number of constants = 0
+Compiling expand choiceless abstract tasks ... done.
+	number of abstract tasks = 18
+	number of tasks = 134
+	number of decomposition methods = 159
+	number of predicates = 65
+	number of sorts = 0
+	number of tasks in largest method = 2
+	number of primitive SHOP tasks = 14
+	number of epsilon methods = 0
+	number of primitive tasks = 116
+	number of constants = 0
+Compiling initial plan ... done.
+	number of abstract tasks = 19
+	number of tasks = 135
+	number of decomposition methods = 160
+	number of predicates = 65
+	number of sorts = 0
+	number of tasks in largest method = 24
+	number of primitive SHOP tasks = 14
+	number of epsilon methods = 0
+	number of primitive tasks = 116
+	number of constants = 0
+Removing unnecessary predicates ... done.
+	number of abstract tasks = 19
+	number of tasks = 135
+	number of decomposition methods = 160
+	number of predicates = 65
+	number of sorts = 0
+	number of tasks in largest method = 24
+	number of primitive SHOP tasks = 14
+	number of epsilon methods = 0
+	number of primitive tasks = 116
+	number of constants = 0
+Tasks 116 - 0
+Domain is acyclic: false
+Domain is mostly acyclic: false
+Domain is regular: false
+Domain is tail recursive: false
+Domain is totally ordered: false
+Domain has last task in all methods: false
+Time remaining for planner 9223372036854775261ms
+Reducing flat domain ... done.
+ - Reduced number of operators from 116 to 116
+ - Reduced number of state-bits from 63 to 63
+Generating Relaxed Composition Model ...
+Calculating top down reachability ...
+ - Found 127 SCCs with up to 5 tasks.
+ - Reachability calculated in 1 ms.
+ - model has 276 operators
+ - model has 314 state features
+ - operators' mean count of (pre, add, del) = (2,95, 1,76, 0,64)
+ - effects' mean achiever count: 1,76
+ - effects' mean consumer count: 2,95
+
+Searching with 
+ - Priority Queue search routine
+ - A-Star search
+ - HTN heuristic:hhRelataxedComposition-with-hFF-EQ
+ - Abstract task choice: randomly
+ - time limit for search is 2147483647 sec
+
+Starting priority queue search
+Found solution 1 length 34
+Number of nodes in final fringe: 7369
+Generated search nodes (total): 11470
+Search time: 203 ms
+
+Found a solution:
+__top_4 @ __artificialTopCompilation__top_4
+SHOP_methodm_deliver_0_precondition[u1,l1,scalpel]
+m_supply[?c=scalpel,?u=u1,?r=r1,?l=l1,?s1=capacity_2,?cr=c1,?s2=capacity_3,?b=b1] @ supply[r1,scalpel,u1]
+m_load[?s2=capacity_3,?c=scalpel,?s1=capacity_2,?b=b1,?cr=c1,?r=r1,?l=central_warehouse] @ load[r1,scalpel]
+fill[r1,b1,scalpel,central_warehouse]
+m_i_am_there[?l=central_warehouse,?r=r1] @ get_to[r1,central_warehouse]
+SHOP_methodm_i_am_there_5_precondition[r1,central_warehouse]
+pick-up[r1,b1,central_warehouse,c1,capacity_2,capacity_3]
+m_get_to_carrier[?l=l1,?origin=central_warehouse,?cr=c1,?r=r1] @ get_to[r1,l1]
+move-carrier__DISJUNCT-0[r1,c1,central_warehouse,l1]
+drop[r1,b1,l1,u1,c1,capacity_2,capacity_3]
+empty[r1,b1,scalpel,u1,l1]
+SHOP_methodm_deliver_0_precondition[u1,l1,aspirin]
+m_supply[?c=aspirin,?u=u1,?r=r1,?l=l1,?s1=capacity_2,?cr=c1,?s2=capacity_3,?b=b3] @ supply[r1,aspirin,u1]
+m_get_to_via[?cr=c1,?middle=l1,?r=r1,?l=central_warehouse,?origin=central_warehouse] @ get_to[r1,central_warehouse]
+move-carrier__DISJUNCT-1[r1,c1,l1,central_warehouse]
+m_load[?s2=capacity_3,?c=aspirin,?s1=capacity_2,?b=b3,?cr=c1,?r=r1,?l=central_warehouse] @ load[r1,aspirin]
+fill[r1,b3,aspirin,central_warehouse]
+m_i_am_there[?l=l1,?r=r1] @ get_to[r1,l1]
+m_get_to_carrier[?l=l1,?origin=central_warehouse,?cr=c1,?r=r1] @ get_to[r1,l1]
+pick-up[r1,b3,central_warehouse,c1,capacity_2,capacity_3]
+move-carrier__DISJUNCT-0[r1,c1,central_warehouse,l1]
+drop[r1,b3,l1,u1,c1,capacity_2,capacity_3]
+empty[r1,b3,aspirin,u1,l1]
+SHOP_methodm_i_am_there_5_precondition[r1,l1]
+SHOP_methodm_deliver_0_precondition[u1,l1,bandage]
+m_get_to_carrier[?l=central_warehouse,?origin=l1,?cr=c1,?r=r1] @ get_to[r1,central_warehouse]
+m_supply[?c=bandage,?u=u1,?r=r1,?l=l1,?s1=capacity_2,?cr=c1,?s2=capacity_3,?b=b2] @ supply[r1,bandage,u1]
+move-carrier__DISJUNCT-1[r1,c1,l1,central_warehouse]
+m_load[?s2=capacity_3,?c=bandage,?s1=capacity_2,?b=b2,?cr=c1,?r=r1,?l=central_warehouse] @ load[r1,bandage]
+m_get_to_carrier[?l=l1,?origin=central_warehouse,?cr=c1,?r=r1] @ get_to[r1,l1]
+fill[r1,b2,bandage,central_warehouse]
+pick-up[r1,b2,central_warehouse,c1,capacity_2,capacity_3]
+move-carrier__DISJUNCT-0[r1,c1,central_warehouse,l1]
+drop[r1,b2,l1,u1,c1,capacity_2,capacity_3]
+empty[r1,b2,bandage,u1,l1]
+SHOP_methodm_deliver_0_precondition[u2,l2,c1]
+m_supply[?c=c1,?u=u2,?r=r1,?l=l2,?s1=capacity_2,?cr=c1,?s2=capacity_3,?b=b1] @ supply[r1,c1,u2]
+m_load[?s2=capacity_3,?c=c1,?s1=capacity_2,?b=b1,?cr=c1,?r=r1,?l=l1] @ load[r1,c1]
+fill[r1,b1,c1,l1]
+pick-up[r1,b1,l1,c1,capacity_2,capacity_3]
+m_get_to_carrier[?l=l2,?origin=l1,?cr=c1,?r=r1] @ get_to[r1,l2]
+move-carrier__DISJUNCT-0[r1,c1,l1,l2]
+drop[r1,b1,l2,u2,c1,capacity_2,capacity_3]
+m_get_to_via[?cr=c1,?middle=l1,?r=r1,?l=central_warehouse,?origin=central_warehouse] @ get_to[r1,central_warehouse]
+empty[r1,b1,c1,u2,l2]
+m_get_to_carrier[?l=l1,?origin=l2,?cr=c1,?r=r1] @ get_to[r1,l1]
+move-carrier__DISJUNCT-1[r1,c1,l2,l1]
+move-carrier__DISJUNCT-1[r1,c1,l1,central_warehouse]
+take-patient[r2,p1,entrance]
+m_i_am_there[?l=entrance,?r=r2] @ get_to[r2,entrance]
+m_get_to_patient[?l=l1,?origin=entrance,?r=r2] @ get_to[r2,l1]
+SHOP_methodm_i_am_there_5_precondition[r2,entrance]
+move-robot__DISJUNCT-0[r2,entrance,l1]
+release-patient[r2,p1,l1,u1]
+It contains 55 modifications, including 34 actions.
+Panda says: SOLUTION
+============ global ============
+randomseed     = 42
+peak memory    = 89082760
+planner result = SOLUTION
+============ properties ============
+acyclic                  = false
+mostly acyclic           = false
+regular                  = false
+tail recursive           = false
+totally ordered          = false
+last task in all methods = false
+============ problem ============
+number of constants                  = 0
+number of predicates                 = 65
+number of actions                    = 135
+number of abstract actions           = 19
+number of primitive actions          = 116
+number of methods                    = 160
+number of primitive shop actions     = 14
+number of primitive non-shop actions = 102
+size of largest method               = 24
+average method size                  = 1
+============ progression ============
+status                 = solved
+aStar                  = 1
+heuristic              = hhRelataxedComposition-with-hFF-EQ
+numSearchNodes         = 11470
+numPrimTasks           = 34
+numShopTasks           = 0
+numDecompositions      = 21
+findShortestPlan       = 0
+foundShortestPlanAfter = 200
+foundFirstPlanAfter    = 200
+foundPlans             = 1
+
+----------------- TIMINGS -----------------
+============ total ============
+total = 775
+============ parsing ============
+total                         = 199
+file parser                   = 93
+sort expansion                = 43
+closed world assumption       = 26
+inherit preconditions         = 0
+shop methods                  = 5
+eliminate identical variables = 12
+strip domain of hybridity     = 1
+flatten formula               = 19
+============ preprocessing ============
+total                                      = 335
+compile negative preconditions             = 10
+compile unit methods                       = 0
+split parameter                            = 9
+expand choiceless abstract tasks           = 31
+compile methods with identical tasks       = 0
+removing unnecessary predicates            = 35
+lifted reachabiltiy analysis               = 18
+grounded planning graph analysis           = 112
+grounded task decomposition graph analysis = 78
+grounding                                  = 37
+create artificial top task                 = 1
+============ progression ============
+searchTime = 201
+
+#1 "30 problem:05:number of primitive actions"="116";"30 problem:01:number of constants"="0";"30 problem:04:number of abstract actions"="19";"02 properties:04:tail recursive"="false";"30 progression:04:numSearchNodes"="11470";"30 progression:06:numPrimTasks"="34";"00 global:80:peak memory"="89082760";"30 progression:93:foundFirstPlanAfter"="200";"02 properties:02:mostly acyclic"="false";"30 problem:06:number of methods"="160";"30 problem:07:number of primitive shop actions"="14";"02 properties:05:totally ordered"="false";"02 properties:06:last task in all methods"="false";"30 problem:03:number of actions"="135";"30 problem:08:number of primitive non-shop actions"="102";"30 problem:02:number of predicates"="65";"30 progression:01:status"="solved";"30 progression:03:heuristic"="hhRelataxedComposition-with-hFF-EQ";"30 problem:10:average method size"="1";"02 properties:03:regular"="false";"30 problem:09:size of largest method"="24";"30 progression:08:numDecompositions"="21";"00 global:90:planner result"="SOLUTION";"02 properties:01:acyclic"="false";"30 progression:02:aStar"="1";"30 progression:92:foundShortestPlanAfter"="200";"00 global:02:randomseed"="42";"30 progression:07:numShopTasks"="0";"30 progression:91:findShortestPlan"="0";"30 progression:94:foundPlans"="1";"01 parsing:01:file parser"="93";"01 parsing:08:flatten formula"="19";"02 preprocessing:07:compile methods with identical tasks"="0";"01 parsing:07:strip domain of hybridity"="1";"02 preprocessing:08:removing unnecessary predicates"="35";"01 parsing:03:closed world assumption"="26";"02 preprocessing:11:lifted reachabiltiy analysis"="18";"01 parsing:02:sort expansion"="43";"01 parsing:00:total"="199";"30 progression:01:searchTime"="201";"01 parsing:04:inherit preconditions"="0";"02 preprocessing:01:compile negative preconditions"="10";"00 total:00:total"="775";"02 preprocessing:12:grounded planning graph analysis"="112";"02 preprocessing:02:compile unit methods"="0";"02 preprocessing:23:grounded task decomposition graph analysis"="78";"02 preprocessing:04:split parameter"="9";"01 parsing:05:shop methods"="5";"01 parsing:06:eliminate identical variables"="12";"02 preprocessing:05:expand choiceless abstract tasks"="31";"02 preprocessing:00:total"="335";"02 preprocessing:99:create artificial top task"="1";"02 preprocessing:84:grounding"="37"
+SOLUTION SEQUENCE
+0: SHOP_methodm_deliver_0_precondition(u1,l1,scalpel)
+1: fill(r1,b1,scalpel,central_warehouse)
+2: SHOP_methodm_i_am_there_5_precondition(r1,central_warehouse)
+3: pick-up(r1,b1,central_warehouse,c1,capacity_2,capacity_3)
+4: move-carrier__DISJUNCT-0(r1,c1,central_warehouse,l1)
+5: drop(r1,b1,l1,u1,c1,capacity_2,capacity_3)
+6: empty(r1,b1,scalpel,u1,l1)
+7: SHOP_methodm_deliver_0_precondition(u1,l1,aspirin)
+8: move-carrier__DISJUNCT-1(r1,c1,l1,central_warehouse)
+9: fill(r1,b3,aspirin,central_warehouse)
+10: pick-up(r1,b3,central_warehouse,c1,capacity_2,capacity_3)
+11: move-carrier__DISJUNCT-0(r1,c1,central_warehouse,l1)
+12: drop(r1,b3,l1,u1,c1,capacity_2,capacity_3)
+13: empty(r1,b3,aspirin,u1,l1)
+14: SHOP_methodm_i_am_there_5_precondition(r1,l1)
+15: SHOP_methodm_deliver_0_precondition(u1,l1,bandage)
+16: move-carrier__DISJUNCT-1(r1,c1,l1,central_warehouse)
+17: fill(r1,b2,bandage,central_warehouse)
+18: pick-up(r1,b2,central_warehouse,c1,capacity_2,capacity_3)
+19: move-carrier__DISJUNCT-0(r1,c1,central_warehouse,l1)
+20: drop(r1,b2,l1,u1,c1,capacity_2,capacity_3)
+21: empty(r1,b2,bandage,u1,l1)
+22: SHOP_methodm_deliver_0_precondition(u2,l2,c1)
+23: fill(r1,b1,c1,l1)
+24: pick-up(r1,b1,l1,c1,capacity_2,capacity_3)
+25: move-carrier__DISJUNCT-0(r1,c1,l1,l2)
+26: drop(r1,b1,l2,u2,c1,capacity_2,capacity_3)
+27: empty(r1,b1,c1,u2,l2)
+28: move-carrier__DISJUNCT-1(r1,c1,l2,l1)
+29: move-carrier__DISJUNCT-1(r1,c1,l1,central_warehouse)
+30: take-patient(r2,p1,entrance)
+31: SHOP_methodm_i_am_there_5_precondition(r2,entrance)
+32: move-robot__DISJUNCT-0(r2,entrance,l1)
+33: release-patient(r2,p1,l1,u1)

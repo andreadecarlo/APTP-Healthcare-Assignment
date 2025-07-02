@@ -1,9 +1,6 @@
 (define (problem problem3) (:domain healthcare)
     (:objects 
         r1 - robot-box
-        rp - robot-patient
-
-        p1 p2 - patient
     
         b1 b2 b3 - box
         c1 c2 - content
@@ -17,24 +14,13 @@
 
     )
 
-    (:htn 
-        ; :subtasks (and
-        ;     (task0 (deliver_all))
-        ;     (task1 (accompany-all))
-        ; )
-        ; :ordering (task0 < task1)
-        :subtasks (and
-            (task0 (accompany p1 u1))
-            (task1 (deliver_all))
-        )
-        :ordering (and
-            (task0 < task1)
-        )
+    (:htn
+        :subtasks (deliver_all)
     )
     
     (:init
+
         (connected l1 central_warehouse)
-        (connected entrance l1)
         
         (at u1 l1)
         (at u2 l1)
@@ -46,14 +32,11 @@
         (at c1 central_warehouse)
         (at c2 central_warehouse)
 
-        (at p1 entrance)
-        (at p2 entrance)
 
         (capacity_predecessor cap_0 cap_1)
         (capacity_predecessor cap_1 cap_2)
         
         (at r1 central_warehouse)
-        (at rp entrance)
 
         (rob-carrier r1 cr1)
         
@@ -62,8 +45,6 @@
         (unit-wants u1 c1)
         (unit-wants u1 c2)
         (unit-wants u2 c2)
-
-        (wants-to-go p1 u1)
     )
 
 )
