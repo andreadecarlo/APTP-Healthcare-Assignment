@@ -1,0 +1,33 @@
+Number of literals: 80
+Constructing lookup tables: [10%] [20%] [30%] [40%] [50%] [60%] [70%] [80%] [90%] [100%]
+Post filtering unreachable actions:  [10%] [20%] [30%] [40%] [50%] [60%] [70%] [80%] [90%] [100%]
+[01;34mNo analytic limits found, not considering limit effects of goal-only operators[00m
+27% of the ground temporal actions in this problem are compression-safe
+Initial heuristic = 24.000, admissible cost estimate 0.000
+b (23.000 | 3.000)b (22.000 | 3.000)b (21.000 | 4.000)b (20.000 | 6.002)b (19.000 | 6.002)b (18.000 | 6.002)
+Resorting to best-first search
+Running WA* with W = 5.000, not restarting with goal states
+b (23.000 | 3.000)b (23.000 | 2.000)b (22.000 | 3.000)b (21.000 | 4.000)b (20.000 | 6.002)b (19.000 | 6.002)b (18.000 | 6.002)b (17.000 | 6.002)b (16.000 | 7.004)b (15.000 | 9.004)b (14.000 | 9.005)b (13.000 | 10.006)b (12.000 | 13.008)b (11.000 | 14.509)b (10.000 | 18.011)b (9.000 | 18.011)b (8.000 | 19.012)b (7.000 | 20.513)b (6.000 | 20.513)b (5.000 | 22.514)b (5.000 | 22.014)b (4.000 | 22.514)b (3.000 | 24.015)b (2.000 | 24.015)b (1.000 | 26.016)(G);;;; Solution Found
+; States evaluated: 36317
+; Cost: 26.016
+; Time 13.60
+0.000: (take-patient r2 p1 entrance)  [3.000]
+0.000: (fill r1 b1 bandage central_warehouse)  [2.000]
+2.001: (pick-up r1 b1 central_warehouse cr1 capacity_2 capacity_3)  [1.500]
+3.001: (move r2 entrance l1)  [1.000]
+3.502: (move r1 central_warehouse l1)  [1.000]
+4.002: (release-patient r2 p1 l1 u1)  [2.000]
+4.503: (move r1 l1 l2)  [1.000]
+5.504: (drop r1 b1 l2 u2 cr1 capacity_2 capacity_3)  [1.500]
+7.005: (empty-box r1 b1 bandage u2 l2)  [2.000]
+9.006: (move r1 l2 l1)  [1.000]
+10.007: (move r1 l1 central_warehouse)  [1.000]
+11.008: (fill r1 b3 aspirin central_warehouse)  [2.000]
+13.009: (fill r1 b2 scalpel central_warehouse)  [2.000]
+15.010: (pick-up r1 b3 central_warehouse cr1 capacity_2 capacity_3)  [1.500]
+16.511: (pick-up r1 b2 central_warehouse cr1 capacity_1 capacity_2)  [1.500]
+18.012: (move r1 central_warehouse l1)  [1.000]
+19.013: (drop r1 b3 l1 u1 cr1 capacity_1 capacity_2)  [1.500]
+20.514: (empty-box r1 b3 aspirin u1 l1)  [2.000]
+22.515: (drop r1 b2 l1 u1 cr1 capacity_2 capacity_3)  [1.500]
+24.016: (empty-box r1 b2 scalpel u1 l1)  [2.000]

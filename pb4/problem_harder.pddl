@@ -19,7 +19,6 @@
         (at r1 central_warehouse)
         (at r2 central_warehouse)
         (at rp1 entrance)
-        ; (at rp2 entrance)
         
         (rob-carrier r1 cr1)
         (rob-carrier r2 cr2)
@@ -27,7 +26,8 @@
         (available r1)
         (available r2)
         (available rp1)
-        ; (available rp2)
+
+        (free rp1)
 
         (at p1 entrance)
         (at p2 entrance)
@@ -35,10 +35,15 @@
         (at p4 entrance)
 
         (connected entrance l1)
+        (connected l1 entrance)
         (connected l1 l2)
+        (connected l2 l1)
         (connected l2 l3)
+        (connected l3 l2)
         (connected l3 l4)
+        (connected l4 l3)
         (connected central_warehouse l4)
+        (connected l4 central_warehouse)
 
         (at b1 central_warehouse)
         (at b2 central_warehouse)
@@ -48,8 +53,15 @@
         (at b6 central_warehouse)
         (at b7 central_warehouse)
         (at b8 central_warehouse)
-        (at b9 central_warehouse)
-        (at b10 central_warehouse)
+        
+        (empty b1)
+        (empty b2)
+        (empty b3)
+        (empty b4)
+        (empty b5)
+        (empty b6)
+        (empty b7)
+        (empty b8)
 
         (at u1 l2)
         (at u2 l3)

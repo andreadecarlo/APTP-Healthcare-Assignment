@@ -24,6 +24,7 @@
         (rob-carrier r1 cr1)
 
         (at r2 entrance)
+        (free r2)
 
         (available r1)
         (available r2)
@@ -32,14 +33,22 @@
         (at p2 entrance)
 
         (connected central_warehouse l1)
+        (connected l1 central_warehouse)
         (connected l1 l2)
+        (connected l2 l1)
         (connected l2 l3)
+        (connected l3 l2)
 
         (connected entrance l1)
+        (connected l1 entrance)
 
         (at b1 central_warehouse)
         (at b2 central_warehouse)
         (at b3 central_warehouse)
+
+        (empty b1)
+        (empty b2)
+        (empty b3)
 
         (at u1 l1)
         (at u2 l2)

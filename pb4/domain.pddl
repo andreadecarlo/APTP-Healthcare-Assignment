@@ -1,6 +1,8 @@
 (define (domain healthcare)
 
-(:requirements :strips :typing :durative-actions :disjunctive-preconditions :equality :negative-preconditions )
+(:requirements :strips :typing :durative-actions :equality :negative-preconditions )
+
+; :negative-preconditions not supported
 
 (:types
     location
@@ -28,6 +30,7 @@
 
     (filled-with ?b - box ?c - content) 		; box is filled with content 
 	(full ?b - box)
+	(empty ?b - box)	; added to remove negative-preconditions
 
 	(unit-has-box ?u - unit ?b - box)           ; unit has a box
     (unit-has-content ?u - unit ?c - content)   ; unit has specific content
@@ -40,6 +43,7 @@
 
     (with-patient ?r - robot ?p - patient)     ; robot is with a patient
 	(busy ?r - robot-patient)                  ; robot is busy with a patient
+	(free ?r - robot-patient)					;added to remove negative-preconditions
 	
 	(available ?r - robot)                     ; robot is available for actions
 )
@@ -50,10 +54,10 @@
 	:duration (= ?duration 1)
 	:condition (and 
 		(at start (at ?r ?from))
-		(at start (or (connected ?from ?to) (connected ?to ?from)))
+		(at start (connected ?from ?to))
 		(at start (available ?r))
 
-		(at start (not (= ?to central_warehouse)))
+		; (at start (not (= ?to central_warehouse)))
 	)
 	:effect (and 
 		(at start (not (at ?r ?from)))
@@ -63,24 +67,24 @@
 	)
 )
 
-(:durative-action return_to_warehouse
-	:parameters (?r - robot-box ?from - location ?to - location ?cr - carrier ?s - capacity_number)
-	:duration (= ?duration 10)
-	:condition (and 
-		(at start (at ?r ?from))
-		(at start (or (connected ?from ?to) (connected ?to ?from)))
-		(at start (available ?r))
+; (:durative-action return_to_warehouse
+; 	:parameters (?r - robot-box ?from - location ?to - location ?cr - carrier ?s - capacity_number)
+; 	:duration (= ?duration 10)
+; 	:condition (and 
+; 		(at start (at ?r ?from))
+; 		(at start (or (connected ?from ?to) (connected ?to ?from)))
+; 		(at start (available ?r))
 		
-		(at start (= ?to central_warehouse))
-		(at start (not (exists (?s1 - capacity_number)(capacity_predecessor ?s ?s1))))
-	)
-	:effect (and 
-		(at start (not (at ?r ?from)))
-		(at start (not (available ?r)))
-		(at end (at ?r ?to))
-		(at end (available ?r))
-	)
-)
+; 		(at start (= ?to central_warehouse))
+; 		(at start (not (exists (?s1 - capacity_number)(capacity_predecessor ?s ?s1))))
+; 	)
+; 	:effect (and 
+; 		(at start (not (at ?r ?from)))
+; 		(at start (not (available ?r)))
+; 		(at end (at ?r ?to))
+; 		(at end (available ?r))
+; 	)
+; )
 
 
 (:durative-action fill
@@ -90,7 +94,8 @@
 		(at start (at ?b ?l))
 		(at start (at ?r ?l))
 		(at start (at ?c ?l))
-		(at start (not (full ?b)))
+		; (at start (not (full ?b)))
+		(at start (empty ?b))
 		(at start (available ?r))
 		(at start (= ?l central_warehouse))
 	)
@@ -98,6 +103,7 @@
 		(at start (not (available ?r)))
 		(at end (filled-with ?b ?c))
 		(at end (full ?b))
+		(at end (not (empty ?b)))
 		(at end (available ?r))
 	)
 )
@@ -149,7 +155,7 @@
 	)
 )
 
-(:durative-action empty
+(:durative-action empty-box
 	:parameters (?r - robot-box ?b - box ?c - content ?u - unit ?l - location)
 	:duration (= ?duration 2)
 	:condition (and 
@@ -159,7 +165,7 @@
 		(at start (unit-has-box ?u ?b))
 		(at start (filled-with ?b ?c))
 		(at start (full ?b))
-		(at start (not (unit-has-content ?u ?c)))
+		; (at start (not (unit-has-content ?u ?c)))
 		(at start (available ?r))
 	)
 	:effect (and 
@@ -167,6 +173,7 @@
 		(at end (unit-has-content ?u ?c))
 		(at end (not (filled-with ?b ?c)))
 		(at end (not (full ?b)))
+		(at end (empty ?b))
 		(at end (at ?c ?l))
 		(at end (available ?r))
 	)
@@ -178,7 +185,8 @@
 	:condition (and 
 		(at start (at ?r ?l))
 		(at start (at ?p ?l))
-		(at start (not (busy ?r)))
+		; (at start (not (busy ?r)))
+		(at start (free ?r))
 		(at start (available ?r))
 	)
 	:effect (and 
