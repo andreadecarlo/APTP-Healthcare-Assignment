@@ -9,7 +9,7 @@
         b1 b2 b3 - box
         p1 p2 - patient
 
-        c1 - carrier
+        cr1 - carrier
 
         capacity_0 - capacity_number
         capacity_1 - capacity_number
@@ -20,8 +20,8 @@
 
     (:init
         (at r1 central_warehouse)
-        (at c1 central_warehouse)
-        (rob-carrier r1 c1)
+        (at cr1 central_warehouse)
+        (rob-carrier r1 cr1)
 
         (at r2 entrance)
 
@@ -51,7 +51,7 @@
         (capacity_predecessor capacity_0 capacity_1)
         (capacity_predecessor capacity_1 capacity_2)
         (capacity_predecessor capacity_2 capacity_3)
-        (capacity c1 capacity_3)
+        (capacity cr1 capacity_3)
     )
 
     (:goal (and
