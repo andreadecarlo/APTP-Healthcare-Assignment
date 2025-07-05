@@ -12,7 +12,7 @@ class EmptyBox : public plansys2::ActionExecutorClient
 {
 public:
   EmptyBox()
-  : plansys2::ActionExecutorClient("empty_box", 1s)
+  : plansys2::ActionExecutorClient("empty_box", 100ms)
   {
     progress_ = 0.0;
   }

@@ -12,7 +12,7 @@ class ReleasePatient : public plansys2::ActionExecutorClient
 {
 public:
   ReleasePatient()
-  : plansys2::ActionExecutorClient("release_patient", 1s)
+  : plansys2::ActionExecutorClient("release_patient", 100ms)
   {
     progress_ = 0.0;
   }

@@ -12,7 +12,7 @@ class Fill : public plansys2::ActionExecutorClient
 {
 public:
   Fill()
-  : plansys2::ActionExecutorClient("fill", 1s)
+  : plansys2::ActionExecutorClient("fill", 100ms)
   {
     progress_ = 0.0;
   }

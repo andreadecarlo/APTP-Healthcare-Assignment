@@ -12,7 +12,7 @@ class Drop : public plansys2::ActionExecutorClient
 {
 public:
   Drop()
-  : plansys2::ActionExecutorClient("drop", 1s)
+  : plansys2::ActionExecutorClient("drop", 75ms)
   {
     progress_ = 0.0;
   }

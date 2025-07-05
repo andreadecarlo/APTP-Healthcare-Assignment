@@ -12,7 +12,7 @@ class TakePatient : public plansys2::ActionExecutorClient
 {
 public:
   TakePatient()
-  : plansys2::ActionExecutorClient("take_patient", 1s)
+  : plansys2::ActionExecutorClient("take_patient", 150ms)
   {
     progress_ = 0.0;
   }

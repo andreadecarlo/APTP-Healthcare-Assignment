@@ -12,7 +12,7 @@ class Move : public plansys2::ActionExecutorClient
 {
 public:
   Move()
-  : plansys2::ActionExecutorClient("move", 1s)
+  : plansys2::ActionExecutorClient("move", 50ms)
   {
     progress_ = 0.0;
   }
