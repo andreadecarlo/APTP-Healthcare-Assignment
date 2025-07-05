@@ -10,9 +10,9 @@
 	content - locatable
 	box     - locatable
 	patient - locatable
-	robot-box       - robot
-	robot-patient   - robot
-	robot           - locatable
+	robot_box       - robot
+	robot_patient   - robot
+	robot           
 	carrier         - locatable
 	capacity_number - object
 )
@@ -25,25 +25,26 @@
 
 (:predicates
     (at ?x - locatable ?l - location)		; x is at location
-	(at-unit ?p - patient ?u - unit) 		; patient is at unit
+	(at_unit ?p - patient ?u - unit) 		; patient is at unit
+	(at_robot ?r - robot ?l - location)		; robot is at location
     (connected ?l1 - location ?l2 - location) ; locations are connected
 
-    (filled-with ?b - box ?c - content) 		; box is filled with content 
+    (filled_with ?b - box ?c - content) 		; box is filled with content 
 	(full ?b - box)
 	(empty ?b - box)	; added to remove negative-preconditions
 
-	(unit-has-box ?u - unit ?b - box)           ; unit has a box
-    (unit-has-content ?u - unit ?c - content)   ; unit has specific content
+	(unit_has_box ?u - unit ?b - box)           ; unit has a box
+    (unit_has_content ?u - unit ?c - content)   ; unit has specific content
 
-    (rob-carrier ?r - robot-box ?c - carrier)          ; robot has a carrier
+    (rob_carrier ?r - robot_box ?c - carrier)          ; robot has a carrier
     (loaded ?c - carrier ?b - box)              ; carrier is carrying a box
 
     (capacity ?c - carrier ?n - capacity_number)
 	(capacity_predecessor ?arg0 - capacity_number ?arg1 - capacity_number)
 
-    (with-patient ?r - robot ?p - patient)     ; robot is with a patient
-	(busy ?r - robot-patient)                  ; robot is busy with a patient
-	(free ?r - robot-patient)					;added to remove negative-preconditions
+    (with_patient ?r - robot ?p - patient)     ; robot is with a patient
+	(busy ?r - robot_patient)                  ; robot is busy with a patient
+	(free ?r - robot_patient)					;added to remove negative-preconditions
 	
 	(available ?r - robot)                     ; robot is available for actions
 )
@@ -53,16 +54,16 @@
 	:parameters (?r - robot ?from - location ?to - location)
 	:duration (= ?duration 1)
 	:condition (and 
-		(at start (at ?r ?from))
+		(at start (at_robot ?r ?from))
 		(at start (connected ?from ?to))
 		(at start (available ?r))
 
 		; (at start (not (= ?to central_warehouse)))
 	)
 	:effect (and 
-		(at start (not (at ?r ?from)))
+		(at start (not (at_robot ?r ?from)))
 		(at start (not (available ?r)))
-		(at end (at ?r ?to))
+		(at end (at_robot ?r ?to))
 		(at end (available ?r))
 	)
 )
@@ -71,7 +72,7 @@
 ; 	:parameters (?r - robot-box ?from - location ?to - location ?cr - carrier ?s - capacity_number)
 ; 	:duration (= ?duration 10)
 ; 	:condition (and 
-; 		(at start (at ?r ?from))
+; 		(at start (at-robot ?r ?from))
 ; 		(at start (or (connected ?from ?to) (connected ?to ?from)))
 ; 		(at start (available ?r))
 		
@@ -79,20 +80,20 @@
 ; 		(at start (not (exists (?s1 - capacity_number)(capacity_predecessor ?s ?s1))))
 ; 	)
 ; 	:effect (and 
-; 		(at start (not (at ?r ?from)))
+; 		(at start (not (at-robot ?r ?from)))
 ; 		(at start (not (available ?r)))
-; 		(at end (at ?r ?to))
+; 		(at end (at-robot ?r ?to))
 ; 		(at end (available ?r))
 ; 	)
 ; )
 
 
 (:durative-action fill
-	:parameters (?r - robot-box ?b - box ?c - content ?l - location)
+	:parameters (?r - robot_box ?b - box ?c - content ?l - location)
 	:duration (= ?duration 2)
 	:condition (and 
 		(at start (at ?b ?l))
-		(at start (at ?r ?l))
+		(at start (at_robot ?r ?l))
 		(at start (at ?c ?l))
 		; (at start (not (full ?b)))
 		(at start (empty ?b))
@@ -101,21 +102,21 @@
 	)
 	:effect (and 
 		(at start (not (available ?r)))
-		(at end (filled-with ?b ?c))
+		(at end (filled_with ?b ?c))
 		(at end (full ?b))
 		(at end (not (empty ?b)))
 		(at end (available ?r))
 	)
 )
 
-(:durative-action pick-up
-	:parameters (?r - robot-box ?b - box ?l - location ?cr - carrier ?s1 - capacity_number ?s2 - capacity_number)
+(:durative-action pick_up
+	:parameters (?r - robot_box ?b - box ?l - location ?cr - carrier ?s1 - capacity_number ?s2 - capacity_number)
 	:duration (= ?duration 1.5)
 	:condition (and 
 		(at start (at ?b ?l))
-		(at start (at ?r ?l))
+		(at start (at_robot ?r ?l))
 
-		(at start (rob-carrier ?r ?cr))
+		(at start (rob_carrier ?r ?cr))
 		(at start (capacity_predecessor ?s1 ?s2))
 		(at start (capacity ?cr ?s2))
 		(at start (available ?r))
@@ -132,13 +133,13 @@
 )
 
 (:durative-action drop
-	:parameters (?r - robot-box ?b - box ?l - location ?u - unit ?cr - carrier ?s1 - capacity_number ?s2 - capacity_number)
+	:parameters (?r - robot_box ?b - box ?l - location ?u - unit ?cr - carrier ?s1 - capacity_number ?s2 - capacity_number)
 	:duration (= ?duration 1.5)
 	:condition (and
-		(at start (at ?r ?l))
+		(at start (at_robot ?r ?l))
 		(at start (at ?u ?l))
 
-		(at start (rob-carrier ?r ?cr))
+		(at start (rob_carrier ?r ?cr))
 		(at start (loaded ?cr ?b))
 		(at start (capacity_predecessor ?s1 ?s2))
 		(at start (capacity ?cr ?s1))
@@ -146,7 +147,7 @@
 	)
 	:effect (and 
 		(at start (not (available ?r)))
-		(at end (unit-has-box ?u ?b))
+		(at end (unit_has_box ?u ?b))
 		(at end (at ?b ?l))
 		(at end (not (loaded ?cr ?b)))
 		(at end (capacity ?cr ?s2))
@@ -155,23 +156,23 @@
 	)
 )
 
-(:durative-action empty-box
-	:parameters (?r - robot-box ?b - box ?c - content ?u - unit ?l - location)
+(:durative-action empty_box
+	:parameters (?r - robot_box ?b - box ?c - content ?u - unit ?l - location)
 	:duration (= ?duration 2)
 	:condition (and 
 		(at start (at ?u ?l))
 		(at start (at ?b ?l))
-		(at start (at ?r ?l))
-		(at start (unit-has-box ?u ?b))
-		(at start (filled-with ?b ?c))
+		(at start (at_robot ?r ?l))
+		(at start (unit_has_box ?u ?b))
+		(at start (filled_with ?b ?c))
 		(at start (full ?b))
 		; (at start (not (unit-has-content ?u ?c)))
 		(at start (available ?r))
 	)
 	:effect (and 
 		(at start (not (available ?r)))
-		(at end (unit-has-content ?u ?c))
-		(at end (not (filled-with ?b ?c)))
+		(at end (unit_has_content ?u ?c))
+		(at end (not (filled_with ?b ?c)))
 		(at end (not (full ?b)))
 		(at end (empty ?b))
 		(at end (at ?c ?l))
@@ -179,11 +180,11 @@
 	)
 )
 
-(:durative-action take-patient
-	:parameters (?r - robot-patient ?p - patient ?l - location)
+(:durative-action take_patient
+	:parameters (?r - robot_patient ?p - patient ?l - location)
 	:duration (= ?duration 3)
 	:condition (and 
-		(at start (at ?r ?l))
+		(at start (at_robot ?r ?l))
 		(at start (at ?p ?l))
 		; (at start (not (busy ?r)))
 		(at start (free ?r))
@@ -191,27 +192,27 @@
 	)
 	:effect (and 
 		(at start (not (available ?r)))
-		(at end (with-patient ?r ?p))
+		(at end (with_patient ?r ?p))
 		(at end (busy ?r))
 		(at end (available ?r))
 	)
 )
 
-(:durative-action release-patient
-	:parameters (?r - robot-patient ?p - patient ?l - location ?u - unit)
+(:durative-action release_patient
+	:parameters (?r - robot_patient ?p - patient ?l - location ?u - unit)
 	:duration (= ?duration 2)
 	:condition (and 
-		(at start (at ?r ?l))
+		(at start (at_robot ?r ?l))
 		(at start (at ?u ?l))
-		(at start (with-patient ?r ?p))
+		(at start (with_patient ?r ?p))
 		(at start (busy ?r))
 		(at start (available ?r))
 	)
 	:effect (and 
 		(at start (not (available ?r)))
 		(at end (at ?p ?l))
-		(at end (at-unit ?p ?u))
-		(at end (not (with-patient ?r ?p)))
+		(at end (at_unit ?p ?u))
+		(at end (not (with_patient ?r ?p)))
 		(at end (not (busy ?r)))
 		(at end (available ?r))
 	)

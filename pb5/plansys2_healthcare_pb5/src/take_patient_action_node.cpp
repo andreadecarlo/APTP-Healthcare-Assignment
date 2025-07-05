@@ -12,7 +12,7 @@ class TakePatient : public plansys2::ActionExecutorClient
 {
 public:
   TakePatient()
-  : plansys2::ActionExecutorClient("take-patient", 1s)
+  : plansys2::ActionExecutorClient("take_patient", 1s)
   {
     progress_ = 0.0;
   }
@@ -43,7 +43,7 @@ int main(int argc, char ** argv)
   rclcpp::init(argc, argv);
   auto node = std::make_shared<TakePatient>();
 
-  node->set_parameter(rclcpp::Parameter("action_name", "take-patient"));
+  node->set_parameter(rclcpp::Parameter("action_name", "take_patient"));
   node->trigger_transition(lifecycle_msgs::msg::Transition::TRANSITION_CONFIGURE);
 
   rclcpp::spin(node->get_node_base_interface());

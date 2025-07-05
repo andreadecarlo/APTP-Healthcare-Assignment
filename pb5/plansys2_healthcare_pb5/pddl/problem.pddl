@@ -1,7 +1,7 @@
 (define (problem problem4) (:domain healthcare)
     (:objects 
-        r1 - robot-box
-        r2 - robot-patient
+        r1 - robot_box
+        r2 - robot_patient
 
         u1 u2 u3 - unit
         l1 l2 l3 - location
@@ -19,11 +19,11 @@
     )
 
     (:init
-        (at r1 central_warehouse)
+        (at_robot r1 central_warehouse)
         (at cr1 central_warehouse)
-        (rob-carrier r1 cr1)
+        (rob_carrier r1 cr1)
 
-        (at r2 entrance)
+        (at_robot r2 entrance)
         (free r2)
 
         (available r1)
@@ -64,10 +64,10 @@
     )
 
     (:goal (and
-        (unit-has-content u1 scalpel)
-        (unit-has-content u1 aspirin)
-        (unit-has-content u2 bandage)
-        (at-unit p1 u1)
+        (unit_has_content u1 scalpel)
+        (unit_has_content u1 aspirin)
+        (unit_has_content u2 bandage)
+        (at_unit p1 u1)
     ))
 
     ;; Optional metric to minimize total-time
