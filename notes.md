@@ -14,6 +14,23 @@ running:
 
     tfd domain.pddl problem.pddl
 
+pb4:
+    planutils activate:
+    
+    optic -N domain.pddl problem.pddl
+    Avoids optimizing initial found solution! 
+    Run weighted A* with W = 1.000, not restarting with goal states
+
+    optic -N -W1,1 domain.pddl problem.pddl  
+    Run weighted A* with W = 1.000, not restarting with goal states
+
+    optic -N -E -W1,1 domain.pddl problem.pddl 
+    Run weighted A* with W = 1.000, not restarting with goal states 
+    Skip EHC: go straight to best-first search
+
+    tfd domain.pddl problem.pddl 
+    No particular flags supported
+
 
 Planners to test:
 - FF                ff domain.pddl problem.pddl

@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-project(plansys2_healthcare_example)
+project(plansys2_healthcare_pb5)
 
 
 # find dependencies
@@ -23,9 +23,6 @@ set(dependencies
 
 
 # Add the executables
-add_executable(move_carrier_action_node src/move_carrier_action_node.cpp)
-ament_target_dependencies(move_carrier_action_node ${dependencies})
-
 add_executable(move_robot_action_node src/move_robot_action_node.cpp)
 ament_target_dependencies(move_robot_action_node ${dependencies})
 
@@ -51,7 +48,6 @@ ament_target_dependencies(release_patient_action_node ${dependencies})
 install(DIRECTORY launch pddl DESTINATION share/${PROJECT_NAME})
 
 install(TARGETS
-  move_carrier_action_node
   move_robot_action_node
   fill_action_node
   pick_up_action_node

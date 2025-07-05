@@ -1,5 +1,5 @@
-set instance r1 robot_box
-set instance r2 robot_patient
+set instance r1 robot-box
+set instance r2 robot-patient
 
 set instance u1 unit
 set instance u2 unit
@@ -30,11 +30,11 @@ set instance scalpel content
 set instance aspirin content
 set instance bandage content
 
-set predicate (at_robot r1 central_warehouse)
+set predicate (at r1 central_warehouse)
 set predicate (at c1 central_warehouse)
-set predicate (rob_carrier r1 c1)
+set predicate (rob-carrier r1 c1)
 
-set predicate (at_robot r2 entrance)
+set predicate (at r2 entrance)
 
 set predicate (available r1)
 set predicate (available r2)

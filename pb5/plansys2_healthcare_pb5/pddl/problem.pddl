@@ -9,7 +9,7 @@
         b1 b2 b3 - box
         p1 p2 - patient
 
-        c1 - carrier
+        cr1 - carrier
 
         capacity_0 - capacity_number
         capacity_1 - capacity_number
@@ -20,10 +20,11 @@
 
     (:init
         (at r1 central_warehouse)
-        (at c1 central_warehouse)
-        (rob-carrier r1 c1)
+        (at cr1 central_warehouse)
+        (rob-carrier r1 cr1)
 
         (at r2 entrance)
+        (free r2)
 
         (available r1)
         (available r2)
@@ -32,21 +33,25 @@
         (at p2 entrance)
 
         (connected central_warehouse l1)
+        (connected l1 central_warehouse)
         (connected l1 l2)
+        (connected l2 l1)
         (connected l2 l3)
+        (connected l3 l2)
 
         (connected entrance l1)
+        (connected l1 entrance)
 
         (at b1 central_warehouse)
         (at b2 central_warehouse)
         (at b3 central_warehouse)
 
+        (empty b1)
+        (empty b2)
+        (empty b3)
+
         (at u1 l1)
         (at u2 l2)
-
-        (empty-box b1)
-        (empty-box b2)
-        (empty-box b3)
 
         (at scalpel central_warehouse)
         (at aspirin central_warehouse)
@@ -55,7 +60,7 @@
         (capacity_predecessor capacity_0 capacity_1)
         (capacity_predecessor capacity_1 capacity_2)
         (capacity_predecessor capacity_2 capacity_3)
-        (capacity c1 capacity_3)
+        (capacity cr1 capacity_3)
     )
 
     (:goal (and

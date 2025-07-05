@@ -10,7 +10,7 @@ from launch_ros.actions import Node
 
 def generate_launch_description():
     # Get the launch directory
-    bringup_dir = get_package_share_directory('plansys2_healthcare_example')
+    bringup_dir = get_package_share_directory('plansys2_healthcare_pb5')
     domain_file = os.path.join(bringup_dir, 'pddl', 'domain.pddl')
 
     namespace = LaunchConfiguration('namespace')
@@ -44,16 +44,7 @@ def generate_launch_description():
     # Launch action executor nodes
     ld.add_action(
         Node(
-            package='plansys2_healthcare_example',
-            executable='move_carrier_action_node',
-            name='move_carrier_action_node',
-            namespace=namespace,
-            output='screen',
-            parameters=[]))
-
-    ld.add_action(
-        Node(
-            package='plansys2_healthcare_example',
+            package='plansys2_healthcare_pb5',
             executable='move_robot_action_node',
             name='move_robot_action_node',
             namespace=namespace,
@@ -62,7 +53,7 @@ def generate_launch_description():
 
     ld.add_action(
         Node(
-            package='plansys2_healthcare_example',
+            package='plansys2_healthcare_pb5',
             executable='fill_action_node',
             name='fill_action_node',
             namespace=namespace,
@@ -71,7 +62,7 @@ def generate_launch_description():
 
     ld.add_action(
         Node(
-            package='plansys2_healthcare_example',
+            package='plansys2_healthcare_pb5',
             executable='pick_up_action_node',
             name='pick_up_action_node',
             namespace=namespace,
@@ -80,7 +71,7 @@ def generate_launch_description():
 
     ld.add_action(
         Node(
-            package='plansys2_healthcare_example',
+            package='plansys2_healthcare_pb5',
             executable='drop_action_node',
             name='drop_action_node',
             namespace=namespace,
@@ -89,7 +80,7 @@ def generate_launch_description():
 
     ld.add_action(
         Node(
-            package='plansys2_healthcare_example',
+            package='plansys2_healthcare_pb5',
             executable='empty_action_node',
             name='empty_action_node',
             namespace=namespace,
@@ -98,7 +89,7 @@ def generate_launch_description():
 
     ld.add_action(
         Node(
-            package='plansys2_healthcare_example',
+            package='plansys2_healthcare_pb5',
             executable='take_patient_action_node',
             name='take_patient_action_node',
             namespace=namespace,
@@ -107,7 +98,7 @@ def generate_launch_description():
 
     ld.add_action(
         Node(
-            package='plansys2_healthcare_example',
+            package='plansys2_healthcare_pb5',
             executable='release_patient_action_node',
             name='release_patient_action_node',
             namespace=namespace,

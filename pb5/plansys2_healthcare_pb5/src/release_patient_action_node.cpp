@@ -8,11 +8,11 @@
 
 using namespace std::chrono_literals;
 
-class MoveRobot : public plansys2::ActionExecutorClient
+class ReleasePatient : public plansys2::ActionExecutorClient
 {
 public:
-  MoveRobot()
-  : plansys2::ActionExecutorClient("move_robot", 1s)
+  ReleasePatient()
+  : plansys2::ActionExecutorClient("release-patient", 1s)
   {
     progress_ = 0.0;
   }
@@ -22,16 +22,16 @@ private:
   {
     if (progress_ < 1.0) {
       progress_ += 0.05;
-      send_feedback(progress_, "Moving robot...");
+      send_feedback(progress_, "Releasing patient...");
     } else {
-      finish(true, 1.0, "Move robot completed");
+      finish(true, 1.0, "Release patient completed");
 
       progress_ = 0.0;
       std::cout << std::endl;
     }
 
     std::cout << "\r\e[K" << std::flush;
-    std::cout << "Moving robot ... [" << std::min(100.0, progress_ * 100.0) << "%]  " <<
+    std::cout << "Releasing patient ... [" << std::min(100.0, progress_ * 100.0) << "%]  " <<
       std::flush;
   }
 
@@ -41,9 +41,9 @@ private:
 int main(int argc, char ** argv)
 {
   rclcpp::init(argc, argv);
-  auto node = std::make_shared<MoveRobot>();
+  auto node = std::make_shared<ReleasePatient>();
 
-  node->set_parameter(rclcpp::Parameter("action_name", "move_robot"));
+  node->set_parameter(rclcpp::Parameter("action_name", "release-patient"));
   node->trigger_transition(lifecycle_msgs::msg::Transition::TRANSITION_CONFIGURE);
 
   rclcpp::spin(node->get_node_base_interface());

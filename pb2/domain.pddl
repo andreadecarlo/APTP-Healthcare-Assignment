@@ -27,8 +27,8 @@
 	(connected ?l1 - location ?l2 - location) ; locations are connected
 
 	; (unloaded ?r - robot-box)               	; robot is empty
-	(full ?b - box)
 	(filled-with ?b - box ?c - content) 		; box is filled with content 
+	(full ?b - box)
 	
 	(unit-has-box ?u - unit ?b - box)              ; unit has a box
 	(unit-has-content ?u - unit ?c - content) ; unit has specific content
