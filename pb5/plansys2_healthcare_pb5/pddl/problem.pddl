@@ -61,6 +61,8 @@
         (capacity_predecessor capacity_1 capacity_2)
         (capacity_predecessor capacity_2 capacity_3)
         (capacity cr1 capacity_3)
+
+        (is_central_warehouse central_warehouse)
     )
 
     (:goal (and

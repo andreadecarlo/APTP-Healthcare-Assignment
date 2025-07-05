@@ -1,6 +1,6 @@
 (define (domain healthcare)
 
-(:requirements :strips :typing :durative-actions :equality :negative-preconditions )
+(:requirements :strips :typing :durative-actions :negative-preconditions )
 
 ; :negative-preconditions not supported
 
@@ -47,6 +47,7 @@
 	(free ?r - robot_patient)					;added to remove negative-preconditions
 	
 	(available ?r - robot)                     ; robot is available for actions
+	(is_central_warehouse ?l - location)       ; predicate to identify central warehouse
 )
 
 
@@ -57,8 +58,6 @@
 		(at start (at_robot ?r ?from))
 		(at start (connected ?from ?to))
 		(at start (available ?r))
-
-		; (at start (not (= ?to central_warehouse)))
 	)
 	:effect (and 
 		(at start (not (at_robot ?r ?from)))
@@ -95,10 +94,9 @@
 		(at start (at ?b ?l))
 		(at start (at_robot ?r ?l))
 		(at start (at ?c ?l))
-		; (at start (not (full ?b)))
 		(at start (empty ?b))
 		(at start (available ?r))
-		(at start (= ?l central_warehouse))
+		(at start (is_central_warehouse ?l))
 	)
 	:effect (and 
 		(at start (not (available ?r)))
@@ -120,7 +118,7 @@
 		(at start (capacity_predecessor ?s1 ?s2))
 		(at start (capacity ?cr ?s2))
 		(at start (available ?r))
-		(at start (= ?l central_warehouse))
+		(at start (is_central_warehouse ?l))
 	)
 	:effect (and 
 		(at start (not (available ?r)))
@@ -166,7 +164,6 @@
 		(at start (unit_has_box ?u ?b))
 		(at start (filled_with ?b ?c))
 		(at start (full ?b))
-		; (at start (not (unit-has-content ?u ?c)))
 		(at start (available ?r))
 	)
 	:effect (and 
@@ -186,7 +183,6 @@
 	:condition (and 
 		(at start (at_robot ?r ?l))
 		(at start (at ?p ?l))
-		; (at start (not (busy ?r)))
 		(at start (free ?r))
 		(at start (available ?r))
 	)
