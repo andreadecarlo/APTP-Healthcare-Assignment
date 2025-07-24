@@ -1,0 +1,10 @@
+configuration,problem,plan_length,expanded,evaluated,generated,search_time,memory_mb,exit_code
+astar-ff,pb,21,26327,64055,146763,0.256567,N/A,0
+astar-hmax,pb,21,548360,995445,2933506,3.503490,N/A,0
+lama-first,pb,22,458,540,2969,0.008715,N/A,0
+eager-greedy-ff,pb,21,146,537,881,0.006166,N/A,0
+seq-opt-lmcut,pb,21,48807,108860,264943,1.374834,N/A,0
+astar-ipdb,pb,21,592193,968302,3021084,1.546551,N/A,0
+astar-blind,pb,21,3138433,4237134,15539253,7.803293,N/A,0
+astar-lmcut,pb,21,48807,108860,264943,1.363370,N/A,0
+seq-sat-lama-2011,pb,22,5076,6120,42656935,90.441390,N/A,0

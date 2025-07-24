@@ -16,7 +16,6 @@
 (:constants 
 	central_warehouse - location
 	entrance - location
-	scalpel tongue_depressor aspirin bandage thermometer - content
 )
 
 (:predicates
@@ -49,24 +48,6 @@
 	:effect (and 
 		(at ?r ?to)
 		(not (at ?r ?from))
-
-		; we don't need to update the location of the carried box or patient
-		; it is updated once it is delivered or released
-		; (forall (?b - box) 
-		; 	(when (loaded ?r ?b) 
-		; 		(and (at ?b ?to)
-		; 			(not (at ?b ?from))
-		; 		)
-		; 	)
-		; )
-
-		; (forall (?p - patient) 
-		; 	(when (with-patient ?r ?p) 
-		; 		(and (at ?p ?to)
-		; 			(not (at ?p ?from))
-		; 		)
-		; 	)
-		; )
 	)
 )
 

@@ -10,6 +10,8 @@
 
     p1 - patient
 
+    scalpel tongue_depressor aspirin bandage thermometer - content
+
     c1 - carrier
 
     capacity_0 - capacity_number
@@ -33,9 +35,6 @@
     (at r1 central_warehouse)
     (at r2 entrance)
 
-    ; (unloaded r1)
-    ; not (busy r2)         not needed, in STRIPS they are false by default if not specified
-
     (at p1 entrance)
     
     (connected entrance l1)
@@ -47,7 +46,6 @@
     (capacity_predecessor capacity_1 capacity_2)
     (capacity_predecessor capacity_2 capacity_3)
     (capacity c1 capacity_2)
-
 )
 
 (:goal (and

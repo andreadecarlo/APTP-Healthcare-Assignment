@@ -1,8 +1,0 @@
-problem,boxes,patients,locations,plan_length,expanded,evaluated,generated,search_time
-
-_pb_test_patients,3,1,2,22,458,540,2969,0.008011
-_pb_test_patients,3,2,2,27,3613,4303,22629,0.033478
-_pb_test_patients,3,3,2,32,549896,681785,2944657,4.152728
-_pb_test_patients,3,3,2,33,529677,654812,2841840,3.976383
-_pb_test_patients,3,4,2,38,1512762,1848271,8271316,12.564892
-_pb_test_patients,3,4,2,39,1520488,1857416,8325957,12.446009

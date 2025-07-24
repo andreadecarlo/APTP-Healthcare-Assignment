@@ -9,6 +9,8 @@
     l1 l2 - location
 
     p1 - patient
+    
+    scalpel tongue_depressor aspirin bandage thermometer - content
 )
 
 (:init

@@ -18,26 +18,24 @@
 (:constants 
 	central_warehouse - location
 	entrance - location
-	scalpel tongue_depressor aspirin bandage thermometer - content
 )
 
 (:predicates
-	(at ?x - locatable ?l - location)		; x is at location
-	(at-unit ?p - patient ?u - unit) 		; patient is at unit
-	(connected ?l1 - location ?l2 - location) ; locations are connected
+	(at ?x - locatable ?l - location)			; x is at location
+	(at-unit ?p - patient ?u - unit) 			; patient is at unit
+	(connected ?l1 - location ?l2 - location) 	; locations are connected
 
-	; (unloaded ?r - robot-box)               	; robot is empty
 	(filled-with ?b - box ?c - content) 		; box is filled with content 
 	(full ?b - box)
 	
-	(unit-has-box ?u - unit ?b - box)              ; unit has a box
-	(unit-has-content ?u - unit ?c - content) ; unit has specific content
+	(unit-has-box ?u - unit ?b - box)           ; unit has a box
+	(unit-has-content ?u - unit ?c - content)	; unit has specific content
 
-	(rob-carrier ?r - robot-box ?cr - carrier)          ; robot has a carrier
-	(loaded ?cr - carrier ?b - box)          ; carrier is carrying a box
-	(capacity ?cr - carrier ?n - capacity_number)
+	; (unloaded ?r - robot-box)               	; handled by the carrier
+	(rob-carrier ?r - robot-box ?cr - carrier)  ; robot has a carrier
+	(loaded ?cr - carrier ?b - box)          	; carrier is carrying a box
+	(capacity ?cr - carrier ?n - capacity_number) 	; carrier of capacity
 	(capacity_predecessor ?arg0 - capacity_number ?arg1 - capacity_number)
-
 
 	(with-patient ?r - robot ?p - patient)     	; robot is with a patient
 	(busy ?r - robot-patient)              		; robot is busy with a patient
@@ -50,33 +48,15 @@
 	:precondition (and 
 		(at ?r ?from)
 		(or (connected ?from ?to) (connected ?to ?from))
-		(not (= ?to central_warehouse))		; !!ROBOT-PATIENT CANNOT MOVE TO CENTRAL WAREHOUSE
+		(not (= ?to central_warehouse))		; ROBOT-PATIENT CANNOT MOVE TO CENTRAL WAREHOUSE
 	)
 	:effect (and 
 		(at ?r ?to)
 		(not (at ?r ?from))
-
-		; carrier is linked to robot
-		; (forall (?c - carrier) 
-		; 	(when (rob-carrier ?r ?c) 
-		; 		(and 
-		; 			(at ?c ?to)
-		; 			(not (at ?c ?from))
-		; 		)
-		; 	)
-		; )
-		
-		; patient is linked to robot
-		; (forall (?p - patient) 
-		; 	(when (with-patient ?r ?p) 
-		; 		(and (at ?p ?to)
-		; 			(not (at ?p ?from))
-		; 		)
-		; 	)
-		; )
 	)
 )
 
+; Robot-box can fill a box with content at the central warehouse
 (:action fill
 	:parameters (?r - robot-box ?b - box ?c - content ?l - location)
 	:precondition (and 
@@ -114,7 +94,7 @@
 )
 
 
-
+; Robot-box can drop a box at a location, causing the box to be at that location and the unit to have that box
 (:action drop
 	:parameters (?r - robot-box ?b - box ?l - location ?u - unit ?cr - carrier ?s1 - capacity_number ?s2 - capacity_number)
 	:precondition (and
@@ -156,7 +136,7 @@
 	)
 )
 
-
+; Robot-patient can take a patient from a location
 (:action take-patient
 	:parameters (?r - robot-patient ?p - patient ?l - location)
 	:precondition (and 
@@ -170,6 +150,7 @@
 	)
 )
 
+; Robot-patient can release a patient at a location, causing the patient to be at that location and at a unit
 (:action release-patient
 	:parameters (?r - robot-patient ?p - patient ?l - location ?u - unit)
 	:precondition (and 
@@ -188,6 +169,7 @@
 	)
 )
 
+; Robot-box can return to the central warehouse if the carrier is empty
 (:action return-to-warehouse
 	:parameters (?r - robot-box ?from - location ?cr - carrier ?s - capacity_number)
 	:precondition (and 

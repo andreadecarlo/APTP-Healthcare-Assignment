@@ -23,6 +23,7 @@
         ;     (task1 (accompany-all))
         ; )
         ; :ordering (task0 < task1)
+        
         :subtasks (and
             (task0 (accompany p1 u1))
             (task1 (deliver_all))

@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Script to run ff planner on a single problem file
+# Usage: ./run_ff.sh <domain_file> <problem_file>
+
 if [ $# -eq 0 ]; then
     echo "Usage: $0 <domain_file> <problem_file>"
     echo "Example: $0 domain.pddl scaled_problems/all/2box_3patient_4loc.pddl"
